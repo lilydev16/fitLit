@@ -48,9 +48,20 @@ describe('User Repository', () => {
 
   })
 
+  it('should keep track of the current user', function () {
+    userRepository.findUserById(1)
+    expect(userRepository.currentUser).to.eql(userData[0])
+    userRepository.findUserById(2)
+    expect(userRepository.currentUser).to.eql(userData[1])
+  })
+
   it('should find a user by id, and return the user', function() {
     expect(userRepository.findUserById(1)).to.equal(userData[0])
     expect(userRepository.findUserById(2)).to.equal(userData[1])
 
+  })
+
+  it('should calculate average steps for all users', function() {
+    expect(userRepository.calculateAverageStepGoal()).to.equal(7500)
   })
 });
