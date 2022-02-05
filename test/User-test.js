@@ -63,4 +63,9 @@ describe('User', () => {
 
     expect(user.friends).to.eql(userData.friends);
   });
+
+  it('should return the user first name', function() {
+
+    expect(user.returnFirstName()).to.equal('Luisa');
+  })
 })
