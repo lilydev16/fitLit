@@ -32,7 +32,7 @@ describe('User', () => {
          19
        ]
      }]
-    user = new User()
+    user = new User(userData)
   })
 
   it('should be a function', function () {

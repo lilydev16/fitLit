@@ -1,5 +1,7 @@
 class User {
-  constructor(userData) {}
+  constructor(userData) {
+    userdata = {}
+  }
 }
 
 
