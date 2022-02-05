@@ -47,4 +47,10 @@ describe('User Repository', () => {
     expect(userRepository.data).to.eql(userData)
 
   })
+
+  it('should find a user by id, and return the user', function() {
+    expect(userRepository.findUserById(1)).to.equal(userData[0])
+    expect(userRepository.findUserById(2)).to.equal(userData[1])
+
+  })
 });

@@ -5,7 +5,9 @@ class UserRepository {
     this.data = data;
   }
 
-  test() {
+  findUserById(id) {
+    const user = this.data.find(user => user.id === id)
+    return user
   }
 }
 
