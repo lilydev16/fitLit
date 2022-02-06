@@ -17,7 +17,11 @@ import User from './User'
 
 //Query Selectors -----------------------------------------------------------------------------
 const welcomeMessage = document.querySelector('.welcome-message')
-
+const userName = document.querySelector('.user-name')
+const userAddress = document.querySelector('.user-address')
+const userEmail = document.querySelector('.user-email')
+const userStride = document.querySelector('.user-stride')
+const userStepGoal = document.querySelector('.user-step-goal')
 //Event Listeners -----------------------------------------------------------------------------
 
 window.addEventListener('load', loadUserProfle)
@@ -29,7 +33,11 @@ const userRepository = new UserRepository(userData)
 //functions --------------------------------------------------------------------------------------
 function updateUserProfile(user) {
   welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
-
+  userName.innerText = `${user.name}`
+  userAddress.innerText = `${user.address}`
+  userEmail.innerText = `${user.email}`
+  userStride.innerText = ` Stride Length: ${user.strideLength}`
+  userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
 }
 
 function createUser () {
