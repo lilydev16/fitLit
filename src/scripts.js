@@ -16,22 +16,31 @@ import UserRepository from './UserRepository';
 import User from './User'
 
 //Query Selectors -----------------------------------------------------------------------------
-
+const welcomeMessage = document.querySelector('.welcome-message')
 
 //Event Listeners -----------------------------------------------------------------------------
 
-window.addEventListener('load', loadUserProfile)
+window.addEventListener('load', loadUserProfle)
 
 //global variable -----------------------------------------------------------------------------
 
 const userRepository = new UserRepository(userData)
 
 //functions --------------------------------------------------------------------------------------
+function updateUserProfile(user) {
+  welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
 
-function loadUserProfile () {
+}
+
+function createUser () {
   userRepository.findUserById(1)
   const newUser = userRepository.createNewUser()
-  console.log(newUser.address)
+  return newUser
+}
+
+function loadUserProfle() {
+  createUser()
+  updateUserProfile(createUser())
 }
 
 
