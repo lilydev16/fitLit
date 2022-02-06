@@ -1,4 +1,5 @@
 import userData from './data/users'
+import User from './User'
 
 class UserRepository {
   constructor(data){
@@ -20,6 +21,12 @@ class UserRepository {
       return averageTotal
     })
     return averageSteps
+  }
+
+  createNewUser() {
+    const newUser = new User(this.currentUser)
+    console.log()
+    return newUser
   }
 }
 

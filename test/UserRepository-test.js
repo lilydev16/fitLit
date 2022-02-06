@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import UserRepository from '../src/UserRepository';
+import User from '../src/User'
 
 describe('User Repository', () => {
   let userRepository, userData
@@ -61,7 +62,13 @@ describe('User Repository', () => {
 
   })
 
+
   it('should calculate average steps for all users', function() {
     expect(userRepository.calculateAverageStepGoal()).to.equal(7500)
+  })
+
+  it('should instantiate a new user based on the current user', function() {
+    userRepository.findUserById(1)
+    expect(userRepository.createNewUser()).to.be.an.instanceof(User)
   })
 });
