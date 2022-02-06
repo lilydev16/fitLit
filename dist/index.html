@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" href="../src/css/styles.css"/>
     <meta charset="UTF-8">
     <title>Fitlit</title>
   </head>
   <body>
-    <h1>Activity Tracker</h1>
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
+    <nav class="main-header">
+      <h1>FitLit</h1>
+      <p class="welcome-message">welcome, johanna</p>
+      <p>date</p>
+    </nav>
+    <main>
+      <section class="widget-section">
+        <section class="today-widget" id="activity">
+          <p>user's daily step goal</p> 
+          <p>average step goal of all users</p>
+        </section>
+        <section class="today-widget" id="hydration">
+          <p>today's hydration info</p>
+        </section>
+        <section class="today-widget" id="sleep">
+          <p>today's sleep info</p>
+        </section>
+      </section>
+      <section class="profile-section">
+        <section class="user-profile">
+          <p class="user-name">Johanna Smith</p>
+          <p>123 Oak Ln, Denver, CO 80218</p>
+          <p>jsmith@example.com</p>
+          <p>stride length: 4.3</p>
+          <p>daily step goal: 10000</p>
+        </section>
+        <section class="user-friends">
+          <p>User friend list will go here</p>
+        </section>
+      </section>
+    </main>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
     <script src="bundle.js"></script>
   </body>
