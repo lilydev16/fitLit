@@ -44,19 +44,36 @@ main {
 }
 
 .user-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   height: 40%; 
 }
 
 .user-friends {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   height: 60%;
 }
 
 .today-widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   height: 50%;
   width: 90%;
   border-radius: 10px;
 }
   
+
+.user-name {
+  font-size: 25px;
+}
+
+.welcome-message {
+  font-size: 35px;
+}
 
 
 
