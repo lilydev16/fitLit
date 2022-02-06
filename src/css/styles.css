@@ -1,5 +1,62 @@
-body, html {
-  background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-  background-repeat: no-repeat;
-  height: 100%;
+
+* {
+  border: 2px solid blue;
+  padding: 0px;
+  margin: 0px;
 }
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10%;
+}
+
+main {
+  display: flex;
+  height: 90%;
+}
+
+.widget-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: scroll;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 70%;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.user-profile {
+  height: 40%; 
+}
+
+.user-friends {
+  height: 60%;
+}
+
+.today-widget {
+  height: 50%;
+  width: 90%;
+  border-radius: 10px;
+}
+  
+
+
+
