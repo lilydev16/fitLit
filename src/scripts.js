@@ -31,8 +31,11 @@ window.addEventListener('load', loadUserProfle)
 const userRepository = new UserRepository(userData)
 
 //functions --------------------------------------------------------------------------------------
+function updateWelcomeMessage(user) {
+    welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
+}
+
 function updateUserProfile(user) {
-  welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
   userName.innerText = `${user.name}`
   userAddress.innerText = `${user.address}`
   userEmail.innerText = `${user.email}`
@@ -48,6 +51,7 @@ function createUser () {
 
 function loadUserProfle() {
   createUser()
+  updateWelcomeMessage(createUser())
   updateUserProfile(createUser())
 }
 
