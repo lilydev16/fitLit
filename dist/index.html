@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" href="../src/css/styles.css"/>
     <meta charset="UTF-8">
     <title>Fitlit</title>
   </head>
   <body>
-    <h1>Activity Tracker</h1>
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
+    <nav class="main-header">
+      <h1>FitLit</h1>
+      <p>Welcome message</p>
+      <p>date</p>
+    </nav>
+    <main>
+      <section class="widget-section">
+        <section class="today-widget" id="activity">
+          <p>today's activity info</p>
+        </section>
+        <section class="today-widget" id="hydration">
+          <p>today's hydration info</p>
+        </section>
+        <section class="today-widget" id="sleep">
+          <p>today's sleep info</p>
+        </section>
+      </section>
+      <section class="profile-section">
+        <section class="user-profile">
+          <p>User Info here</p>
+        </section>
+        <section class="user-friends">
+          <p>User friend list goes here</p>
+        </section>
+      </section>
+    </main>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
     <script src="bundle.js"></script>
   </body>
