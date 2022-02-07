@@ -21,7 +21,8 @@ const userName = document.querySelector('.user-name')
 const userAddress = document.querySelector('.user-address')
 const userEmail = document.querySelector('.user-email')
 const userStride = document.querySelector('.user-stride')
-const userStepGoal = document.querySelector('.user-step-goal')
+const userStepGoal = document.querySelector('#stepGoalUser')
+const stepGoalAll = document.querySelector('#stepGoalAll')
 //Event Listeners -----------------------------------------------------------------------------
 
 window.addEventListener('load', loadUserProfle)
@@ -49,10 +50,16 @@ function createUser () {
   return newUser
 }
 
+function updateActivityCard(user) {
+  // stepGoalAll.innerText = `Average Step Goal All: ${userRepository.data[0]}`
+  userStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
+}
+
 function loadUserProfle() {
   createUser()
   updateWelcomeMessage(createUser())
   updateUserProfile(createUser())
+  updateActivityCard(createUser())
 }
 
 
