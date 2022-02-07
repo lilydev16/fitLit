@@ -14,13 +14,10 @@ class UserRepository {
   }
 
   calculateAverageStepGoal() {
-    const averageSteps = this.data.reduce((total, num) => {
-      let result = total.dailyStepGoal
-      result += num.dailyStepGoal
-      let averageTotal = result / this.data.length
-      return averageTotal
-    })
-    return averageSteps
+    const totalSteps = this.data.reduce((total, num) => {
+      return total += num.dailyStepGoal
+    }, 0)
+    return totalSteps / this.data.length
   }
 
   createNewUser() {

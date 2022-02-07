@@ -51,7 +51,7 @@ function createUser () {
 }
 
 function updateActivityCard(user) {
-  // stepGoalAll.innerText = `Average Step Goal All: ${userRepository.data[0]}`
+  stepGoalAll.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
   userStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
 
