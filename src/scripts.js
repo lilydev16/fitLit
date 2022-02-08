@@ -23,6 +23,7 @@ const userEmail = document.querySelector('.user-email')
 const userStride = document.querySelector('.user-stride')
 const userStepGoal = document.querySelector('#stepGoalUser')
 const stepGoalAll = document.querySelector('#stepGoalAll')
+const userFriends = document.getElementById('friendList')
 //Event Listeners -----------------------------------------------------------------------------
 
 window.addEventListener('load', loadUserProfle)
@@ -42,6 +43,7 @@ function updateUserProfile(user) {
   userEmail.innerText = `${user.email}`
   userStride.innerText = ` Stride Length: ${user.strideLength}`
   userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
+  userFriends.innerText = `Friends: ${userRepository.createUserFriendList()}`
 }
 
 function createUser () {
@@ -57,7 +59,6 @@ function updateActivityCard(user) {
 
 function loadUserProfle() {
   createUser()
-  userRepository.createUserFriendList()
   updateWelcomeMessage(createUser())
   updateUserProfile(createUser())
   updateActivityCard(createUser())

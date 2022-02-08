@@ -27,7 +27,6 @@ class UserRepository {
 
   createNewUser() {
     const newUser = new User(this.currentUser)
-    console.log()
     return newUser
   }
 
