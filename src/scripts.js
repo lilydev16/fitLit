@@ -16,13 +16,13 @@ import UserRepository from './UserRepository';
 import User from './User'
 
 //Query Selectors -----------------------------------------------------------------------------
-const welcomeMessage = document.querySelector('.welcome-message')
-const userName = document.querySelector('.user-name')
-const userAddress = document.querySelector('.user-address')
-const userEmail = document.querySelector('.user-email')
-const userStride = document.querySelector('.user-stride')
-const userStepGoal = document.querySelector('#stepGoalUser')
-const stepGoalAll = document.querySelector('#stepGoalAll')
+const welcomeMessage = document.getElementById('welcomeMessage')
+const userName = document.getElementById('userName')
+const userAddress = document.getElementById('userAddress')
+const userEmail = document.getElementById('userEmail')
+const userStride = document.getElementById('userStride')
+const userStepGoal = document.getElementById('stepGoalUser')
+const stepGoalAll = document.getElementById('stepGoalAll')
 const userFriends = document.getElementById('friendList')
 //Event Listeners -----------------------------------------------------------------------------
 
