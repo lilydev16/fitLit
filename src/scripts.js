@@ -14,6 +14,7 @@ import userData from './data/users';
 import UserRepository from './UserRepository';
 
 import User from './User'
+import fetchData from './apiCalls'
 
 //Query Selectors -----------------------------------------------------------------------------
 const welcomeMessage = document.getElementById('welcomeMessage')
@@ -33,6 +34,14 @@ window.addEventListener('load', loadUserProfle)
 const userRepository = new UserRepository(userData)
 
 //functions --------------------------------------------------------------------------------------
+function loadUserProfle() {
+  createUser()
+  updateWelcomeMessage(createUser())
+  updateUserProfile(createUser())
+  updateActivityCard(createUser())
+  fetchData()
+}
+
 function updateWelcomeMessage(user) {
     welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
 }
@@ -57,12 +66,6 @@ function updateActivityCard(user) {
   userStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
 
-function loadUserProfle() {
-  createUser()
-  updateWelcomeMessage(createUser())
-  updateUserProfile(createUser())
-  updateActivityCard(createUser())
-}
 
 
 // function createNewUser() {
