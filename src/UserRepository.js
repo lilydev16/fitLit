@@ -1,4 +1,5 @@
 import userData from './data/users'
+import User from './User'
 
 class UserRepository {
   constructor(data){
@@ -12,14 +13,29 @@ class UserRepository {
     return user
   }
 
+  findFriendsById(id) {
+    const friend = this.data.find(friend => friend.id === id)
+    return friend
+  }
+
   calculateAverageStepGoal() {
-    const averageSteps = this.data.reduce((total, num) => {
-      let result = total.dailyStepGoal
-      result += num.dailyStepGoal
-      const averageTotal = result / this.data.length
-      return averageTotal
+    const totalSteps = this.data.reduce((total, num) => {
+      return total += num.dailyStepGoal
+    }, 0)
+    return totalSteps / this.data.length
+  }
+
+  createNewUser() {
+    const newUser = new User(this.currentUser)
+    return newUser
+  }
+
+  createUserFriendList() {
+    const friendIds = this.currentUser.friends
+    const foundFriends = friendIds.map(friendId => {
+      return this.findFriendsById(friendId).name
     })
-    return averageSteps
+    return foundFriends
   }
 }
 
