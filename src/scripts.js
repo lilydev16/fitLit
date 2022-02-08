@@ -57,6 +57,7 @@ function updateActivityCard(user) {
 
 function loadUserProfle() {
   createUser()
+  userRepository.createUserFriendList()
   updateWelcomeMessage(createUser())
   updateUserProfile(createUser())
   updateActivityCard(createUser())
