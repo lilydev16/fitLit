@@ -22,7 +22,8 @@ const userName = document.getElementById('userName')
 const userAddress = document.getElementById('userAddress')
 const userEmail = document.getElementById('userEmail')
 const userStride = document.getElementById('userStride')
-const userStepGoal = document.getElementById('stepGoalUser')
+const userStepGoal = document.getElementById('userStepGoal')
+// const userStepGoal = document.getElementById('stepGoalUser')
 const stepGoalAll = document.getElementById('stepGoalAll')
 const userFriends = document.getElementById('friendList')
 //Event Listeners -----------------------------------------------------------------------------
@@ -39,12 +40,12 @@ function loadUserProfle() {
     console.log(userRepository)
     console.log(randomizeId())
     createUser(userRepository)
-    updateWelcomeMessage(createUser(userRepository))
+    updateWelcomeMessage(userRepository.currentUser)
+    updateUserProfile(userRepository.currentUser, userRepository)
+    updateActivityCard(userRepository.currentUser, userRepository)
   })
 
 
-    // updateUserProfile(createUser(data[0]), data[0])
-    // updateActivityCard(createUser(data[0]), data[0])
     // console.log(data)
 }
 
@@ -52,13 +53,13 @@ function updateWelcomeMessage(user) {
     welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
 }
 
-function updateUserProfile(user, UserRepository) {
+function updateUserProfile(user, data) {
   userName.innerText = `${user.name}`
   userAddress.innerText = `${user.address}`
   userEmail.innerText = `${user.email}`
   userStride.innerText = ` Stride Length: ${user.strideLength}`
   userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
-  userFriends.innerText = `Friends: ${userRepository.createUserFriendList()}`
+  userFriends.innerText = `Friends: ${data.createUserFriendList()}`
 }
 
 function randomizeId() {
