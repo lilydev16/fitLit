@@ -9,66 +9,65 @@ import './css/styles.css';
 import './images/turing-logo.png'
 // An example of how you tell webpack to use a JS file
 
-import userData from './data/users';
+// import userData from './data/users';
 
 import UserRepository from './UserRepository';
 
 import User from './User'
+import fetchData from './apiCalls'
 
 //Query Selectors -----------------------------------------------------------------------------
-const welcomeMessage = document.querySelector('.welcome-message')
-const userName = document.querySelector('.user-name')
-const userAddress = document.querySelector('.user-address')
-const userEmail = document.querySelector('.user-email')
-const userStride = document.querySelector('.user-stride')
-const userStepGoal = document.querySelector('#stepGoalUser')
-const stepGoalAll = document.querySelector('#stepGoalAll')
+const welcomeMessage = document.getElementById('welcomeMessage')
+const userName = document.getElementById('userName')
+const userAddress = document.getElementById('userAddress')
+const userEmail = document.getElementById('userEmail')
+const userStride = document.getElementById('userStride')
+const userStepGoal = document.getElementById('userStepGoal')
+const activityStepGoal = document.getElementById('activityStepGoal')
+const averageStepGoal = document.getElementById('averageStepGoal')
 const userFriends = document.getElementById('friendList')
 //Event Listeners -----------------------------------------------------------------------------
 
 window.addEventListener('load', loadUserProfle)
 
 //global variable -----------------------------------------------------------------------------
-
-const userRepository = new UserRepository(userData)
+// const userRepository = new UserRepository(fetchData().then(result => result))
 
 //functions --------------------------------------------------------------------------------------
+function loadUserProfle() {
+  fetchData().then(allData => {
+    const userRepository = new UserRepository(allData.userData)
+    createUser(userRepository)
+    updateWelcomeMessage(userRepository.currentUser)
+    updateUserProfile(userRepository.currentUser, userRepository)
+    updateActivityCard(userRepository.currentUser, userRepository)
+  })
+}
+
 function updateWelcomeMessage(user) {
     welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
 }
 
-function updateUserProfile(user) {
+function updateUserProfile(user, data) {
   userName.innerText = `${user.name}`
   userAddress.innerText = `${user.address}`
   userEmail.innerText = `${user.email}`
   userStride.innerText = ` Stride Length: ${user.strideLength}`
   userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
-  userFriends.innerText = `Friends: ${userRepository.createUserFriendList()}`
+  userFriends.innerText = `Friends: ${data.createUserFriendList()}`
 }
 
-function createUser () {
-  userRepository.findUserById(1)
-  const newUser = userRepository.createNewUser()
+function randomizeId() {
+  return Math.floor(Math.random() * 50);
+}
+
+function createUser (data) {
+  // data.findUserById(randomizeId())
+  const newUser = data.createNewUser(randomizeId())
   return newUser
 }
 
-function updateActivityCard(user) {
-  stepGoalAll.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
-  userStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
+function updateActivityCard(user, userRepository) {
+  averageStepGoal.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
+  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
-
-function loadUserProfle() {
-  createUser()
-  updateWelcomeMessage(createUser())
-  updateUserProfile(createUser())
-  updateActivityCard(createUser())
-}
-
-
-// function createNewUser() {
-//   const userRepository = new UserRepository(userData)
-//   const userDataObject = userRepository.findUserById(1)
-//   const newUser = new User(userDataObject)
-//   console.log(newUser)
-//   return newUser
-// }

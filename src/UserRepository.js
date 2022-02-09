@@ -1,4 +1,4 @@
-import userData from './data/users'
+// import userData from './data/users'
 import User from './User'
 
 class UserRepository {
@@ -7,10 +7,11 @@ class UserRepository {
     this.currentUser = {}
   }
 
-  findUserById(id) {
+  createNewUser(id) {
     const user = this.data.find(user => user.id === id)
-    this.currentUser = user
-    return user
+    const newUser = new User(user)
+    this.currentUser = newUser
+    return newUser
   }
 
   findFriendsById(id) {
@@ -23,11 +24,6 @@ class UserRepository {
       return total += num.dailyStepGoal
     }, 0)
     return totalSteps / this.data.length
-  }
-
-  createNewUser() {
-    const newUser = new User(this.currentUser)
-    return newUser
   }
 
   createUserFriendList() {

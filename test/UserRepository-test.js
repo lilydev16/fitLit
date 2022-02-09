@@ -93,14 +93,14 @@ describe('User Repository', () => {
   })
 
   it('should keep track of the current user', function () {
-    userRepository.findUserById(1)
+    userRepository.createNewUser(1)
     expect(userRepository.currentUser).to.eql(userData[0])
-    userRepository.findUserById(2)
+    userRepository.createNewUser(2)
     expect(userRepository.currentUser).to.eql(userData[1])
   })
 
   it('should find a user by id, and return the user', function() {
-    expect(userRepository.findUserById(1)).to.equal(userData[0])
+    expect(userRepository.createNewUser(1)).to.eql(userData[0])
   })
 
   it('should find a friend by id, and return the friend', function() {
@@ -112,12 +112,12 @@ describe('User Repository', () => {
   })
 
   it('should instantiate a new user based on the current user', function() {
-    userRepository.findUserById(1)
-    expect(userRepository.createNewUser()).to.be.an.instanceof(User)
+    // userRepository.findUserById(1)
+    expect(userRepository.createNewUser(1)).to.be.an.instanceof(User)
   })
 
   it('should return the names of all of the Users friends', function() {
-    expect(userRepository.findUserById(1)).to.equal(userData[0])
+    expect(userRepository.createNewUser(1)).to.eql(userData[0])
     expect(userRepository.currentUser.name).to.equal("Luisa Hane")
     expect(userRepository.currentUser.friends).to.eql([16, 4, 8])
     const friendNames = userRepository.createUserFriendList()
