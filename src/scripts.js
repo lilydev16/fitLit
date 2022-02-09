@@ -23,8 +23,8 @@ const userAddress = document.getElementById('userAddress')
 const userEmail = document.getElementById('userEmail')
 const userStride = document.getElementById('userStride')
 const userStepGoal = document.getElementById('userStepGoal')
-// const userStepGoal = document.getElementById('stepGoalUser')
-const stepGoalAll = document.getElementById('stepGoalAll')
+const activityStepGoal = document.getElementById('activityStepGoal')
+const averageStepGoal = document.getElementById('averageStepGoal')
 const userFriends = document.getElementById('friendList')
 //Event Listeners -----------------------------------------------------------------------------
 
@@ -73,8 +73,8 @@ function createUser (data) {
 }
 
 function updateActivityCard(user, userRepository) {
-  stepGoalAll.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
-  userStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
+  averageStepGoal.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
+  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
 
 
