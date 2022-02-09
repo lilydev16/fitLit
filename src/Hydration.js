@@ -1,13 +1,12 @@
 class Hydration {
-  constructor(id, userHydrationData) {
-    this.id = id
+  constructor(userHydrationData) {
     this.hydrationData = userHydrationData
   }
-  filterDataById() {
-    this.hydrationData.filter(entry => {
-      this.id === entry.id;
-      return entry
-    })
+
+  calcOuncesPerDay(date) {
+    console.log(this.hydrationData)
+    let hydrationEntry = this.hydrationData.find(entry => entry.date === date);
+    return hydrationEntry.numOunces
   }
 
 }
