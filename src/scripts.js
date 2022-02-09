@@ -30,23 +30,29 @@ const userFriends = document.getElementById('friendList')
 window.addEventListener('load', loadUserProfle)
 
 //global variable -----------------------------------------------------------------------------
-
-const userRepository = new UserRepository(userData)
+// const userRepository = new UserRepository(fetchData().then(result => result))
 
 //functions --------------------------------------------------------------------------------------
 function loadUserProfle() {
-  createUser()
-  updateWelcomeMessage(createUser())
-  updateUserProfile(createUser())
-  updateActivityCard(createUser())
-  fetchData()
+  fetchData().then(allData => {
+    const userRepository = new UserRepository(allData.userData)
+    console.log(userRepository)
+    console.log(randomizeId())
+    createUser(userRepository)
+  })
+
+
+    // updateWelcomeMessage(createUser(data[0]))
+    // updateUserProfile(createUser(data[0]), data[0])
+    // updateActivityCard(createUser(data[0]), data[0])
+    // console.log(data)
 }
 
 function updateWelcomeMessage(user) {
     welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
 }
 
-function updateUserProfile(user) {
+function updateUserProfile(user, UserRepository) {
   userName.innerText = `${user.name}`
   userAddress.innerText = `${user.address}`
   userEmail.innerText = `${user.email}`
@@ -55,13 +61,17 @@ function updateUserProfile(user) {
   userFriends.innerText = `Friends: ${userRepository.createUserFriendList()}`
 }
 
-function createUser () {
-  userRepository.findUserById(1)
-  const newUser = userRepository.createNewUser()
+function randomizeId() {
+  return Math.floor(Math.random() * 50);
+}
+
+function createUser (data) {
+  // data.findUserById(randomizeId())
+  const newUser = data.createNewUser(randomizeId())
   return newUser
 }
 
-function updateActivityCard(user) {
+function updateActivityCard(user, userRepository) {
   stepGoalAll.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
   userStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
