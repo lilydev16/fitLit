@@ -7,10 +7,11 @@ class UserRepository {
     this.currentUser = {}
   }
 
-  findUserById(id) {
+  createNewUser(id) {
     const user = this.data.find(user => user.id === id)
-    this.currentUser = user
-    return user
+    const newUser = new User(user)
+    this.currentUser = newUser
+    return newUser
   }
 
   findFriendsById(id) {
@@ -25,10 +26,10 @@ class UserRepository {
     return totalSteps / this.data.length
   }
 
-  createNewUser() {
-    const newUser = new User(this.currentUser)
-    return newUser
-  }
+  // createNewUser() {
+  //   const newUser = new User(this.currentUser)
+  //   return newUser
+  // }
 
   createUserFriendList() {
     const friendIds = this.currentUser.friends
