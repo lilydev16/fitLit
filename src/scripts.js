@@ -9,7 +9,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 // An example of how you tell webpack to use a JS file
 
-import userData from './data/users';
+// import userData from './data/users';
 
 import UserRepository from './UserRepository';
 
@@ -37,16 +37,11 @@ window.addEventListener('load', loadUserProfle)
 function loadUserProfle() {
   fetchData().then(allData => {
     const userRepository = new UserRepository(allData.userData)
-    console.log(userRepository)
-    console.log(randomizeId())
     createUser(userRepository)
     updateWelcomeMessage(userRepository.currentUser)
     updateUserProfile(userRepository.currentUser, userRepository)
     updateActivityCard(userRepository.currentUser, userRepository)
   })
-
-
-    // console.log(data)
 }
 
 function updateWelcomeMessage(user) {
@@ -76,13 +71,3 @@ function updateActivityCard(user, userRepository) {
   averageStepGoal.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
   activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
-
-
-
-// function createNewUser() {
-//   const userRepository = new UserRepository(userData)
-//   const userDataObject = userRepository.findUserById(1)
-//   const newUser = new User(userDataObject)
-//   console.log(newUser)
-//   return newUser
-// }

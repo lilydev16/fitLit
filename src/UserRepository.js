@@ -1,4 +1,4 @@
-import userData from './data/users'
+// import userData from './data/users'
 import User from './User'
 
 class UserRepository {
@@ -25,11 +25,6 @@ class UserRepository {
     }, 0)
     return totalSteps / this.data.length
   }
-
-  // createNewUser() {
-  //   const newUser = new User(this.currentUser)
-  //   return newUser
-  // }
 
   createUserFriendList() {
     const friendIds = this.currentUser.friends
