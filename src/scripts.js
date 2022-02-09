@@ -39,10 +39,10 @@ function loadUserProfle() {
     console.log(userRepository)
     console.log(randomizeId())
     createUser(userRepository)
+    updateWelcomeMessage(createUser(userRepository))
   })
 
 
-    // updateWelcomeMessage(createUser(data[0]))
     // updateUserProfile(createUser(data[0]), data[0])
     // updateActivityCard(createUser(data[0]), data[0])
     // console.log(data)
