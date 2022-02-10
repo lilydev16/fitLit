@@ -6,10 +6,10 @@ describe('User Repository', () => {
   let userRepository, allData
 
   beforeEach(function() {
-  
+
     allData = {
       userData: [
-         
+
         {
            "id": 1,
            "name": "Luisa Hane",
@@ -99,7 +99,12 @@ describe('User Repository', () => {
               "userID": 3,
               "date": "2019/06/15",
               "numOunces": 47
-          }]
+          }],
+        sleepData: [
+          {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
+          {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
+          {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7}
+        ]
     }
         userRepository = new UserRepository(allData)
   })
@@ -116,9 +121,14 @@ describe('User Repository', () => {
     expect(userRepository.userData).to.eql(allData.userData)
   })
 
-  it('should be able to keep track of hydrationData', function() {
+  it('should be able to keep track of hydration data', function() {
     expect(userRepository.hydrationData).to.eql(allData.hydrationData)
   })
+
+  it('should be able to keep track of sleep data', function() {
+    expect(userRepository.sleepData).to.eql(allData.sleepData)
+  })
+
 
   it('should keep track of the current user', function () {
     userRepository.createNewUser(1)

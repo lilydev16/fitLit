@@ -6,6 +6,7 @@ class UserRepository {
     this.data = data;
     this.userData = data.userData;
     this.hydrationData = data.hydrationData;
+    this.sleepData = data.sleepData;
     this.currentUser = {}
   }
 
@@ -49,21 +50,21 @@ export default UserRepository;
 
 
 // Scripts instantiates a new UserRepository within the fetch function
-/* 
+/*
 
 👥 UserRepository ->
     - holds all of the data (userData, hydrationData, sleepData)
     - can create new User instance, find & return friends, calculate
     averages across the data
-    - responsible for 
-    
+    - responsible for
+
   👤 User ->
     - holds an individual user's information
     - can create a new Hyrdration profile instance
     - responsible for ...
 
      💧 HydrationProfile ->
-        - holds one user's hydration profile 
+        - holds one user's hydration profile
         - responsible for:
           * calculating how much water user consumes on any given day
           * how much water user has consumed over 1 week
