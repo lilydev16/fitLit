@@ -32,20 +32,16 @@ const day7Hydration = document.getElementById('day7Hydration')
 
 //Event Listeners -----------------------------------------------------------------------------
 
-window.addEventListener('load', loadUserProfle)
+window.addEventListener('load', loadPage)
 
 //global variable -----------------------------------------------------------------------------
 
 //functions --------------------------------------------------------------------------------------
 
-function loadUserProfle() {
+function loadPage() {
   fetchData().then(allData => {
     const userRepository = new UserRepository(allData)
-
-    createUser(userRepository)
-    updateWelcomeMessage(userRepository.currentUser)
-    updateUserProfile(userRepository.currentUser, userRepository)
-    updateActivityCard(userRepository.currentUser, userRepository)
+    loadUserProfile(userRepository)
 
     createHydrationProfile(userRepository)
     displayTodaysHydration(userRepository)
@@ -53,8 +49,11 @@ function loadUserProfle() {
   })
 }
 
-function loadUserProfile() {
-
+function loadUserProfile(data) {
+  createUser(data)
+  updateWelcomeMessage(data.currentUser)
+  updateUserProfile(data.currentUser, data)
+  updateActivityCard(data.currentUser, data)
 }
 
 function loadHydrationData() {
@@ -62,25 +61,10 @@ function loadHydrationData() {
 }
 
 
-
-function displayTodaysHydration(data) {
-  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
-  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
+function createUser (data) {
+  const newUser = data.createNewUser(randomizeId())
+  return newUser
 }
-
-function displayWeeklyHydration(data) {
-  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
-  day1Hydration.innerText = weeklyHydrationAmt[0]
-  day2Hydration.innerText = weeklyHydrationAmt[1]
-  day3Hydration.innerText = weeklyHydrationAmt[2]
-  day4Hydration.innerText = weeklyHydrationAmt[3]
-  day5Hydration.innerText = weeklyHydrationAmt[4]
-  day6Hydration.innerText = weeklyHydrationAmt[5]
-  day7Hydration.innerText = weeklyHydrationAmt[6]
-}
-
-
-
 
 function updateWelcomeMessage(user) {
     welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
@@ -99,9 +83,9 @@ function randomizeId() {
   return Math.floor(Math.random() * 50);
 }
 
-function createUser (data) {
-  const newUser = data.createNewUser(randomizeId())
-  return newUser
+function updateActivityCard(user, data) {
+  averageStepGoal.innerText = `Average Step Goal All: ${data.calculateAverageStepGoal()}`
+  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
 
 function createHydrationProfile(data) {
@@ -109,7 +93,18 @@ function createHydrationProfile(data) {
   return newHydrationProfile
 }
 
-function updateActivityCard(user, data) {
-  averageStepGoal.innerText = `Average Step Goal All: ${data.calculateAverageStepGoal()}`
-  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
+function displayTodaysHydration(data) {
+  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
+  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
+}
+
+function displayWeeklyHydration(data) {
+  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
+  day1Hydration.innerText = weeklyHydrationAmt[0]
+  day2Hydration.innerText = weeklyHydrationAmt[1]
+  day3Hydration.innerText = weeklyHydrationAmt[2]
+  day4Hydration.innerText = weeklyHydrationAmt[3]
+  day5Hydration.innerText = weeklyHydrationAmt[4]
+  day6Hydration.innerText = weeklyHydrationAmt[5]
+  day7Hydration.innerText = weeklyHydrationAmt[6]
 }
