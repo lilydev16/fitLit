@@ -2,17 +2,10 @@
 // Do not delete or rename this file ********
 
 // console.log(userData,"<>>>>userData")
-// An example of how you tell webpack to use a CSS file
 import './css/styles.css';
-
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-// An example of how you tell webpack to use a JS file
-
-// import userData from './data/users';
-
 import UserRepository from './UserRepository';
-
 import User from './User'
 import fetchData from './apiCalls'
 
@@ -31,17 +24,31 @@ const userFriends = document.getElementById('friendList')
 window.addEventListener('load', loadUserProfle)
 
 //global variable -----------------------------------------------------------------------------
-// const userRepository = new UserRepository(fetchData().then(result => result))
 
 //functions --------------------------------------------------------------------------------------
+
 function loadUserProfle() {
   fetchData().then(allData => {
-    const userRepository = new UserRepository(allData.userData)
+    const userRepository = new UserRepository(allData)
     createUser(userRepository)
     updateWelcomeMessage(userRepository.currentUser)
     updateUserProfile(userRepository.currentUser, userRepository)
     updateActivityCard(userRepository.currentUser, userRepository)
+    userRepository.currentUser.createNewHydrationData()
+    userRepository.currentUser.userHydration.calcOuncesPerWeek()
   })
+}
+
+function loadUserProfile() {
+
+}
+
+function loadHydrationData() {
+
+}
+
+function loadSleepData() {
+
 }
 
 function updateWelcomeMessage(user) {
@@ -62,7 +69,6 @@ function randomizeId() {
 }
 
 function createUser (data) {
-  // data.findUserById(randomizeId())
   const newUser = data.createNewUser(randomizeId())
   return newUser
 }
