@@ -4,14 +4,15 @@ class Hydration {
   }
 
   calcOuncesPerDay(date) {
-    console.log(this.hydrationData)
     let hydrationEntry = this.hydrationData.find(entry => entry.date === date);
     return hydrationEntry.numOunces
   }
 
   calcOuncesPerWeek() {
     let slicedHydration = this.hydrationData.slice(this.hydrationData.length - 7, this.hydrationData.length);
-    return slicedHydration.map(entry => entry.numOunces)
+    return slicedHydration.map(entry => {
+      return `${entry.date}: ${entry.numOunces}`
+    })
   }
 
   calcAverageOunces() {
