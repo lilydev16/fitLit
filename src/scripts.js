@@ -19,6 +19,17 @@ const userStepGoal = document.getElementById('userStepGoal')
 const activityStepGoal = document.getElementById('activityStepGoal')
 const averageStepGoal = document.getElementById('averageStepGoal')
 const userFriends = document.getElementById('friendList')
+
+const todayHydration = document.getElementById('todayHydration')
+const day1Hydration = document.getElementById('day1Hydration')
+const day2Hydration = document.getElementById('day2Hydration')
+const day3Hydration = document.getElementById('day3Hydration')
+const day4Hydration = document.getElementById('day4Hydration')
+const day5Hydration = document.getElementById('day5Hydration')
+const day6Hydration = document.getElementById('day6Hydration')
+const day7Hydration = document.getElementById('day7Hydration')
+
+
 //Event Listeners -----------------------------------------------------------------------------
 
 window.addEventListener('load', loadUserProfle)
@@ -30,12 +41,15 @@ window.addEventListener('load', loadUserProfle)
 function loadUserProfle() {
   fetchData().then(allData => {
     const userRepository = new UserRepository(allData)
+
     createUser(userRepository)
     updateWelcomeMessage(userRepository.currentUser)
     updateUserProfile(userRepository.currentUser, userRepository)
     updateActivityCard(userRepository.currentUser, userRepository)
-    userRepository.currentUser.createNewHydrationData()
-    userRepository.currentUser.userHydration.calcOuncesPerWeek()
+
+    createHydrationProfile(userRepository)
+    displayTodaysHydration(userRepository)
+    displayWeeklyHydration(userRepository)
   })
 }
 
@@ -47,9 +61,26 @@ function loadHydrationData() {
 
 }
 
-function loadSleepData() {
 
+
+function displayTodaysHydration(data) {
+  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
+  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
 }
+
+function displayWeeklyHydration(data) {
+  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
+  day1Hydration.innerText = weeklyHydrationAmt[0]
+  day2Hydration.innerText = weeklyHydrationAmt[1]
+  day3Hydration.innerText = weeklyHydrationAmt[2]
+  day4Hydration.innerText = weeklyHydrationAmt[3]
+  day5Hydration.innerText = weeklyHydrationAmt[4]
+  day6Hydration.innerText = weeklyHydrationAmt[5]
+  day7Hydration.innerText = weeklyHydrationAmt[6]
+}
+
+
+
 
 function updateWelcomeMessage(user) {
     welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
@@ -73,7 +104,12 @@ function createUser (data) {
   return newUser
 }
 
-function updateActivityCard(user, userRepository) {
-  averageStepGoal.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
+function createHydrationProfile(data) {
+  const newHydrationProfile = data.currentUser.createNewHydrationData()
+  return newHydrationProfile
+}
+
+function updateActivityCard(user, data) {
+  averageStepGoal.innerText = `Average Step Goal All: ${data.calculateAverageStepGoal()}`
   activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
