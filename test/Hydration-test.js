@@ -12,20 +12,20 @@ describe('HydrationProfile', () => {
       "date": "2019/06/16",
       "numOunces": 69
   },
+    {
+      "userID": 2,
+      "date": "2019/06/15",
+      "numOunces": 75
+    }, 
+    {
+      "userID": 3,
+      "date": "2019/06/15",
+      "numOunces": 47
+  },
   {
-    "userID": 2,
-    "date": "2019/06/15",
-    "numOunces": 75
-  }, 
-  {
-    "userID": 3,
-    "date": "2019/06/15",
-    "numOunces": 47
-},
-{
-    "userID": 4,
-    "date": "2019/06/15",
-    "numOunces": 85
+      "userID": 4,
+      "date": "2019/06/15",
+      "numOunces": 85
 }];
 
   userHydration = new Hydration(hydrationData)
@@ -46,7 +46,11 @@ describe('HydrationProfile', () => {
 
   it('should be able to calculate ounces per day based on date', function() {
     expect(userHydration.calcOuncesPerDay("2019/06/16")).to.equal(69)
-  } )
+  })
+
+  it('should be able to calculate a user\'s average overall water intake', function() {
+    expect(userHydration.calcAverageOunces()).to.equal(69)
+  })
 
 
 
