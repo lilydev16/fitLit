@@ -1,7 +1,6 @@
 // import userData from './data/users'
 import User from './User'
 
-//*
 class UserRepository {
   constructor(data){
     this.data = data;
@@ -10,7 +9,6 @@ class UserRepository {
     this.currentUser = {}
   }
 
-//*
   createNewUser(id) {
     const userData = this.userData.find(user => user.id === id)
     const hydrationData = this.hydrationData.filter(entry => entry.userID === id)

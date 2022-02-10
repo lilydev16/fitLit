@@ -28,8 +28,6 @@ describe('User Repository', () => {
               "numOunces": 37
               }]
          },
-         
-         
          {
            "id": 2,
            "name": "Jarvis Considine",
