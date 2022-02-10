@@ -29,12 +29,9 @@ const day5Hydration = document.getElementById('day5Hydration')
 const day6Hydration = document.getElementById('day6Hydration')
 const day7Hydration = document.getElementById('day7Hydration')
 
-
 //Event Listeners -----------------------------------------------------------------------------
 
 window.addEventListener('load', loadPage)
-
-//global variable -----------------------------------------------------------------------------
 
 //functions --------------------------------------------------------------------------------------
 
@@ -42,10 +39,7 @@ function loadPage() {
   fetchData().then(allData => {
     const userRepository = new UserRepository(allData)
     loadUserProfile(userRepository)
-
-    createHydrationProfile(userRepository)
-    displayTodaysHydration(userRepository)
-    displayWeeklyHydration(userRepository)
+    loadHydrationData(userRepository)
   })
 }
 
@@ -56,10 +50,11 @@ function loadUserProfile(data) {
   updateActivityCard(data.currentUser, data)
 }
 
-function loadHydrationData() {
-
+function loadHydrationData(data) {
+  createHydrationProfile(data)
+  displayTodaysHydration(data)
+  displayWeeklyHydration(data)
 }
-
 
 function createUser (data) {
   const newUser = data.createNewUser(randomizeId())
