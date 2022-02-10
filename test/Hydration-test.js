@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Hydration from '../src/Hydration';
 
-let userHydration, hydrationData
+let userHydration, hydrationData, userWeekSet
 
 describe('HydrationProfile', () => {
 
@@ -28,8 +28,17 @@ describe('HydrationProfile', () => {
       "numOunces": 85
 }];
 
-  userHydration = new Hydration(hydrationData)
+  userWeekSet = [
+    {userID: 2, date: '2020/01/16', numOunces: 44},
+    {userID: 2, date: '2020/01/17', numOunces: 86},
+    {userID: 2, date: '2020/01/18', numOunces: 79},
+    {userID: 2, date: '2020/01/19', numOunces: 56},
+    {userID: 2, date: '2020/01/20', numOunces: 50},
+    {userID: 2, date: '2020/01/21', numOunces: 85},
+    {userID: 2, date: '2020/01/22', numOunces: 93}
+  ]
 
+  userHydration = new Hydration(hydrationData)
   })
 
   it('should be a function', function () {
@@ -50,6 +59,11 @@ describe('HydrationProfile', () => {
 
   it('should be able to calculate a user\'s average overall water intake', function() {
     expect(userHydration.calcAverageOunces()).to.equal(69)
+  })
+
+  it('should be able to calculate ounces of water per day in most recent week', function() {
+    userHydration.hydrationData = userWeekSet
+    expect(userHydration.calcOuncesPerWeek()).to.eql([44, 86, 79, 56, 50, 85, 93])
   })
 
 
