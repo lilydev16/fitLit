@@ -9,6 +9,18 @@ class Hydration {
     return hydrationEntry.numOunces
   }
 
+  calcOuncesPerWeek() {
+
+  }
+
+  calcAverageOunces() {
+    const totalOunces = this.hydrationData.reduce((total, entry) => {
+      return total += entry.numOunces
+    }, 0)
+    return Math.round(totalOunces / this.hydrationData.length)
+  }
+
+
 }
 
 export default Hydration;
