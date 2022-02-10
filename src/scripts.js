@@ -2,17 +2,10 @@
 // Do not delete or rename this file ********
 
 // console.log(userData,"<>>>>userData")
-// An example of how you tell webpack to use a CSS file
 import './css/styles.css';
-
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-// An example of how you tell webpack to use a JS file
-
-// import userData from './data/users';
-
 import UserRepository from './UserRepository';
-
 import User from './User'
 import fetchData from './apiCalls'
 
@@ -26,22 +19,46 @@ const userStepGoal = document.getElementById('userStepGoal')
 const activityStepGoal = document.getElementById('activityStepGoal')
 const averageStepGoal = document.getElementById('averageStepGoal')
 const userFriends = document.getElementById('friendList')
+
+const todayHydration = document.getElementById('todayHydration')
+const day1Hydration = document.getElementById('day1Hydration')
+const day2Hydration = document.getElementById('day2Hydration')
+const day3Hydration = document.getElementById('day3Hydration')
+const day4Hydration = document.getElementById('day4Hydration')
+const day5Hydration = document.getElementById('day5Hydration')
+const day6Hydration = document.getElementById('day6Hydration')
+const day7Hydration = document.getElementById('day7Hydration')
+
 //Event Listeners -----------------------------------------------------------------------------
 
-window.addEventListener('load', loadUserProfle)
-
-//global variable -----------------------------------------------------------------------------
-// const userRepository = new UserRepository(fetchData().then(result => result))
+window.addEventListener('load', loadPage)
 
 //functions --------------------------------------------------------------------------------------
-function loadUserProfle() {
+
+function loadPage() {
   fetchData().then(allData => {
-    const userRepository = new UserRepository(allData.userData)
-    createUser(userRepository)
-    updateWelcomeMessage(userRepository.currentUser)
-    updateUserProfile(userRepository.currentUser, userRepository)
-    updateActivityCard(userRepository.currentUser, userRepository)
+    const userRepository = new UserRepository(allData)
+    loadUserProfile(userRepository)
+    loadHydrationData(userRepository)
   })
+}
+
+function loadUserProfile(data) {
+  createUser(data)
+  updateWelcomeMessage(data.currentUser)
+  updateUserProfile(data.currentUser, data)
+  updateActivityCard(data.currentUser, data)
+}
+
+function loadHydrationData(data) {
+  createHydrationProfile(data)
+  displayTodaysHydration(data)
+  displayWeeklyHydration(data)
+}
+
+function createUser (data) {
+  const newUser = data.createNewUser(randomizeId())
+  return newUser
 }
 
 function updateWelcomeMessage(user) {
@@ -61,13 +78,28 @@ function randomizeId() {
   return Math.floor(Math.random() * 50);
 }
 
-function createUser (data) {
-  // data.findUserById(randomizeId())
-  const newUser = data.createNewUser(randomizeId())
-  return newUser
+function updateActivityCard(user, data) {
+  averageStepGoal.innerText = `Average Step Goal All: ${data.calculateAverageStepGoal()}`
+  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
 
-function updateActivityCard(user, userRepository) {
-  averageStepGoal.innerText = `Average Step Goal All: ${userRepository.calculateAverageStepGoal()}`
-  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
+function createHydrationProfile(data) {
+  const newHydrationProfile = data.currentUser.createNewHydrationData()
+  return newHydrationProfile
+}
+
+function displayTodaysHydration(data) {
+  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
+  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
+}
+
+function displayWeeklyHydration(data) {
+  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
+  day1Hydration.innerText = weeklyHydrationAmt[0]
+  day2Hydration.innerText = weeklyHydrationAmt[1]
+  day3Hydration.innerText = weeklyHydrationAmt[2]
+  day4Hydration.innerText = weeklyHydrationAmt[3]
+  day5Hydration.innerText = weeklyHydrationAmt[4]
+  day6Hydration.innerText = weeklyHydrationAmt[5]
+  day7Hydration.innerText = weeklyHydrationAmt[6]
 }
