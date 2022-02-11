@@ -22,7 +22,7 @@ class Sleep {
     return sleepHours[type]
   }
 
-  calcSleepHoursPerWeek(date, type) {
+  calcSleepStatsPerWeek(date, type) {
     let findentryDate = this.sleepData.find(entry => entry.date === date);
     let startingIndex = this.sleepData.indexOf(findentryDate)
     let selectedWeek = this.sleepData.slice(startingIndex, startingIndex + 7)

@@ -64,8 +64,8 @@ describe('Sleep', () => {
       {userID: 1, date: "2019/06/21", hoursSlept: 7.8, sleepQuality: 4.2},
       {userID: 1, date: '2019/06/22', hoursSlept: 10.8, sleepQuality: 4.7},
     ]
-    expect(sleep.calcSleepHoursPerWeek('2019/06/15', 'hoursSlept')).to.eql([6.1, 4.1, 10.4, 10.7, 9.3, 7.8, 10.8])
-    expect(sleep.calcSleepHoursPerWeek('2019/06/15', 'sleepQuality')).to.eql([2.2, 3.8, 3.1, 1.2, 1.2, 4.2, 4.7])
+    expect(sleep.calcSleepStatsPerWeek('2019/06/15', 'hoursSlept')).to.eql([6.1, 4.1, 10.4, 10.7, 9.3, 7.8, 10.8])
+    expect(sleep.calcSleepStatsPerWeek('2019/06/15', 'sleepQuality')).to.eql([2.2, 3.8, 3.1, 1.2, 1.2, 4.2, 4.7])
   })
 
 })
