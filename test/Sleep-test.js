@@ -4,7 +4,7 @@ import Sleep from '../src/Sleep';
 describe('Sleep', () => {
   let sleep, sleepData
   beforeEach(function() {
-    sleep = new Sleep()
+    sleep = new Sleep(sleepData)
 
     sleepData = [
       {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
@@ -20,5 +20,13 @@ describe('Sleep', () => {
   it('should instantiate a Sleep', function () {
     expect(sleep).to.be.an.instanceof(Sleep)
   });
+
+  it('should keep track of the sleep data', function() {
+    expect(sleep.sleepData).to.eql(sleepData)
+  });
+
+  it('should caclulate the average hours of sleep per day', function() {
+    expect(sleep.calcAvgHoursPerDay()).to.equal(8)
+  })
 
 })

@@ -7,7 +7,7 @@ class Sleep {
     let total = this.sleepData.reduce((total, num) => {
       return total += num.hoursSlept
     }, 0)
-    return total / this.sleepData.length
+    return Math.round(total / this.sleepData.length)
   }
 }
 
