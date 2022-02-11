@@ -29,9 +29,7 @@ class Sleep {
     return selectedWeek.map(entry => {
       return entry[type]
     })
-
   }
-
 }
 
 export default Sleep;

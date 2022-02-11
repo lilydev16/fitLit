@@ -37,6 +37,13 @@ class UserRepository {
     })
     return foundFriends
   }
+
+  calcAvgSleepStatsForAllUsers(type) {
+    const totalSleep = this.sleepData.reduce((total, num) => {
+      return total += num[type]
+    }, 0)
+    return Math.round(totalSleep / this.sleepData.length)
+  }
 }
 
 export default UserRepository;

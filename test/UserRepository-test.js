@@ -148,6 +148,11 @@ describe('User Repository', () => {
     expect(userRepository.calculateAverageStepGoal()).to.equal(6200)
   })
 
+  it('should calculate average sleep stats for all users', function() {
+    expect(userRepository.calcAvgSleepStatsForAllUsers('sleepQuality')).to.equal(4)
+    expect(userRepository.calcAvgSleepStatsForAllUsers('hoursSlept')).to.equal(8)
+  })
+
   it('should instantiate a new user based on the current user', function() {
     expect(userRepository.createNewUser(1)).to.be.an.instanceof(User)
   })
@@ -159,4 +164,7 @@ describe('User Repository', () => {
     const friendNames = userRepository.createUserFriendList()
     expect(friendNames).to.eql(['Garnett Cruickshank', 'Mae Connelly', 'Laney Abshire'])
   })
+
+
+
 });
