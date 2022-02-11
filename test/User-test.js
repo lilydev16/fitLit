@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import User from '../src/User';
+import Hydration from '../src/Hydration';
 
 describe('User', () => {
-  let user, userData
+  let user, userData, hydrationData
   beforeEach(function() {
     userData = {
        "id": 1,
@@ -19,6 +20,19 @@ describe('User', () => {
      }
 
      user = new User(userData);
+
+     hydrationData = [
+       {
+         "userID": 1,
+         "date": "2019/06/16",
+         "numOunces": 69
+     },
+       {
+         "userID": 2,
+         "date": "2019/06/15",
+         "numOunces": 75
+       }
+     ]
   })
   it('should be a function', function () {
     expect(User).to.be.a('function');
@@ -68,4 +82,13 @@ describe('User', () => {
 
     expect(user.returnFirstName()).to.equal('Luisa');
   })
+
+  it('should instantiate a new hydration instance', function() {
+
+    const hydration = new Hydration(hydrationData)
+
+    expect(user.createNewHydrationData()).to.be.an.instanceof(Hydration)
+    expect(user.userHydration).to.be.an.instanceof(Hydration)
+  })
+
 })

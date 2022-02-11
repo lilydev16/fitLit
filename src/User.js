@@ -1,4 +1,5 @@
 import Hydration from "./Hydration";
+import Sleep from "./Sleep";
 
 
 class User {
@@ -11,6 +12,7 @@ class User {
     this.dailyStepGoal = userData.dailyStepGoal;
     this.friends = userData.friends;
     this.userHydration = hydrationData;
+    // this.userSleep = sleepData;
   }
 
   returnFirstName() {
@@ -23,6 +25,12 @@ class User {
     this.userHydration = newHydration
     return this.userHydration
   }
+
+  // createNewSleepData() {
+  //   const newSleep = new Sleep(this.userSleep);
+  //   this.userSleep = newSleep
+  //   return this.userSleep
+  // }
 
 }
 
