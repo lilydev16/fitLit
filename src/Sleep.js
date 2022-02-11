@@ -17,10 +17,10 @@ class Sleep {
     return Math.round(total / this.sleepData.length)
   }
 
-  calcSleepPerDay(date) {
+  calcSleepStatsPerDay(date, type) {
     let sleepHours = this.sleepData.find(entry => entry.date === date);
-    
-    return sleepHours.hoursSlept
+    console.log(type)
+    return sleepHours[type]
   }
 
 }
