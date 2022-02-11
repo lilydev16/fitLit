@@ -99,7 +99,7 @@ describe('User', () => {
     expect(user.userHydration).to.be.an.instanceof(Hydration)
   })
 
-  it.only('should instantiate a new sleep instance', function() {
+  it('should instantiate a new sleep instance', function() {
 
     const sleep = new Sleep(sleepData)
 

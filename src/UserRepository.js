@@ -13,7 +13,8 @@ class UserRepository {
   createNewUser(id) {
     const userData = this.userData.find(user => user.id === id)
     const hydrationData = this.hydrationData.filter(entry => entry.userID === id)
-    const newUser = new User(userData, hydrationData)
+    const sleepData = this.sleepData.filter(entry => entry.userID === id)
+    const newUser = new User(userData, hydrationData, sleepData)
     this.currentUser = newUser
     return newUser
   }

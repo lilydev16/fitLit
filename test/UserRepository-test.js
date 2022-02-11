@@ -17,16 +17,9 @@ describe('User Repository', () => {
            "email": "Diana.Hayes1@hotmail.com",
            "strideLength": 4.3,
            "dailyStepGoal": 10000,
-           "friends": [
-             16,
-             4,
-             8
-           ],
-           "userHydration": [{
-              "userID": 1,
-              "date": "2019/06/15",
-              "numOunces": 37
-              }]
+           "friends": [16, 4, 8],
+           "userHydration": [{"userID": 1,"date": "2019/06/15","numOunces": 37}],
+            userSleep: [{userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2}]
          },
          {
            "id": 2,
@@ -100,6 +93,7 @@ describe('User Repository', () => {
               "date": "2019/06/15",
               "numOunces": 47
           }],
+
         sleepData: [
           {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
           {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
@@ -129,8 +123,7 @@ describe('User Repository', () => {
     expect(userRepository.sleepData).to.eql(allData.sleepData)
   })
 
-
-  it('should keep track of the current user', function () {
+  it.only('should keep track of the current user', function () {
     userRepository.createNewUser(1)
     expect(userRepository.currentUser.name).to.eql(allData.userData[0].name)
     expect(userRepository.currentUser).to.eql(allData.userData[0])
