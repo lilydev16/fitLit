@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 import User from '../src/User';
 import Hydration from '../src/Hydration';
+import Sleep from '../src/Sleep';
 
 describe('User', () => {
-  let user, userData, hydrationData
+  let user, userData, hydrationData, sleepData
   beforeEach(function() {
     userData = {
        "id": 1,
@@ -32,6 +33,13 @@ describe('User', () => {
          "date": "2019/06/15",
          "numOunces": 75
        }
+     ]
+
+     sleepData = [
+       {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
+       {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
+       {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7},
+       {userID: 5, date: '2019/06/17', hoursSlept: 10.5, sleepQuality: 3.7}
      ]
   })
   it('should be a function', function () {
@@ -90,5 +98,15 @@ describe('User', () => {
     expect(user.createNewHydrationData()).to.be.an.instanceof(Hydration)
     expect(user.userHydration).to.be.an.instanceof(Hydration)
   })
+
+  it.only('should instantiate a new sleep instance', function() {
+
+    const sleep = new Sleep(sleepData)
+
+    expect(user.createNewSleepData()).to.be.an.instanceof(Sleep)
+    expect(user.userSleep).to.be.an.instanceof(Sleep)
+  })
+
+
 
 })
