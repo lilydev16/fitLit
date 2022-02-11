@@ -123,7 +123,7 @@ describe('User Repository', () => {
     expect(userRepository.sleepData).to.eql(allData.sleepData)
   })
 
-  it.only('should keep track of the current user', function () {
+  it('should keep track of the current user', function () {
     userRepository.createNewUser(1)
     expect(userRepository.currentUser.name).to.eql(allData.userData[0].name)
     expect(userRepository.currentUser).to.eql(allData.userData[0])
