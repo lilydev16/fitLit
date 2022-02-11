@@ -3,16 +3,9 @@ class Sleep {
     this.sleepData = userSleepData;
   }
 
-  calcAvgHoursPerDay() {
+  calcAvgSleepStats(type) {
     let total = this.sleepData.reduce((total, num) => {
-      return total += num.hoursSlept
-    }, 0)
-    return Math.round(total / this.sleepData.length)
-  }
-
-  calcAvgSleepQualityPerDay() {
-    let total = this.sleepData.reduce((total, num) => {
-      return total += num.sleepQuality
+      return total += num[type]
     }, 0)
     return Math.round(total / this.sleepData.length)
   }

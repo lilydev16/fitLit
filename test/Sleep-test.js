@@ -39,12 +39,9 @@ describe('Sleep', () => {
     expect(sleep.sleepData).to.eql(sleepData)
   });
 
-  it('should calculate the average hours of sleep per day', function() {
-    expect(sleep.calcAvgHoursPerDay()).to.equal(9)
-  })
-
-  it('should calculate the average sleep quality per day', function() {
-    expect(sleep.calcAvgSleepQualityPerDay()).to.equal(4)
+  it('should calculate the average hours of sleep and sleep quality per day', function() {
+    expect(sleep.calcAvgSleepStats('hoursSlept')).to.equal(9)
+    expect(sleep.calcAvgSleepStats('sleepQuality')).to.equal(4)
   })
 
   it('should calculate the sleep hours and sleep quality per day by the date', function() {
