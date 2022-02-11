@@ -10,11 +10,17 @@ class Sleep {
     return Math.round(total / this.sleepData.length)
   }
 
-  calculateAvgSleepQualityPerDay() {
+  calcAvgSleepQualityPerDay() {
     let total = this.sleepData.reduce((total, num) => {
       return total += num.sleepQuality
     }, 0)
     return Math.round(total / this.sleepData.length)
+  }
+
+  calcSleepPerDay(date) {
+    let sleepHours = this.sleepData.find(entry => entry.date === date);
+    
+    return sleepHours.hoursSlept
   }
 
 }

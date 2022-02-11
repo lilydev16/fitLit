@@ -8,7 +8,8 @@ describe('Sleep', () => {
     sleepData = [
       {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
       {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
-      {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7}
+      {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7},
+      {userID: 5, date: '2019/06/17', hoursSlept: 10.5, sleepQuality: 3.7}
     ]
 
     sleep = new Sleep(sleepData)
@@ -27,11 +28,15 @@ describe('Sleep', () => {
   });
 
   it('should calculate the average hours of sleep per day', function() {
-    expect(sleep.calcAvgHoursPerDay()).to.equal(8)
+    expect(sleep.calcAvgHoursPerDay()).to.equal(9)
   })
 
   it('should calculate the average sleep quality per day', function() {
-    expect(sleep.calculateAvgSleepQualityPerDay()).to.equal(4)
+    expect(sleep.calcAvgSleepQualityPerDay()).to.equal(4)
+  })
+
+  it('should calculate the sleep hours per day by the date', function() {
+    expect(sleep.calcSleepPerDay('2019/06/17')).to.equal(10.5)
   })
 
 })
