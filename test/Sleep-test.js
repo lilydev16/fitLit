@@ -4,13 +4,14 @@ import Sleep from '../src/Sleep';
 describe('Sleep', () => {
   let sleep, sleepData
   beforeEach(function() {
-    sleep = new Sleep(sleepData)
 
     sleepData = [
       {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
       {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
       {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7}
     ]
+
+    sleep = new Sleep(sleepData)
   })
 
   it('should be a function', function() {
@@ -25,8 +26,12 @@ describe('Sleep', () => {
     expect(sleep.sleepData).to.eql(sleepData)
   });
 
-  it('should caclulate the average hours of sleep per day', function() {
+  it('should calculate the average hours of sleep per day', function() {
     expect(sleep.calcAvgHoursPerDay()).to.equal(8)
+  })
+
+  it('should calculate the average sleep quality per day', function() {
+    expect(sleep.calculateAvgSleepQualityPerDay()).to.equal(4)
   })
 
 })
