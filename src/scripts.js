@@ -25,7 +25,9 @@ const todaySleep = document.getElementById('todaySleep')
 const weeklyHydration = document.getElementById('weeklyHydration')
 const sleepHours = document.getElementById('sleepHours')
 const sleepQuality = document.getElementById('sleepQuality')
-const todaySleepQuality =document.getElementById('todaySleepQuality')
+const todaySleepQuality = document.getElementById('todaySleepQuality')
+// const weeklySleepHours = document.getElementById('weeklySleepHours')
+const weeklySleepQuality = document.getElementById('weeklySleepQuality')
 
 //Event Listeners -----------------------------------------------------------------------------
 
@@ -70,6 +72,7 @@ function loadSleepData(data) {
 createSleepProfile(data)
 displayTodaysSleep(data)
 displayAvgSleep(data)
+displayWeeklySleep(data)
 }
 
 function createSleepProfile(data) {
@@ -90,6 +93,13 @@ function displayAvgSleep(data) {
   sleepHours.innerText = `Average Hours of Sleep: ${avgSleepHours}`
   sleepQuality.innerText = `Average Quality of Sleep: ${avgSleepQuality}`
 
+}
+
+function displayWeeklySleep(data) {
+  const weeklySleepAmt = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'hoursSlept')
+  const sleepQualityWeek = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'sleepQuality')
+  weeklySleepHours.innerText = `Hours slept this week: ${weeklySleepAmt}`
+  weeklySleepQuality.innerText = `This week's sleep quality: ${sleepQualityWeek}`
 }
 
 function createUser (data) {
