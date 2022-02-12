@@ -23,6 +23,8 @@ const userFriends = document.getElementById('friendList')
 const todayHydration = document.getElementById('todayHydration')
 const todaySleep = document.getElementById('todaySleep')
 const weeklyHydration = document.getElementById('weeklyHydration')
+const sleepHours = document.getElementById('sleepHours')
+const sleepQuality = document.getElementById('sleepQuality')
 
 //Event Listeners -----------------------------------------------------------------------------
 
@@ -66,6 +68,7 @@ function loadHydrationData(data) {
 function loadSleepData(data) {
 createSleepProfile(data)
 displayTodaysSleep(data)
+displayAvgSleep(data)
 }
 
 function createSleepProfile(data) {
@@ -74,10 +77,17 @@ function createSleepProfile(data) {
 }
 
 function displayTodaysSleep(data) {
-  const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay("2020/01/22", 'hoursSlept')
+  const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'hoursSlept')
   todaySleep.innerText = `Hours slept today: ${todaySleepAmt}`
 }
 
+function displayAvgSleep(data) {
+  const avgSleepHours = data.currentUser.userSleep.calcAvgSleepStats('hoursSlept')
+  const avgSleepQuality = data.currentUser.userSleep.calcAvgSleepStats('sleepQuality')
+  sleepHours.innerText = `Average Hours of Sleep: ${avgSleepHours}`
+  sleepQuality.innerText = `Average Quality of Sleep: ${avgSleepQuality}`
+
+}
 
 function createUser (data) {
   const newUser = data.createNewUser(randomizeId())
