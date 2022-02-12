@@ -29,6 +29,7 @@ const day5Hydration = document.getElementById('day5Hydration')
 const day6Hydration = document.getElementById('day6Hydration')
 const day7Hydration = document.getElementById('day7Hydration')
 const todaySleep = document.getElementById('todaySleep')
+const hydration = document.getElementById('hydration')
 
 //Event Listeners -----------------------------------------------------------------------------
 
@@ -114,11 +115,11 @@ function updateActivityCard(user, data) {
 
 function displayWeeklyHydration(data) {
   const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
-  day1Hydration.innerText = weeklyHydrationAmt[0]
-  day2Hydration.innerText = weeklyHydrationAmt[1]
-  day3Hydration.innerText = weeklyHydrationAmt[2]
-  day4Hydration.innerText = weeklyHydrationAmt[3]
-  day5Hydration.innerText = weeklyHydrationAmt[4]
-  day6Hydration.innerText = weeklyHydrationAmt[5]
-  day7Hydration.innerText = weeklyHydrationAmt[6]
+
+  return weeklyHydrationAmt.forEach((entry, i) => {
+    let p = document.createElement('p')
+    p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
+    hydration.appendChild(p)
+    p.classList.add('weekly-hydration');
+  })
 }
