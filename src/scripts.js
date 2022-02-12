@@ -40,6 +40,8 @@ function loadPage() {
     const userRepository = new UserRepository(allData)
     loadUserProfile(userRepository)
     loadHydrationData(userRepository)
+    loadSleepData(userRepository)
+    console.log(userRepository.currentUser.userSleep)
   })
 }
 
@@ -50,11 +52,31 @@ function loadUserProfile(data) {
   updateActivityCard(data.currentUser, data)
 }
 
+function createHydrationProfile(data) {
+  const newHydrationProfile = data.currentUser.createNewHydrationData()
+  return newHydrationProfile
+}
+
+function displayTodaysHydration(data) {
+  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
+  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
+}
+
 function loadHydrationData(data) {
   createHydrationProfile(data)
   displayTodaysHydration(data)
   displayWeeklyHydration(data)
 }
+
+function loadSleepData(data) {
+createSleepProfile(data)
+}
+
+function createSleepProfile(data) {
+  const newSleepProfile = data.currentUser.createNewSleepData()
+  return newSleepProfile
+}
+
 
 function createUser (data) {
   const newUser = data.createNewUser(randomizeId())
@@ -81,16 +103,6 @@ function randomizeId() {
 function updateActivityCard(user, data) {
   averageStepGoal.innerText = `Average Step Goal All: ${data.calculateAverageStepGoal()}`
   activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
-}
-
-function createHydrationProfile(data) {
-  const newHydrationProfile = data.currentUser.createNewHydrationData()
-  return newHydrationProfile
-}
-
-function displayTodaysHydration(data) {
-  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
-  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
 }
 
 function displayWeeklyHydration(data) {
