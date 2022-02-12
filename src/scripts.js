@@ -72,8 +72,6 @@ createSleepProfile(data)
 displayTodaysSleep(data)
 displayAvgSleep(data)
 displayWeeklySleep(data)
-
-// displayWeeklySleep2(data)
 }
 
 function createSleepProfile(data) {
@@ -95,13 +93,6 @@ function displayAvgSleep(data) {
   sleepQuality.innerText = `Average Quality of Sleep: ${avgSleepQuality}`
 
 }
-
-// function displayWeeklySleep(data) {
-//   const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'hoursSlept')
-//   const sleepQualityWeek = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'sleepQuality')
-//   weeklySleepHours.innerText = `Hours slept this week: ${weeklySleepAmt}`
-//   weeklySleepQuality.innerText = `This week's sleep quality: ${sleepQualityWeek}`
-// }
 
 function createUser (data) {
   const newUser = data.createNewUser(randomizeId())
@@ -126,7 +117,7 @@ function randomizeId() {
 }
 
 function updateActivityCard(user, data) {
-  averageStepGoal.innerText = `Average Step Goal All: ${data.calculateAverageStepGoal()}`
+  averageStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
   activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
 
