@@ -12,24 +12,32 @@
     </nav>
     <main>
       <section class="widget-section">
-        <section class="today-widget" id="activity">
+        <section class="widget" id="activity">
           <p id="activityStepGoal">user's daily step goal</p>
           <p id="averageStepGoal">average step goal of all users</p>
         </section>
-        <section class="today-widget" id="hydration">
+        <section class="widget" id="hydration">
           <p class="today-hydration" id="todayHydration">today's hydration info</p>
-          <p class="day1-hyrdation" id="day1Hydration">day 1 hydration info</p>
-          <p class="day2-hyrdation" id="day2Hydration">day 2 hydration info</p>
-          <p class="day3-hyrdation" id="day3Hydration">day 3 hydration info</p>
-          <p class="day4-hyrdation" id="day4Hydration">day 3 hydration info</p>
-          <p class="day5-hyrdation" id="day5Hydration">day 3 hydration info</p>
-          <p class="day6-hyrdation" id="day6Hydration">day 3 hydration info</p>
-          <p class="day7-hyrdation" id="day7Hydration">day 3 hydration info</p>
         </section>
-        <section class="today-widget" id="sleep">
-          <p>today's sleep info</p>
+        <section class="today-widget widget" id="sleep">
+          <p class="today-sleep" id="todaySleep">today's sleep info</p>
+          <p class="today-sleep-quality" id="todaySleepQuality">today's sleep quality info</p>
+          <p id="sleepHours"></p>
+          <p id="sleepQuality"></p>
+        </section>
+        <section class="weekly-activity widget" id="weeklyActivityStats">
+          <p id="weeklyActivity">Activity</p>
+        </section>
+        <section class="weekly-hydration-stats widget" id="weeklyHydrationStats">
+          <p id="weeklyHydration">Hydration</p>
+        </section>
+        <section class="weekly-sleep-stats widget" id="weeklySleepStats">
+          <p id="weeklySleep">Sleep</p>
+          <p id="weeklySleepHours"></p>
+          <p id="weeklySleepQuality"></p>
         </section>
       </section>
+
       <section class="profile-section">
         <section class="user-profile">
           <p class="user-name" id="userName">Johanna Smith</p>
@@ -42,6 +50,7 @@
           <p id="friendList">User friend list will go here</p>
         </section>
       </section>
+
     </main>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
     <script src="bundle.js"></script>

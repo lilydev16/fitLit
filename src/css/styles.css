@@ -47,7 +47,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 40%; 
+  height: 40%;
 }
 
 .user-friends {
@@ -57,7 +57,7 @@ main {
   height: 60%;
 }
 
-.today-widget {
+.widget {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -65,7 +65,7 @@ main {
   width: 90%;
   border-radius: 10px;
 }
-  
+
 
 .user-name {
   font-size: 25px;
@@ -74,6 +74,3 @@ main {
 .welcome-message {
   font-size: 35px;
 }
-
-
-

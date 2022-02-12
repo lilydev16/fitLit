@@ -11,7 +11,13 @@ class Hydration {
   calcOuncesPerWeek() {
     let slicedHydration = this.hydrationData.slice(this.hydrationData.length - 7, this.hydrationData.length);
     return slicedHydration.map(entry => {
-      return `${entry.date}: ${entry.numOunces}`
+      let weeklyHydration = {
+        date: entry.date,
+        ounces: entry.numOunces
+      }
+      console.log(weeklyHydration)
+      return weeklyHydration
+      // return an an array of objects
     })
   }
 

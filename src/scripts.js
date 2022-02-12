@@ -21,13 +21,13 @@ const averageStepGoal = document.getElementById('averageStepGoal')
 const userFriends = document.getElementById('friendList')
 
 const todayHydration = document.getElementById('todayHydration')
-const day1Hydration = document.getElementById('day1Hydration')
-const day2Hydration = document.getElementById('day2Hydration')
-const day3Hydration = document.getElementById('day3Hydration')
-const day4Hydration = document.getElementById('day4Hydration')
-const day5Hydration = document.getElementById('day5Hydration')
-const day6Hydration = document.getElementById('day6Hydration')
-const day7Hydration = document.getElementById('day7Hydration')
+const todaySleep = document.getElementById('todaySleep')
+const weeklyHydration = document.getElementById('weeklyHydration')
+const sleepHours = document.getElementById('sleepHours')
+const sleepQuality = document.getElementById('sleepQuality')
+const todaySleepQuality = document.getElementById('todaySleepQuality')
+// const weeklySleepHours = document.getElementById('weeklySleepHours')
+const weeklySleepQuality = document.getElementById('weeklySleepQuality')
 
 //Event Listeners -----------------------------------------------------------------------------
 
@@ -40,6 +40,8 @@ function loadPage() {
     const userRepository = new UserRepository(allData)
     loadUserProfile(userRepository)
     loadHydrationData(userRepository)
+    loadSleepData(userRepository)
+    console.log(userRepository.currentUser.userSleep)
   })
 }
 
@@ -50,10 +52,54 @@ function loadUserProfile(data) {
   updateActivityCard(data.currentUser, data)
 }
 
+function createHydrationProfile(data) {
+  const newHydrationProfile = data.currentUser.createNewHydrationData()
+  return newHydrationProfile
+}
+
+function displayTodaysHydration(data) {
+  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
+  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
+}
+
 function loadHydrationData(data) {
   createHydrationProfile(data)
   displayTodaysHydration(data)
   displayWeeklyHydration(data)
+}
+
+function loadSleepData(data) {
+createSleepProfile(data)
+displayTodaysSleep(data)
+displayAvgSleep(data)
+displayWeeklySleep(data)
+}
+
+function createSleepProfile(data) {
+  const newSleepProfile = data.currentUser.createNewSleepData()
+  return newSleepProfile
+}
+
+function displayTodaysSleep(data) {
+  const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'hoursSlept')
+  const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'sleepQuality')
+  todaySleep.innerText = `Hours slept today: ${todaySleepAmt}`
+  todaySleepQuality.innerText = `Today's sleep quality: ${sleepQualityToday}`
+}
+
+function displayAvgSleep(data) {
+  const avgSleepHours = data.currentUser.userSleep.calcAvgSleepStats('hoursSlept')
+  const avgSleepQuality = data.currentUser.userSleep.calcAvgSleepStats('sleepQuality')
+  sleepHours.innerText = `Average Hours of Sleep: ${avgSleepHours}`
+  sleepQuality.innerText = `Average Quality of Sleep: ${avgSleepQuality}`
+
+}
+
+function displayWeeklySleep(data) {
+  const weeklySleepAmt = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'hoursSlept')
+  const sleepQualityWeek = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'sleepQuality')
+  weeklySleepHours.innerText = `Hours slept this week: ${weeklySleepAmt}`
+  weeklySleepQuality.innerText = `This week's sleep quality: ${sleepQualityWeek}`
 }
 
 function createUser (data) {
@@ -83,23 +129,13 @@ function updateActivityCard(user, data) {
   activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
 
-function createHydrationProfile(data) {
-  const newHydrationProfile = data.currentUser.createNewHydrationData()
-  return newHydrationProfile
-}
-
-function displayTodaysHydration(data) {
-  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
-  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
-}
-
 function displayWeeklyHydration(data) {
   const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
-  day1Hydration.innerText = weeklyHydrationAmt[0]
-  day2Hydration.innerText = weeklyHydrationAmt[1]
-  day3Hydration.innerText = weeklyHydrationAmt[2]
-  day4Hydration.innerText = weeklyHydrationAmt[3]
-  day5Hydration.innerText = weeklyHydrationAmt[4]
-  day6Hydration.innerText = weeklyHydrationAmt[5]
-  day7Hydration.innerText = weeklyHydrationAmt[6]
+
+  return weeklyHydrationAmt.forEach((entry, i) => {
+    let p = document.createElement('p')
+    p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
+    weeklyHydration.appendChild(p)
+    p.classList.add('weekly-hydration');
+  })
 }

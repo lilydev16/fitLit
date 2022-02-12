@@ -6,10 +6,10 @@ describe('User Repository', () => {
   let userRepository, allData
 
   beforeEach(function() {
-  
+
     allData = {
       userData: [
-         
+
         {
            "id": 1,
            "name": "Luisa Hane",
@@ -17,16 +17,9 @@ describe('User Repository', () => {
            "email": "Diana.Hayes1@hotmail.com",
            "strideLength": 4.3,
            "dailyStepGoal": 10000,
-           "friends": [
-             16,
-             4,
-             8
-           ],
-           "userHydration": [{
-              "userID": 1,
-              "date": "2019/06/15",
-              "numOunces": 37
-              }]
+           "friends": [16, 4, 8],
+           "userHydration": [{"userID": 1,"date": "2019/06/15","numOunces": 37}],
+            userSleep: [{userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2}]
          },
          {
            "id": 2,
@@ -99,7 +92,13 @@ describe('User Repository', () => {
               "userID": 3,
               "date": "2019/06/15",
               "numOunces": 47
-          }]
+          }],
+
+        sleepData: [
+          {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
+          {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
+          {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7}
+        ]
     }
         userRepository = new UserRepository(allData)
   })
@@ -116,8 +115,12 @@ describe('User Repository', () => {
     expect(userRepository.userData).to.eql(allData.userData)
   })
 
-  it('should be able to keep track of hydrationData', function() {
+  it('should be able to keep track of hydration data', function() {
     expect(userRepository.hydrationData).to.eql(allData.hydrationData)
+  })
+
+  it('should be able to keep track of sleep data', function() {
+    expect(userRepository.sleepData).to.eql(allData.sleepData)
   })
 
   it('should keep track of the current user', function () {
@@ -138,6 +141,11 @@ describe('User Repository', () => {
     expect(userRepository.calculateAverageStepGoal()).to.equal(6200)
   })
 
+  it('should calculate average sleep stats for all users', function() {
+    expect(userRepository.calcAvgSleepStatsForAllUsers('sleepQuality')).to.equal(4)
+    expect(userRepository.calcAvgSleepStatsForAllUsers('hoursSlept')).to.equal(8)
+  })
+
   it('should instantiate a new user based on the current user', function() {
     expect(userRepository.createNewUser(1)).to.be.an.instanceof(User)
   })
@@ -149,4 +157,7 @@ describe('User Repository', () => {
     const friendNames = userRepository.createUserFriendList()
     expect(friendNames).to.eql(['Garnett Cruickshank', 'Mae Connelly', 'Laney Abshire'])
   })
+
+
+
 });
