@@ -41,7 +41,6 @@ function loadPage() {
     loadUserProfile(userRepository)
     loadHydrationData(userRepository)
     loadSleepData(userRepository)
-    console.log(userRepository.currentUser.userSleep)
   })
 }
 
@@ -73,6 +72,8 @@ createSleepProfile(data)
 displayTodaysSleep(data)
 displayAvgSleep(data)
 displayWeeklySleep(data)
+
+// displayWeeklySleep2(data)
 }
 
 function createSleepProfile(data) {
@@ -95,12 +96,12 @@ function displayAvgSleep(data) {
 
 }
 
-function displayWeeklySleep(data) {
-  const weeklySleepAmt = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'hoursSlept')
-  const sleepQualityWeek = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'sleepQuality')
-  weeklySleepHours.innerText = `Hours slept this week: ${weeklySleepAmt}`
-  weeklySleepQuality.innerText = `This week's sleep quality: ${sleepQualityWeek}`
-}
+// function displayWeeklySleep(data) {
+//   const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'hoursSlept')
+//   const sleepQualityWeek = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16', 'sleepQuality')
+//   weeklySleepHours.innerText = `Hours slept this week: ${weeklySleepAmt}`
+//   weeklySleepQuality.innerText = `This week's sleep quality: ${sleepQualityWeek}`
+// }
 
 function createUser (data) {
   const newUser = data.createNewUser(randomizeId())
@@ -137,5 +138,16 @@ function displayWeeklyHydration(data) {
     p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
     weeklyHydration.appendChild(p)
     p.classList.add('weekly-hydration');
+  })
+}
+
+function displayWeeklySleep(data) {
+  const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16')
+
+  return weeklySleepData.forEach((entry, i) => {
+    let p = document.createElement('p')
+    p.innerText = `${weeklySleepData[i].date} - Hours Slept: ${weeklySleepData[i].hours}, Sleep Quality: ${weeklySleepData[i].quality}`
+    weeklySleepStats.appendChild(p)
+    p.classList.add('weekly-sleep');
   })
 }
