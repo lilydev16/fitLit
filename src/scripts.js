@@ -28,6 +28,7 @@ const day4Hydration = document.getElementById('day4Hydration')
 const day5Hydration = document.getElementById('day5Hydration')
 const day6Hydration = document.getElementById('day6Hydration')
 const day7Hydration = document.getElementById('day7Hydration')
+const todaySleep = document.getElementById('todaySleep')
 
 //Event Listeners -----------------------------------------------------------------------------
 
@@ -70,11 +71,17 @@ function loadHydrationData(data) {
 
 function loadSleepData(data) {
 createSleepProfile(data)
+displayTodaysSleep(data)
 }
 
 function createSleepProfile(data) {
   const newSleepProfile = data.currentUser.createNewSleepData()
   return newSleepProfile
+}
+
+function displayTodaysSleep(data) {
+  const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay("2020/01/22", 'hoursSlept')
+  todaySleep.innerText = `Hours slept today: ${todaySleepAmt}`
 }
 
 
