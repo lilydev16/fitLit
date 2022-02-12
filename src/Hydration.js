@@ -15,7 +15,6 @@ class Hydration {
         date: entry.date,
         ounces: entry.numOunces
       }
-      console.log(weeklyHydration)
       return weeklyHydration
       // return an an array of objects
     })
