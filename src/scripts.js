@@ -21,15 +21,8 @@ const averageStepGoal = document.getElementById('averageStepGoal')
 const userFriends = document.getElementById('friendList')
 
 const todayHydration = document.getElementById('todayHydration')
-const day1Hydration = document.getElementById('day1Hydration')
-const day2Hydration = document.getElementById('day2Hydration')
-const day3Hydration = document.getElementById('day3Hydration')
-const day4Hydration = document.getElementById('day4Hydration')
-const day5Hydration = document.getElementById('day5Hydration')
-const day6Hydration = document.getElementById('day6Hydration')
-const day7Hydration = document.getElementById('day7Hydration')
 const todaySleep = document.getElementById('todaySleep')
-const hydration = document.getElementById('hydration')
+const weeklyHydration = document.getElementById('weeklyHydration')
 
 //Event Listeners -----------------------------------------------------------------------------
 
@@ -119,7 +112,7 @@ function displayWeeklyHydration(data) {
   return weeklyHydrationAmt.forEach((entry, i) => {
     let p = document.createElement('p')
     p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
-    hydration.appendChild(p)
+    weeklyHydration.appendChild(p)
     p.classList.add('weekly-hydration');
   })
 }
