@@ -25,6 +25,7 @@ const todaySleep = document.getElementById('todaySleep')
 const weeklyHydration = document.getElementById('weeklyHydration')
 const sleepHours = document.getElementById('sleepHours')
 const sleepQuality = document.getElementById('sleepQuality')
+const todaySleepQuality =document.getElementById('todaySleepQuality')
 
 //Event Listeners -----------------------------------------------------------------------------
 
@@ -78,7 +79,9 @@ function createSleepProfile(data) {
 
 function displayTodaysSleep(data) {
   const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'hoursSlept')
+  const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'sleepQuality')
   todaySleep.innerText = `Hours slept today: ${todaySleepAmt}`
+  todaySleepQuality.innerText = `Today's sleep quality: ${sleepQualityToday}`
 }
 
 function displayAvgSleep(data) {
