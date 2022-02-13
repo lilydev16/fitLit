@@ -1,9 +1,4 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// console.log(userData,"<>>>>userData")
 import './css/styles.css';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import UserRepository from './UserRepository';
 import User from './User'
@@ -21,8 +16,9 @@ const averageStepGoal = document.getElementById('averageStepGoal')
 const userFriends = document.getElementById('friendList')
 
 const todayHydration = document.getElementById('todayHydration')
-const todaySleep = document.getElementById('todaySleep')
 const weeklyHydration = document.getElementById('weeklyHydration')
+
+const todaySleep = document.getElementById('todaySleep')
 const sleepHours = document.getElementById('sleepHours')
 const sleepQuality = document.getElementById('sleepQuality')
 const todaySleepQuality = document.getElementById('todaySleepQuality')
