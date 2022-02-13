@@ -75,7 +75,7 @@ function updateUserProfile(user, data) {
   userEmail.innerText = `${user.email}`
   userStride.innerText = ` Stride Length: ${user.strideLength}`
   userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
-  avgStepGoal.innerText = `Compare your step goal to the Average Step Goal for All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
+  avgStepGoal.innerText = `Compare your step goal to the FitLit community: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
   userFriends.innerText = `${data.createUserFriendList()}`
 }
 
@@ -92,7 +92,7 @@ function createHydrationProfile(data) {
 
 function displayTodaysHydration(data) {
   const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
-  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
+  todayHydration.innerText = `${todayHydrationAmt} fl.oz.`
 }
 
 function displayWeeklyHydration(data) {
