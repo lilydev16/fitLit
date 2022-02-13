@@ -42,22 +42,22 @@ main {
   overflow: scroll;
   grid-gap: 20px;
   padding: 20px;
-  width: 70%;
+  width: 80%;
 }
 
 .widget {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 50%;
-  width: 90%;
+  height: 75%;
+  width: 100%;
   border-radius: 10px;
 }
 
 .profile-section {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 20%;
 }
 
 .user-profile {
