@@ -20,6 +20,7 @@ FitLit is an application that tracks and displays fitness data in an easy to rea
 * Git/GitHub
 * Webpack
 
+
 ## Installation/Set-Up
 Click this [link](https://github.com/maddielaw/FitLit) to view the gitHub repository.
 To view code on the text editor of your choice (I used atom to construct this code):
@@ -29,9 +30,9 @@ To view code on the text editor of your choice (I used atom to construct this co
 
 ---
 ## How To Use FitLit
-Currently, the FitLit Dashboard displays all information for a random user in our API databases. The user information is separated into the following sections: user profile, friends list, activity data, hydration data, and sleep data. 
+Currently, the FitLit Dashboard displays all information for a random user in our API databases. The user information is separated into the following sections: user profile, friends list, activity data, hydration data, and sleep data.
 
-![Flashcard1](https://media.giphy.com/media/WtGJssD3nno08byQ9a/giphy.gif)
+![Screenshot](https://media.giphy.com/media/WtGJssD3nno08byQ9a/giphy.gif)
 
 After displaying a message of 'incorrect' or 'correct', press enter again to display the next flashcard. Keep playing until the set is up!
 
@@ -42,10 +43,16 @@ After answering all 30 questions, a final message will appear that contains the 
 ![Flashcard3](https://media.giphy.com/media/l9sdJAkrv2dxZmyPix/giphy.gif)
 
 ---
+## Future Additions
+
+
+---
 ## Credits
 * [*Turing School of Software and Design*](turing.edu)
-* My project manager, Nik Seif. [@NikSeif](https://github.com/niksseif)
-* My code reviewers:
+* Our project manager, Nik Seif. [@NikSeif](https://github.com/niksseif)
+* Our code reviewers:
   * Alyssa Bull [@alyssabull](https://github.com/alyssabull)
+  *
+  *
 
 Thank you so much!
