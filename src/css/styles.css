@@ -150,6 +150,15 @@ table tr:last-child td:first-child {
   /* margin-bottom: 20px; */
 }
 
+.user-friends {
+  /* display: flex; */
+  text-align: center;
+}
+
+.friend {
+  padding: 10px;
+}
+
 .user-name {
   font-size: 30px;
   align-self: center;
