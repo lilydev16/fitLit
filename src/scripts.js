@@ -13,7 +13,7 @@ const userStride = document.getElementById('userStride')
 const userStepGoal = document.getElementById('userStepGoal')
 const activityStepGoal = document.getElementById('activityStepGoal')
 const avgStepGoal = document.getElementById('avgStepGoal')
-const userFriends = document.getElementById('friendList')
+const friendList = document.getElementById('friendList')
 
 const todayHydration = document.getElementById('todayHydration')
 const weeklyHydrationStats = document.getElementById('weeklyHydrationStats')
@@ -54,10 +54,10 @@ function loadHydrationData(data) {
 }
 
 function loadSleepData(data) {
-createSleepProfile(data)
-displayTodaysSleep(data)
-displayAvgSleep(data)
-displayWeeklySleep(data)
+  createSleepProfile(data)
+  displayTodaysSleep(data)
+  displayAvgSleep(data)
+  displayWeeklySleep(data)
 }
 
 function createUser (data) {
@@ -76,7 +76,7 @@ function updateUserProfile(user, data) {
   userStride.innerText = ` Stride Length: ${user.strideLength}`
   userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
   avgStepGoal.innerText = `Compare your step goal to the FitLit community: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
-  userFriends.innerText = `${data.createUserFriendList()}`
+  friendList.innerText = `${data.createUserFriendList()}`
 }
 
 function randomizeId() {

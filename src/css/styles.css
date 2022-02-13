@@ -29,12 +29,9 @@ main {
 }
 
 .welcome-message {
-  font-size: 35px;
+  font-size: 45px;
 }
 
-.user-name {
-  font-size: 25px;
-}
 
 .widget-section {
   display: grid;
@@ -48,28 +45,54 @@ main {
 .widget {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 75%;
   width: 100%;
   border-radius: 10px;
+}
+
+.title {
+  align-self: center;
+  font-size: 32px;
+  font-weight: 500;
 }
 
 .profile-section {
   display: flex;
   flex-direction: column;
   width: 20%;
+  height: 100%;
 }
 
 .user-profile {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 40%;
+  justify-content: space-between;
+  height: 30%;
+  /* margin-bottom: 20px; */
+}
+
+.user-name {
+  font-size: 30px;
+  align-self: center;
+}
+
+.compare-step-goal-chart {
+  display: flex;
+  height: 30%;
+}
+
+.avg-step-goal {
+  align-self: center;
+}
+
+.friend-list {
+  align-self: center;
 }
 
 .user-friends {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 60%;
+  justify-content: space-between;
+  height: 40%;
 }
