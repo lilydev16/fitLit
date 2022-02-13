@@ -28,11 +28,11 @@ const sleepQuality = document.getElementById('sleepQuality')
 const todaySleepQuality = document.getElementById('todaySleepQuality')
 const weeklySleepQuality = document.getElementById('weeklySleepQuality')
 
-//Event Listeners -----------------------------------------------------------------------------
+//Event Listeners -------------------------------------------------------------------------------------
 
 window.addEventListener('load', loadPage)
 
-//functions --------------------------------------------------------------------------------------
+//functions -------------------------------------------------------------------------------------------
 
 function loadPage() {
   fetchData().then(allData => {
@@ -86,6 +86,7 @@ function randomizeId() {
 }
 
 //Hydration -------------------------------------------------------------------------------------------------
+
 function createHydrationProfile(data) {
   const newHydrationProfile = data.currentUser.createNewHydrationData()
   return newHydrationProfile
@@ -108,6 +109,7 @@ function displayWeeklyHydration(data) {
 }
 
 //Sleep -------------------------------------------------------------------------------------------------
+
 function createSleepProfile(data) {
   const newSleepProfile = data.currentUser.createNewSleepData()
   return newSleepProfile
@@ -140,6 +142,7 @@ function displayWeeklySleep(data) {
 }
 
 //Activity Cards ----------------------------------------------------------------------------------------------------------
+
 function updateActivityCard(user, data) {
   averageStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
   activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`

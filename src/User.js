@@ -1,7 +1,6 @@
 import Hydration from "./Hydration";
 import Sleep from "./Sleep";
 
-
 class User {
   constructor(userData, hydrationData, sleepData) {
     this.id = userData.id;
@@ -31,7 +30,6 @@ class User {
     this.userSleep = newSleep
     return this.userSleep
   }
-
 }
 
 export default User;
