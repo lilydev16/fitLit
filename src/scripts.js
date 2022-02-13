@@ -96,13 +96,18 @@ function displayTodaysHydration(data) {
 }
 
 function displayWeeklyHydration(data) {
-  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
-
-  return weeklyHydrationAmt.forEach((entry, i) => {
-    let p = document.createElement('p')
-    p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
-    weeklyHydrationStats.appendChild(p)
-    p.classList.add('weekly-hydration');
+  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek();
+  weeklyHydrationAmt.forEach((entry, i) => {
+    weeklyHydrationStats.innerHTML += `
+    <table class="hydration-table">
+      <tr>
+        <th>Date</th>
+        <th>Fluid Ounces</th>
+      </tr>
+      <tr>
+        <td>${weeklyHydrationAmt[i].date}</td>
+        <td>${weeklyHydrationAmt[i].ounces}</td>
+      </tr>`
   })
 }
 
@@ -129,14 +134,23 @@ function displayAvgSleep(data) {
 
 function displayWeeklySleep(data) {
   const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16')
-
-  return weeklySleepData.forEach((entry, i) => {
-    let p = document.createElement('p')
-    weeklySleepStats.appendChild(p)
-    p.innerText = `${weeklySleepData[i].date} - Hours Slept: ${weeklySleepData[i].hours}, Sleep Quality: ${weeklySleepData[i].quality}`
-    p.classList.add('weekly-sleep');
+  weeklySleepData.forEach((entry, i) => {
+    weeklySleepStats.innerHTML += `
+    <table class="sleep-table">
+      <tr>
+        <th>Date</th>
+        <th>Hours</th>
+        <th>Quality</th
+      </tr>
+      <tr>
+        <td>${weeklySleepData[i].date}</td>
+        <td>${weeklySleepData[i].hours}</td>
+        <td>${weeklySleepData[i].quality}</td>
+      </tr>`
   })
 }
+
+
 
 //Activity Cards ----------------------------------------------------------------------------------------------------------
 

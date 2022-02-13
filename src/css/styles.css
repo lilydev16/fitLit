@@ -1,8 +1,10 @@
 
 * {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   padding: 0px;
   margin: 0px;
+font-family: sans-serif;
+font-weight: lighter;
 }
 
 body,
@@ -84,6 +86,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
+  padding: 20px;
   height: 70%;
   width: 80%;
   align-self: center;
@@ -92,10 +95,10 @@ main {
 .sleep-grid {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-content: space-evenly;
-  /* border-width: 1px; */
-  /* border-color: rgb(241 245 249); */
+  text-align: center;
+  border: 1px solid rgb(213, 230, 247);
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .today-sleep-title, .today-sleep {
@@ -106,6 +109,29 @@ main {
   height: 100%;
   align-self: center;
   margin-top: 10px;
+}
+
+.weekly-widget,
+.weekly-stats {
+  height: 90%;
+}
+
+.hydration-table,
+.sleep-table {
+  border: 1px solid rgb(213, 230, 247);
+  text-align: center;
+  width: 300px;
+  border-radius: 5px;
+}
+
+th {
+  font-weight: bolder;
+}
+
+table tr:last-child td:first-child {
+  padding: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .profile-section {
