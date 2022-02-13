@@ -26,7 +26,6 @@ const weeklyHydration = document.getElementById('weeklyHydration')
 const sleepHours = document.getElementById('sleepHours')
 const sleepQuality = document.getElementById('sleepQuality')
 const todaySleepQuality = document.getElementById('todaySleepQuality')
-// const weeklySleepHours = document.getElementById('weeklySleepHours')
 const weeklySleepQuality = document.getElementById('weeklySleepQuality')
 
 //Event Listeners -----------------------------------------------------------------------------
@@ -51,16 +50,6 @@ function loadUserProfile(data) {
   updateActivityCard(data.currentUser, data)
 }
 
-function createHydrationProfile(data) {
-  const newHydrationProfile = data.currentUser.createNewHydrationData()
-  return newHydrationProfile
-}
-
-function displayTodaysHydration(data) {
-  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
-  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
-}
-
 function loadHydrationData(data) {
   createHydrationProfile(data)
   displayTodaysHydration(data)
@@ -74,6 +63,51 @@ displayAvgSleep(data)
 displayWeeklySleep(data)
 }
 
+function createUser (data) {
+  const newUser = data.createNewUser(randomizeId())
+  return newUser
+}
+
+function updateWelcomeMessage(user) {
+  welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
+}
+
+function updateUserProfile(user, data) {
+  userName.innerText = `${user.name}`
+  userAddress.innerText = `${user.address}`
+  userEmail.innerText = `${user.email}`
+  userStride.innerText = ` Stride Length: ${user.strideLength}`
+  userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
+  userFriends.innerText = `Friends: ${data.createUserFriendList()}`
+}
+
+function randomizeId() {
+  return Math.floor(Math.random() * 50);
+}
+
+//Hydration -------------------------------------------------------------------------------------------------
+function createHydrationProfile(data) {
+  const newHydrationProfile = data.currentUser.createNewHydrationData()
+  return newHydrationProfile
+}
+
+function displayTodaysHydration(data) {
+  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
+  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
+}
+
+function displayWeeklyHydration(data) {
+  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
+
+  return weeklyHydrationAmt.forEach((entry, i) => {
+    let p = document.createElement('p')
+    p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
+    weeklyHydration.appendChild(p)
+    p.classList.add('weekly-hydration');
+  })
+}
+
+//Sleep -------------------------------------------------------------------------------------------------
 function createSleepProfile(data) {
   const newSleepProfile = data.currentUser.createNewSleepData()
   return newSleepProfile
@@ -94,44 +128,6 @@ function displayAvgSleep(data) {
 
 }
 
-function createUser (data) {
-  const newUser = data.createNewUser(randomizeId())
-  return newUser
-}
-
-function updateWelcomeMessage(user) {
-    welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
-}
-
-function updateUserProfile(user, data) {
-  userName.innerText = `${user.name}`
-  userAddress.innerText = `${user.address}`
-  userEmail.innerText = `${user.email}`
-  userStride.innerText = ` Stride Length: ${user.strideLength}`
-  userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
-  userFriends.innerText = `Friends: ${data.createUserFriendList()}`
-}
-
-function randomizeId() {
-  return Math.floor(Math.random() * 50);
-}
-
-function updateActivityCard(user, data) {
-  averageStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
-  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
-}
-
-function displayWeeklyHydration(data) {
-  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
-
-  return weeklyHydrationAmt.forEach((entry, i) => {
-    let p = document.createElement('p')
-    p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
-    weeklyHydration.appendChild(p)
-    p.classList.add('weekly-hydration');
-  })
-}
-
 function displayWeeklySleep(data) {
   const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16')
 
@@ -141,4 +137,10 @@ function displayWeeklySleep(data) {
     weeklySleepStats.appendChild(p)
     p.classList.add('weekly-sleep');
   })
+}
+
+//Activity Cards ----------------------------------------------------------------------------------------------------------
+function updateActivityCard(user, data) {
+  averageStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
+  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
