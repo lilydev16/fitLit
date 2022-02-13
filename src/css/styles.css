@@ -108,6 +108,15 @@ main {
   margin-top: 10px;
 }
 
+.weekly-widget {
+  height: 100%;
+}
+
+.hydration-table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
 .profile-section {
   display: flex;
   flex-direction: column;

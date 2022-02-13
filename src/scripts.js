@@ -95,14 +95,31 @@ function displayTodaysHydration(data) {
   todayHydration.innerText = `${todayHydrationAmt} fl.oz.`
 }
 
-function displayWeeklyHydration(data) {
-  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
+// function displayWeeklyHydration(data) {
+//   const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek()
 
-  return weeklyHydrationAmt.forEach((entry, i) => {
-    let p = document.createElement('p')
-    p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
-    weeklyHydrationStats.appendChild(p)
-    p.classList.add('weekly-hydration');
+//   return weeklyHydrationAmt.forEach((entry, i) => {
+//     let p = document.createElement('p')
+//     p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
+//     weeklyHydrationStats.appendChild(p)
+//     p.classList.add('weekly-hydration');
+//   })
+// }
+
+
+function displayWeeklyHydration(data) {
+  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek();
+  weeklyHydrationAmt.forEach((entry, i) => {
+    weeklyHydrationStats.innerHTML += `
+    <table class="hydration-table">
+      <tr>
+        <th>Date</th>
+        <th>Fluid Ounces</th>
+      </tr>
+      <tr>
+        <td>${weeklyHydrationAmt[i].date}</td>
+        <td>${weeklyHydrationAmt[i].ounces}</td>
+      </tr>`
   })
 }
 
