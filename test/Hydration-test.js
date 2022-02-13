@@ -19,8 +19,8 @@ describe('HydrationProfile', () => {
     {userID: 2, date: '2020/01/19', numOunces: 56},
     {userID: 2, date: '2020/01/20', numOunces: 50},
     {userID: 2, date: '2020/01/21', numOunces: 85},
-    {userID: 2, date: '2020/01/22', numOunces: 93}
-  ]
+    {userID: 2, date: '2020/01/22', numOunces: 93}]
+
   userHydration = new Hydration(hydrationData)
   
   })
@@ -49,12 +49,12 @@ describe('HydrationProfile', () => {
     userHydration.hydrationData = userWeekSet
     expect(userHydration.calcOuncesPerWeek())
       .to.eql([
-        "2020/01/16: 44",
-        "2020/01/17: 86",
-        "2020/01/18: 79",
-        "2020/01/19: 56",
-        "2020/01/20: 50",
-        "2020/01/21: 85",
-        "2020/01/22: 93"])
+        {date: "2020/01/16", ounces: 44},
+        {date: "2020/01/17", ounces: 86},
+        {date: "2020/01/18", ounces: 79},
+        {date: "2020/01/19", ounces: 56},
+        {date: "2020/01/20", ounces: 50},
+        {date: "2020/01/21", ounces: 85},
+        {date: "2020/01/22", ounces: 93}])
   })
 })
