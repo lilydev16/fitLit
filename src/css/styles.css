@@ -57,6 +57,14 @@ main {
   font-weight: 500;
 }
 
+.today-sleep {
+  display: flex;
+}
+
+.today {
+  align-self: center;
+}
+
 .profile-section {
   display: flex;
   flex-direction: column;
