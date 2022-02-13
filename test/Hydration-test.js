@@ -7,26 +7,10 @@ describe('HydrationProfile', () => {
 
   beforeEach(function() {
     hydrationData = [
-    {
-      "userID": 1,
-      "date": "2019/06/16",
-      "numOunces": 69
-  },
-    {
-      "userID": 2,
-      "date": "2019/06/15",
-      "numOunces": 75
-    },
-    {
-      "userID": 3,
-      "date": "2019/06/15",
-      "numOunces": 47
-  },
-  {
-      "userID": 4,
-      "date": "2019/06/15",
-      "numOunces": 85
-}];
+    {userID: 1, date: "2019/06/16", numOunces: 69},
+    {userID: 2, date: "2019/06/15", numOunces: 75},
+    {userID: 3, date: "2019/06/15", numOunces: 47},
+    {userID: 4, date: "2019/06/15", numOunces: 85}];
 
   userWeekSet = [
     {userID: 2, date: '2020/01/16', numOunces: 44},
@@ -37,8 +21,8 @@ describe('HydrationProfile', () => {
     {userID: 2, date: '2020/01/21', numOunces: 85},
     {userID: 2, date: '2020/01/22', numOunces: 93}
   ]
-
   userHydration = new Hydration(hydrationData)
+  
   })
 
   it('should be a function', function () {
