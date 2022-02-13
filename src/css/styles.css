@@ -58,11 +58,17 @@ main {
 }
 
 .today-sleep {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  height: 70%;
+  width: 80%;
+  align-self: center;
 }
 
-.today {
+.today-hydration {
   align-self: center;
+  font-size: 65px;
 }
 
 .profile-section {
