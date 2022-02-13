@@ -1,77 +1,51 @@
-# FitLit Starter Kit
+# :star: **FitLit Project** :star:
+___
+## Abstract
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
+FitLit is an application that tracks and displays fitness data in an easy to read, dynamic, user dashboard. Part I of this project showcases the ability to get/fetch information from an API, and display it in a manner that is
+---
+## Links
+* [GitHub Repository](https://github.com/nvalentini21/flashcards-project)
+---
+## Contributors
+* [Nicole Valentini](https://github.com/nvalentini21)
+* [Maddie Law]()
+* [Lauralyn Watson]()
+---
+## Tech Used
+* Javascript
+* CSS
+* HTML
+* Object Oriented Programming
+* Git/GitHub
+* Webpack
 
-## Setup
+## Installation/Set-Up
+Click this [link](https://github.com/maddielaw/FitLit) to view the gitHub repository.
+To view code on the text editor of your choice (I used atom to construct this code):
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
-
-## Testing
-
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+`Clone` [this repository](https://github.com/maddielaw/FitLit) in your terminal by entering using `git clone https://github.com/maddielaw/FitLit` and then `cd FitLit`. Run `npm install` to download all necessary packages and dependencies. Finally, run `npm start` to view the html page.
 
 
-## Data Model
+---
+## How To Use FitLit
+Currently, the FitLit Dashboard displays all information for a random user in our API databases. The user information is separated into the following sections: user profile, friends list, activity data, hydration data, and sleep data. 
 
-**Users**
+![Flashcard1](https://media.giphy.com/media/WtGJssD3nno08byQ9a/giphy.gif)
 
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
+After displaying a message of 'incorrect' or 'correct', press enter again to display the next flashcard. Keep playing until the set is up!
 
-**Activity**
+![Flashcard2](https://media.giphy.com/media/LTcoKoFETOCsaSFWAt/giphy.gif)
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
+After answering all 30 questions, a final message will appear that contains the percentage of questions you answered correctly. Congratulations, you have completed the flashcard set!
 
-**Hydration**
+![Flashcard3](https://media.giphy.com/media/l9sdJAkrv2dxZmyPix/giphy.gif)
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
+---
+## Credits
+* [*Turing School of Software and Design*](turing.edu)
+* My project manager, Nik Seif. [@NikSeif](https://github.com/niksseif)
+* My code reviewers:
+  * Alyssa Bull [@alyssabull](https://github.com/alyssabull)
 
-**Sleep**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
+Thank you so much!
