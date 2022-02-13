@@ -13,26 +13,51 @@
     <main>
       <section class="widget-section">
         <section class="widget" id="activity">
-          <p id="activityStepGoal">user's daily step goal</p>
-          <p id="averageStepGoal">average step goal of all users</p>
+          <p class="activity-title title" id="activityTitle">Activity</p>
+          <p class="today-activity" id="todayActivity"></p>
         </section>
         <section class="widget" id="hydration">
-          <p class="today-hydration" id="todayHydration">today's hydration info</p>
+          <p class="hydration-title title" id="hydrationTitle">Hydration</p>
+          <div class="today-hydration-flex">
+            <p class="today-hydration" id="todayHydration">today's hydration info</p>
+          </div>
         </section>
-        <section class="today-widget widget" id="sleep">
-          <p class="today-sleep" id="todaySleep">today's sleep info</p>
-          <p class="today-sleep-quality" id="todaySleepQuality">today's sleep quality info</p>
-          <p id="sleepHours"></p>
-          <p id="sleepQuality"></p>
+        <section class="sleep-widget widget" id="sleep">
+          <p class="sleep-title title" id="sleepTitle">Sleep</p>
+          <div class="today-sleep-grid" id="todaySleepGrid">
+            <div class="today-sleep-grid-hours sleep-grid">
+              <p class="today-sleep-title">Hours Slept</p>
+              <p class="today-sleep" id="todaySleepHours"></p>
+            </div>
+            <div class="today-sleep-grid-quality sleep-grid">
+              <p class="today-sleep-title">Sleep Quality</p>
+              <p class="today-sleep" id="todaySleepQuality">today's sleep quality info</p>
+            </div>
+            <div class="avg-sleep-grid-hours sleep-grid">
+              <p class="today-sleep-title">Avg. Sleep Hours</p>
+              <p class="today-sleep" id="avgSleepHours"></p>
+            </div>
+            <div class="avg-sleep-grid-quality sleep-grid">
+              <p class="today-sleep-title">Avg. Sleep Quality</p>
+              <p class="today-sleep" id="avgSleepQuality"></p>
+            </div>
+          </div>
         </section>
-        <section class="weekly-activity widget" id="weeklyActivityStats">
-          <p id="weeklyActivity">Activity</p>
+        <section class="weekly-activity-widget widget weekly-widget" id="weeklyActivityWidget">
+          <p class="weekly-activity-title title"id="weeklyActivityTitle">Weekly Activity</p>
+          <div class="weekly-activity-stats weekly-stats" id="weeklyActivityStats">
+          </div>
         </section>
-        <section class="weekly-hydration-stats widget" id="weeklyHydrationStats">
-          <p id="weeklyHydration">Hydration</p>
+        <section class="weekly-hydration-widget widget weekly-widget" id="weeklyHydrationWidget">
+          <p class="weekly-hydration-title title" id="weeklyHydrationTitle">Weekly Hydration</p>
+          <div class="weekly-hydration-stats weekly-stats" id="weeklyHydrationStats">
+          </div>
         </section>
-        <section class="weekly-sleep-stats widget" id="weeklySleepStats">
-          <p id="weeklySleep">Sleep</p>
+        <section class="weekly-sleep-widget widget weekly-widget" id="weeklySleepWidget">
+          <p class="weekly-sleep-title title" id="weeklySleepTitle">Weekly Sleep</p>
+          <div class="weekly-sleep-stats weekly-stats" id="weeklySleepStats">
+          </div>
+
         </section>
       </section>
       <section class="profile-section">
@@ -43,8 +68,12 @@
           <p class="user-stride" id="userStride">stride length: 4.3</p>
           <p class="user-step-goal" id="userStepGoal">daily step goal: 10000</p>
         </section>
+        <section class="compare-step-goal-chart" id="compareStepGoalChart">
+          <p class="avg-step-goal" id="avgStepGoal">average step goal of all users</p>
+        </section>
         <section class="user-friends">
-          <p id="friendList">User friend list will go here</p>
+          <p class="friend-title title">Friends</p>
+          <p class="friend-list" id="friendList">User friend list will go here</p>
         </section>
       </section>
     </main>

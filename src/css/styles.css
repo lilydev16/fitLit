@@ -14,6 +14,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  background-color: #F1F1F1;
 }
 
 nav {
@@ -21,6 +22,10 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 10%;
+  background-color: rgb(20 184 166);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 main {
@@ -29,12 +34,9 @@ main {
 }
 
 .welcome-message {
-  font-size: 35px;
+  font-size: 45px;
 }
 
-.user-name {
-  font-size: 25px;
-}
 
 .widget-section {
   display: grid;
@@ -42,34 +44,108 @@ main {
   overflow: scroll;
   grid-gap: 20px;
   padding: 20px;
-  width: 70%;
+  width: 80%;
 }
 
 .widget {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 50%;
-  width: 90%;
+  height: 75%;
+  width: 100%;
   border-radius: 10px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  background-color: rgb(250 250 249);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.title {
+  align-self: center;
+  font-size: 150%;
+  font-weight: 500;
+}
+
+.today-hydration-flex {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.today-hydration {
+  font-size: 55px;
+}
+
+.sleep-widget, .weekly-widget {
+  /* justify-content: space-between; */
+}
+
+.today-sleep-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  height: 70%;
+  width: 80%;
+  align-self: center;
+}
+
+.sleep-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-evenly;
+  /* border-width: 1px; */
+  /* border-color: rgb(241 245 249); */
+}
+
+.today-sleep-title, .today-sleep {
+  align-self: center;
+}
+
+.weekly-stats, .today-sleep {
+  height: 100%;
+  align-self: center;
+  margin-top: 10px;
 }
 
 .profile-section {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 20%;
+  height: 100%;
+  padding: 10px;
 }
 
 .user-profile {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 40%;
+  justify-content: space-between;
+  height: 30%;
+  /* margin-bottom: 20px; */
 }
+
+.user-name {
+  font-size: 30px;
+  align-self: center;
+}
+
+.compare-step-goal-chart {
+  display: flex;
+  height: 30%;
+}
+
+.avg-step-goal {
+  align-self: center;
+}
+
 
 .user-friends {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 60%;
+  /* justify-content: space-between; */
+  height: 40%;
+}
+
+.friend-list {
+  /* align-self: center; */
 }

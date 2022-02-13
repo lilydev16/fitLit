@@ -12,17 +12,18 @@ const userEmail = document.getElementById('userEmail')
 const userStride = document.getElementById('userStride')
 const userStepGoal = document.getElementById('userStepGoal')
 const activityStepGoal = document.getElementById('activityStepGoal')
-const averageStepGoal = document.getElementById('averageStepGoal')
-const userFriends = document.getElementById('friendList')
+const avgStepGoal = document.getElementById('avgStepGoal')
+const friendList = document.getElementById('friendList')
 
 const todayHydration = document.getElementById('todayHydration')
-const weeklyHydration = document.getElementById('weeklyHydration')
+const weeklyHydrationStats = document.getElementById('weeklyHydrationStats')
 
-const todaySleep = document.getElementById('todaySleep')
-const sleepHours = document.getElementById('sleepHours')
-const sleepQuality = document.getElementById('sleepQuality')
+const todaySleepHours = document.getElementById('todaySleepHours')
 const todaySleepQuality = document.getElementById('todaySleepQuality')
-const weeklySleepQuality = document.getElementById('weeklySleepQuality')
+const avgSleepHours = document.getElementById('avgSleepHours')
+const avgSleepQuality = document.getElementById('avgSleepQuality')
+// const weeklySleepQuality = document.getElementById('weeklySleepQuality')
+const weeklySleepStats = document.getElementById('weeklySleepStats')
 
 //Event Listeners -------------------------------------------------------------------------------------
 
@@ -53,10 +54,10 @@ function loadHydrationData(data) {
 }
 
 function loadSleepData(data) {
-createSleepProfile(data)
-displayTodaysSleep(data)
-displayAvgSleep(data)
-displayWeeklySleep(data)
+  createSleepProfile(data)
+  displayTodaysSleep(data)
+  displayAvgSleep(data)
+  displayWeeklySleep(data)
 }
 
 function createUser (data) {
@@ -74,7 +75,8 @@ function updateUserProfile(user, data) {
   userEmail.innerText = `${user.email}`
   userStride.innerText = ` Stride Length: ${user.strideLength}`
   userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
-  userFriends.innerText = `Friends: ${data.createUserFriendList()}`
+  avgStepGoal.innerText = `Compare your step goal to the FitLit community: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
+  friendList.innerText = `${data.createUserFriendList()}`
 }
 
 function randomizeId() {
@@ -90,7 +92,7 @@ function createHydrationProfile(data) {
 
 function displayTodaysHydration(data) {
   const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
-  todayHydration.innerText = `Water you've consumed today: ${todayHydrationAmt} fl.oz.`
+  todayHydration.innerText = `${todayHydrationAmt} fl.oz.`
 }
 
 function displayWeeklyHydration(data) {
@@ -99,7 +101,7 @@ function displayWeeklyHydration(data) {
   return weeklyHydrationAmt.forEach((entry, i) => {
     let p = document.createElement('p')
     p.innerText = `${weeklyHydrationAmt[i].date}: ${weeklyHydrationAmt[i].ounces}`
-    weeklyHydration.appendChild(p)
+    weeklyHydrationStats.appendChild(p)
     p.classList.add('weekly-hydration');
   })
 }
@@ -114,16 +116,15 @@ function createSleepProfile(data) {
 function displayTodaysSleep(data) {
   const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'hoursSlept')
   const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'sleepQuality')
-  todaySleep.innerText = `Hours slept today: ${todaySleepAmt}`
-  todaySleepQuality.innerText = `Today's sleep quality: ${sleepQualityToday}`
+  todaySleepHours.innerText = `${todaySleepAmt}`
+  todaySleepQuality.innerText = `${sleepQualityToday}`
 }
 
 function displayAvgSleep(data) {
-  const avgSleepHours = data.currentUser.userSleep.calcAvgSleepStats('hoursSlept')
-  const avgSleepQuality = data.currentUser.userSleep.calcAvgSleepStats('sleepQuality')
-  sleepHours.innerText = `Average Hours of Sleep: ${avgSleepHours}`
-  sleepQuality.innerText = `Average Quality of Sleep: ${avgSleepQuality}`
-
+  const averageSleepHours = data.currentUser.userSleep.calcAvgSleepStats('hoursSlept')
+  const averageSleepQuality = data.currentUser.userSleep.calcAvgSleepStats('sleepQuality')
+  avgSleepHours.innerText = `${averageSleepHours}`
+  avgSleepQuality.innerText = `${averageSleepQuality}`
 }
 
 function displayWeeklySleep(data) {
@@ -131,8 +132,8 @@ function displayWeeklySleep(data) {
 
   return weeklySleepData.forEach((entry, i) => {
     let p = document.createElement('p')
-    p.innerText = `${weeklySleepData[i].date} - Hours Slept: ${weeklySleepData[i].hours}, Sleep Quality: ${weeklySleepData[i].quality}`
     weeklySleepStats.appendChild(p)
+    p.innerText = `${weeklySleepData[i].date} - Hours Slept: ${weeklySleepData[i].hours}, Sleep Quality: ${weeklySleepData[i].quality}`
     p.classList.add('weekly-sleep');
   })
 }
@@ -140,8 +141,8 @@ function displayWeeklySleep(data) {
 //Activity Cards ----------------------------------------------------------------------------------------------------------
 
 function updateActivityCard(user, data) {
-  averageStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
-  activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
+  // avgStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
+  // activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
 
 function handleApiErrors() {
