@@ -99,8 +99,6 @@ main {
   border: 1px solid rgb(213, 230, 247);
   border-radius: 5px;
   padding: 10px;
-  /* border-width: 1px; */
-  /* border-color: rgb(241 245 249); */
 }
 
 .today-sleep-title, .today-sleep {
@@ -124,6 +122,10 @@ main {
   text-align: center;
   width: 300px;
   border-radius: 5px;
+}
+
+th {
+  font-weight: bolder;
 }
 
 table tr:last-child td:first-child {
