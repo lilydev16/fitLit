@@ -19,6 +19,7 @@ FitLit is an application that tracks and displays fitness data in an easy to rea
 * Object Oriented Programming
 * Git/GitHub
 * Webpack
+* Mocha/Chai
 
 
 ## Installation/Set-Up
