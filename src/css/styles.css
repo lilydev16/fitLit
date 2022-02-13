@@ -28,6 +28,14 @@ main {
   height: 90%;
 }
 
+.welcome-message {
+  font-size: 35px;
+}
+
+.user-name {
+  font-size: 25px;
+}
+
 .widget-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -35,6 +43,15 @@ main {
   grid-gap: 20px;
   padding: 20px;
   width: 70%;
+}
+
+.widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50%;
+  width: 90%;
+  border-radius: 10px;
 }
 
 .profile-section {
@@ -55,22 +72,4 @@ main {
   flex-direction: column;
   justify-content: space-around;
   height: 60%;
-}
-
-.widget {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 50%;
-  width: 90%;
-  border-radius: 10px;
-}
-
-
-.user-name {
-  font-size: 25px;
-}
-
-.welcome-message {
-  font-size: 35px;
 }

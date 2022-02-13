@@ -15,9 +15,7 @@ class Hydration {
         date: entry.date,
         ounces: entry.numOunces
       }
-      console.log(weeklyHydration)
       return weeklyHydration
-      // return an an array of objects
     })
   }
 
@@ -27,8 +25,6 @@ class Hydration {
     }, 0)
     return Math.round(totalOunces / this.hydrationData.length)
   }
-
-
 }
 
 export default Hydration;

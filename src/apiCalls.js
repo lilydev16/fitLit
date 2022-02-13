@@ -20,7 +20,6 @@ function fetchData() {
       allData.sleepData = data[2]
       return allData;
     })
-
 }
 
 export default fetchData;
