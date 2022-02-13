@@ -116,15 +116,15 @@ function createSleepProfile(data) {
 function displayTodaysSleep(data) {
   const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'hoursSlept')
   const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'sleepQuality')
-  todaySleepHours.innerText = `Hours slept today: ${todaySleepAmt}`
-  todaySleepQuality.innerText = `Today's sleep quality: ${sleepQualityToday}`
+  todaySleepHours.innerText = `${todaySleepAmt}`
+  todaySleepQuality.innerText = `${sleepQualityToday}`
 }
 
 function displayAvgSleep(data) {
   const averageSleepHours = data.currentUser.userSleep.calcAvgSleepStats('hoursSlept')
   const averageSleepQuality = data.currentUser.userSleep.calcAvgSleepStats('sleepQuality')
-  avgSleepHours.innerText = `Average Hours of Sleep: ${averageSleepHours}`
-  avgSleepQuality.innerText = `Average Quality of Sleep: ${averageSleepQuality}`
+  avgSleepHours.innerText = `${averageSleepHours}`
+  avgSleepQuality.innerText = `${averageSleepQuality}`
 }
 
 function displayWeeklySleep(data) {

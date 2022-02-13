@@ -1,6 +1,6 @@
 
 * {
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   padding: 0px;
   margin: 0px;
 }
@@ -62,7 +62,17 @@ main {
   font-weight: 500;
 }
 
-.today-sleep {
+.today-hydration-flex {
+  display:flex;
+  justify-content: center;
+}
+
+.today-hydration {
+  /* align-self: center; */
+  font-size: 55px;
+}
+
+.today-sleep-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
@@ -71,9 +81,15 @@ main {
   align-self: center;
 }
 
-.today-hydration {
+.sleep-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.today-sleep {
+  /* justify-content: center; */
   align-self: center;
-  font-size: 55px;
 }
 
 .profile-section {

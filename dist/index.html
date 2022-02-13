@@ -18,16 +18,33 @@
         </section>
         <section class="widget" id="hydration">
           <p class="hydration-title title" id="hydrationTitle">Hydration</p>
-          <p class="today-hydration" id="todayHydration">today's hydration info</p>
+          <div class="today-hydration-flex">
+            <p class="today-hydration" id="todayHydration">today's hydration info</p>
+          </div>
         </section>
         <section class="widget" id="sleep">
           <p class="sleep-title title" id="sleepTitle">Sleep</p>
-          <div class="today-sleep" id="todaySleep">
-            <p class="today-sleep-hours" id="todaySleepHours">today's sleep info</p>
-            <p class="today-sleep-quality" id="todaySleepQuality">today's sleep quality info</p>
-            <p class="avg-sleep-hours avg" id="avgSleepHours"></p>
-            <p class"avg-sleep-quality avg" id="avgSleepQuality"></p>
+
+          <div class="today-sleep-grid" id="todaySleepGrid">
+            <div class="today-sleep-grid-hours sleep-grid">
+              <p class="today-sleep">Hours Slept</p>
+              <p class="today-sleep" id="todaySleepHours"></p>
+            </div>
+            <div class="today-sleep-grid-quality sleep-grid">
+              <p class="today-sleep">Sleep Quality</p>
+              <p class="today-sleep" id="todaySleepQuality">today's sleep quality info</p>
+            </div>
+            <div class="avg-sleep-grid-hours sleep-grid">
+              <p class="today-sleep">Avg. Sleep Hours</p>
+              <p class="today-sleep" id="avgSleepHours"></p>
+            </div>
+            <div class="avg-sleep-grid-quality sleep-grid">
+              <p class="today-sleep">Avg. Sleep Quality</p>
+              <p class="today-sleep" id="avgSleepQuality"></p>
+            </div>
+
           </div>
+
         </section>
         <section class="weekly-activity-widget widget" id="weeklyActivityWidget">
           <p class="weekly-activity-title title"id="weeklyActivityTitle">Weekly Activity</p>
