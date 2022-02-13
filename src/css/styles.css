@@ -76,7 +76,9 @@ main {
 
 .today-hydration {
   font-size: 55px;
+  /* background-color: #F66586; */
 }
+
 
 .sleep-widget,
 .weekly-widget {
@@ -100,6 +102,7 @@ main {
   border: 1px solid rgb(213, 230, 247);
   border-radius: 5px;
   padding: 10px;
+  background:linear-gradient(#F8C494, #FAB26D);
 }
 
 /* .today-sleep-title,
@@ -135,8 +138,14 @@ main {
   border-radius: 5px;
 }
 
+.hydration-table th {
+  background-color: #a0bfd3;
+}
+
 th {
   font-weight: bolder;
+  background-color: #f5cad4;
+  border-radius: 5px;
 }
 
 table tr:last-child td:first-child {
