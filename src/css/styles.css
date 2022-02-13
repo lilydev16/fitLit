@@ -53,7 +53,7 @@ main {
 
 .title {
   align-self: center;
-  font-size: 32px;
+  font-size: 150%;
   font-weight: 500;
 }
 
@@ -68,7 +68,7 @@ main {
 
 .today-hydration {
   align-self: center;
-  font-size: 65px;
+  font-size: 55px;
 }
 
 .profile-section {
@@ -100,13 +100,14 @@ main {
   align-self: center;
 }
 
-.friend-list {
-  align-self: center;
-}
 
 .user-friends {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: 40%;
+}
+
+.friend-list {
+  /* align-self: center; */
 }
