@@ -14,6 +14,7 @@
       <section class="widget-section">
         <section class="widget" id="activity">
           <p class="activity-title title" id="activityTitle">Activity</p>
+          <p class="today-activity" id="todayActivity">today's activity info</p>
           <!-- <p id="activityStepGoal">user's daily step goal</p> -->
           <!-- <p id="avgStepGoal">average step goal of all users</p> -->
         </section>
@@ -23,10 +24,12 @@
         </section>
         <section class="widget" id="sleep">
           <p class="sleep-title title" id="sleepTitle">Sleep</p>
-          <p class="today-sleep-hours" id="todaySleepHours">today's sleep info</p>
-          <p class="today-sleep-quality" id="todaySleepQuality">today's sleep quality info</p>
-          <p class="avg-sleep-hours" id="avgSleepHours"></p>
-          <p class"avg-sleep-quality" id="avgSleepQuality"></p>
+          <div class="today-sleep" id="todaySleep">
+            <p class="today-sleep-hours" id="todaySleepHours">today's sleep info</p>
+            <p class="today-sleep-quality" id="todaySleepQuality">today's sleep quality info</p>
+            <p class="avg-sleep-hours" id="avgSleepHours"></p>
+            <p class"avg-sleep-quality" id="avgSleepQuality"></p>
+          </div>
         </section>
         <section class="weekly-activity-widget widget" id="weeklyActivityWidget">
           <p class="weekly-activity-title title"id="weeklyActivityTitle">Weekly Activity</p>
@@ -52,7 +55,9 @@
           <p class="user-email" id="userEmail">jsmith@example.com</p>
           <p class="user-stride" id="userStride">stride length: 4.3</p>
           <p class="user-step-goal" id="userStepGoal">daily step goal: 10000</p>
-          <p class="" id="avgStepGoal">average step goal of all users</p>
+          <div id="compareStepGoalChart">
+            <p class="avg-step-goal" id="avgStepGoal">average step goal of all users</p>
+          </div>
         </section>
         <section class="user-friends">
           <p class="title">Friends</p>
