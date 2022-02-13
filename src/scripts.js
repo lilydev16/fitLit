@@ -143,3 +143,14 @@ function updateActivityCard(user, data) {
   averageStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
   activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
+
+function handleApiErrors() {
+  window.alert("We're sorry! The server is not available at the moment. Please try again later.")
+}
+
+
+
+
+
+
+export default handleApiErrors;
