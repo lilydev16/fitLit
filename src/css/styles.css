@@ -108,13 +108,17 @@ main {
   margin-top: 10px;
 }
 
-.weekly-widget {
-  height: 100%;
+.weekly-widget,
+.weekly-stats {
+  height: 80%;
 }
 
-.hydration-table {
+.hydration-table,
+.sleep-table {
   border-collapse: collapse;
   border: 1px solid black;
+  text-align: center;
+  width: 300px;
 }
 
 .profile-section {

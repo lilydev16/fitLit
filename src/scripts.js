@@ -144,16 +144,36 @@ function displayAvgSleep(data) {
   avgSleepQuality.innerText = `${averageSleepQuality}`
 }
 
+// function displayWeeklySleep(data) {
+//   const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16')
+
+//   return weeklySleepData.forEach((entry, i) => {
+//     let p = document.createElement('p')
+//     weeklySleepStats.appendChild(p)
+//     p.innerText = `${weeklySleepData[i].date} - Hours Slept: ${weeklySleepData[i].hours}, Sleep Quality: ${weeklySleepData[i].quality}`
+//     p.classList.add('weekly-sleep');
+//   })
+// }
+
 function displayWeeklySleep(data) {
   const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16')
-
-  return weeklySleepData.forEach((entry, i) => {
-    let p = document.createElement('p')
-    weeklySleepStats.appendChild(p)
-    p.innerText = `${weeklySleepData[i].date} - Hours Slept: ${weeklySleepData[i].hours}, Sleep Quality: ${weeklySleepData[i].quality}`
-    p.classList.add('weekly-sleep');
+  weeklySleepData.forEach((entry, i) => {
+    weeklySleepStats.innerHTML += `
+    <table class="sleep-table">
+      <tr>
+        <th>Date</th>
+        <th>Hours</th>
+        <th>Quality</th
+      </tr>
+      <tr>
+        <td>${weeklySleepData[i].date}</td>
+        <td>${weeklySleepData[i].hours}</td>
+        <td>${weeklySleepData[i].quality}</td>
+      </tr>`
   })
 }
+
+
 
 //Activity Cards ----------------------------------------------------------------------------------------------------------
 
