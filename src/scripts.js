@@ -75,7 +75,8 @@ function updateUserProfile(user, data) {
   userEmail.innerText = `${user.email}`
   userStride.innerText = ` Stride Length: ${user.strideLength}`
   userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
-  userFriends.innerText = `Friends: ${data.createUserFriendList()}`
+  avgStepGoal.innerText = `Compare your step goal to the Average Step Goal for All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
+  userFriends.innerText = `${data.createUserFriendList()}`
 }
 
 function randomizeId() {
@@ -140,6 +141,6 @@ function displayWeeklySleep(data) {
 //Activity Cards ----------------------------------------------------------------------------------------------------------
 
 function updateActivityCard(user, data) {
-  avgStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
+  // avgStepGoal.innerText = `Average Step Goal All: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
   // activityStepGoal.innerText = `User Step Goal ${user.dailyStepGoal}`
 }
