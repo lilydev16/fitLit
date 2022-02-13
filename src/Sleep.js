@@ -27,7 +27,6 @@ class Sleep {
       }
       return weeklySleep
     })
-    console.log(result)
     return result
   }
 }
