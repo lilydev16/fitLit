@@ -75,8 +75,8 @@ function updateUserProfile(user, data) {
   userName.innerText = `${user.name}`
   userAddress.innerText = `${user.address}`
   userEmail.innerText = `${user.email}`
-  userStride.innerText = ` Stride Length: ${user.strideLength}`
-  userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
+  userStride.innerText = `${user.strideLength}`
+  userStepGoal.innerText = `${user.dailyStepGoal}`
   avgStepGoal.innerText = `Compare your step goal to the FitLit community: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
   updateFriends(data)
 }
