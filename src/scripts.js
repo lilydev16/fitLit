@@ -76,7 +76,13 @@ function updateUserProfile(user, data) {
   userStride.innerText = ` Stride Length: ${user.strideLength}`
   userStepGoal.innerText = `Step Goal: ${user.dailyStepGoal}`
   avgStepGoal.innerText = `Compare your step goal to the FitLit community: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
-  friendList.innerText = `${data.createUserFriendList()}`
+  updateFriends(data)
+}
+
+function updateFriends(data) {
+  const friendNames = data.createUserFriendList().forEach((friend) => {
+    friendList.innerHTML += `<p class="friend">${friend}</p>`
+  })
 }
 
 function randomizeId() {

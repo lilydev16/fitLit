@@ -1,6 +1,5 @@
 
 * {
-  /* border: 2px solid blue; */
   padding: 0px;
   margin: 0px;
 font-family: sans-serif;
@@ -39,7 +38,6 @@ main {
   font-size: 45px;
 }
 
-
 .widget-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -52,7 +50,7 @@ main {
 .widget {
   display: flex;
   flex-direction: column;
-  height: 75%;
+  height: 85%;
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -78,10 +76,6 @@ main {
   font-size: 55px;
 }
 
-.sleep-widget, .weekly-widget {
-  /* justify-content: space-between; */
-}
-
 .today-sleep-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -99,13 +93,19 @@ main {
   border: 1px solid rgb(213, 230, 247);
   border-radius: 5px;
   padding: 10px;
+  background:linear-gradient(#F8C494, #FAB26D);
 }
 
-.today-sleep-title, .today-sleep {
-  align-self: center;
+.today-sleep-title {
+  font-size: 14px
 }
 
-.weekly-stats, .today-sleep {
+.today-sleep {
+  font-size: 25px;
+}
+
+.weekly-stats,
+.today-sleep {
   height: 100%;
   align-self: center;
   margin-top: 10px;
@@ -113,7 +113,7 @@ main {
 
 .weekly-widget,
 .weekly-stats {
-  height: 90%;
+  height: 95%;
 }
 
 .hydration-table,
@@ -124,8 +124,14 @@ main {
   border-radius: 5px;
 }
 
+.hydration-table th {
+  background-color: #a0bfd3;
+}
+
 th {
   font-weight: bolder;
+  background-color: #f5cad4;
+  border-radius: 5px;
 }
 
 table tr:last-child td:first-child {
@@ -140,38 +146,47 @@ table tr:last-child td:first-child {
   width: 20%;
   height: 100%;
   padding: 10px;
+  background: linear-gradient(#E5E5E5, #C6C6C6);
 }
 
 .user-profile {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 30%;
-  /* margin-bottom: 20px; */
+  padding: 10px;
+  padding-bottom: 20px;
+  height: 40%;
+  border-radius: 5px;
+}
+
+.user-friends {
+  text-align: center;
+}
+
+.friend {
+  padding: 10 px;
 }
 
 .user-name {
   font-size: 30px;
   align-self: center;
+  font-weight: 400;
 }
 
 .compare-step-goal-chart {
   display: flex;
   height: 30%;
+  border-radius: 5px;
 }
 
 .avg-step-goal {
   align-self: center;
 }
 
-
 .user-friends {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: center;
+  border-radius: 5px;
   height: 40%;
-}
-
-.friend-list {
-  /* align-self: center; */
 }
