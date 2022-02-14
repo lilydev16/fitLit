@@ -6,6 +6,7 @@ import fetchData from './apiCalls'
 
 //Query Selectors -----------------------------------------------------------------------------
 const welcomeMessage = document.getElementById('welcomeMessage')
+const date = document.getElementById('date')
 const userName = document.getElementById('userName')
 const userAddress = document.getElementById('userAddress')
 const userEmail = document.getElementById('userEmail')
@@ -42,7 +43,7 @@ function loadPage() {
 
 function loadUserProfile(data) {
   createUser(data)
-  updateWelcomeMessage(data.currentUser)
+  updateWelcomeMessage(data.currentUser, data)
   updateUserProfile(data.currentUser, data)
   updateActivityCard(data.currentUser, data)
 }
@@ -65,8 +66,9 @@ function createUser (data) {
   return newUser
 }
 
-function updateWelcomeMessage(user) {
+function updateWelcomeMessage(user, data) {
   welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
+  date.innerText = `${getCurrentDate(data, "hydrationData")}`
 }
 
 function updateUserProfile(user, data) {
