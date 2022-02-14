@@ -5,7 +5,7 @@ import Sleep from '../src/Sleep';
 
 describe('User', () => {
 
-  let user, userData, hydrationData, sleepData
+  let user, userData, hydrationData, sleepData;
 
   beforeEach(function() {
 
@@ -18,8 +18,6 @@ describe('User', () => {
       friends: [16, 4, 8]
      };
 
-     user = new User(userData);
-
      hydrationData = [
        {userID: 1, date: "2019/06/16", numOunces: 69},
        {userID: 2, date: "2019/06/15", numOunces: 75}];
@@ -29,6 +27,8 @@ describe('User', () => {
        {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
        {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7},
        {userID: 5, date: '2019/06/17', hoursSlept: 10.5, sleepQuality: 3.7}];
+
+     user = new User(userData, hydrationData, sleepData);
 
   });
 
@@ -73,12 +73,14 @@ describe('User', () => {
   });
 
   it('should instantiate a new hydration instance', function() {
-    expect(user.createNewHydrationData()).to.be.an.instanceof(Hydration)
-    expect(user.userHydration).to.be.an.instanceof(Hydration)
+    expect(user.userHydration).to.eql(hydrationData);
+    expect(user.createNewHydrationData()).to.be.an.instanceof(Hydration);
+    expect(user.userHydration).to.be.an.instanceof(Hydration);
   });
 
   it('should instantiate a new sleep instance', function() {
-    expect(user.createNewSleepData()).to.be.an.instanceof(Sleep)
-    expect(user.userSleep).to.be.an.instanceof(Sleep)
+    expect(user.userSleep).to.eql(sleepData);
+    expect(user.createNewSleepData()).to.be.an.instanceof(Sleep);
+    expect(user.userSleep).to.be.an.instanceof(Sleep);
   });
 });
