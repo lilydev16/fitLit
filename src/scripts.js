@@ -6,6 +6,7 @@ import fetchData from './apiCalls'
 
 //Query Selectors -----------------------------------------------------------------------------
 const welcomeMessage = document.getElementById('welcomeMessage')
+const date = document.getElementById('date')
 const userName = document.getElementById('userName')
 const userAddress = document.getElementById('userAddress')
 const userEmail = document.getElementById('userEmail')
@@ -42,7 +43,7 @@ function loadPage() {
 
 function loadUserProfile(data) {
   createUser(data)
-  updateWelcomeMessage(data.currentUser)
+  updateWelcomeMessage(data.currentUser, data)
   updateUserProfile(data.currentUser, data)
   updateActivityCard(data.currentUser, data)
 }
@@ -65,8 +66,9 @@ function createUser (data) {
   return newUser
 }
 
-function updateWelcomeMessage(user) {
+function updateWelcomeMessage(user, data) {
   welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`
+  date.innerText = `${getCurrentDate(data, "hydrationData")}`
 }
 
 function updateUserProfile(user, data) {
@@ -89,6 +91,10 @@ function randomizeId() {
   return Math.floor(Math.random() * 50);
 }
 
+function getCurrentDate(data, array) {
+  const index = data[array].length - 1 //gives us last element index
+  return data[array][index].date
+}
 //Hydration -------------------------------------------------------------------------------------------------
 
 function createHydrationProfile(data) {
@@ -97,9 +103,11 @@ function createHydrationProfile(data) {
 }
 
 function displayTodaysHydration(data) {
-  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
+  const currentDate = getCurrentDate(data, "hydrationData")
+  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay(currentDate);
   todayHydration.innerText = `${todayHydrationAmt} fl.oz.`
 }
+
 
 function displayWeeklyHydration(data) {
   const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek();
@@ -125,8 +133,9 @@ function createSleepProfile(data) {
 }
 
 function displayTodaysSleep(data) {
-  const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'hoursSlept')
-  const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'sleepQuality')
+  const currentDate = getCurrentDate(data, "sleepData")
+  const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay(currentDate, 'hoursSlept')
+  const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay(currentDate, 'sleepQuality')
   todaySleepHours.innerText = `${todaySleepAmt}`
   todaySleepQuality.innerText = `${sleepQualityToday}`
 }
