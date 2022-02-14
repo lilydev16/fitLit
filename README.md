@@ -2,7 +2,7 @@
 ___
 ## Abstract
 
-FitLit is an application that tracks and displays fitness data in an easy to read, dynamic, user dashboard. Part I of this project showcases the ability to get/fetch information from an API, and display it in a stylish, easy to use UI. 
+FitLit is an application that tracks and displays fitness data in an easy to read, dynamic, user dashboard. Part I of this project showcases the ability to get/fetch information from an API, and display it in a stylish, easy to use UI.
 ---
 ## Links
 * [GitHub Repository](https://github.com/nvalentini21/flashcards-project)
@@ -70,6 +70,8 @@ Two widets are used to represent sleep data:
 
 ---
 ## Future Additions
+
+The current live project represents the completion of part I of a Turing School of Software and Design Module 2 ongoing project.
 
 For part II of this project, we plan to:
 
