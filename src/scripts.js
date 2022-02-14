@@ -37,7 +37,6 @@ function loadPage() {
     loadUserProfile(userRepository)
     loadHydrationData(userRepository)
     loadSleepData(userRepository)
-    getCurrentDate(userRepository, 'hydrationData')
   })
 }
 
@@ -91,8 +90,8 @@ function randomizeId() {
 }
 
 function getCurrentDate(data, array) {
-  const hydrationIndex = data[array].length - 1 //gives us last element index
-  console.log(data[array][hydrationIndex].date)
+  const index = data[array].length - 1 //gives us last element index
+  return data[array][index].date
 }
 //Hydration -------------------------------------------------------------------------------------------------
 
@@ -102,7 +101,8 @@ function createHydrationProfile(data) {
 }
 
 function displayTodaysHydration(data) {
-  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
+  const currentDate = getCurrentDate(data, "hydrationData")
+  const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay(currentDate);
   todayHydration.innerText = `${todayHydrationAmt} fl.oz.`
 }
 
@@ -131,8 +131,9 @@ function createSleepProfile(data) {
 }
 
 function displayTodaysSleep(data) {
-  const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'hoursSlept')
-  const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay('2020/01/22', 'sleepQuality')
+  const currentDate = getCurrentDate(data, "sleepData")
+  const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay(currentDate, 'hoursSlept')
+  const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay(currentDate, 'sleepQuality')
   todaySleepHours.innerText = `${todaySleepAmt}`
   todaySleepQuality.innerText = `${sleepQualityToday}`
 }
