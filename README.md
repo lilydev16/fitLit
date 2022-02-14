@@ -53,14 +53,23 @@ Two widgets are used to represent hydration data:
 ### Sleep Data
 Two widets are used to represent sleep data:
 * One widget contains the hours slept, sleep quality, average sleep hours, and average sleep quality for the current date.
-* One widget contains the data for sleep hours and quality over a 7 day period. 
+* One widget contains the data for sleep hours and quality over a 7 day period.
 
 
 ![Screenshot](https://media.giphy.com/media/WtGJssD3nno08byQ9a/giphy.gif)
 
+---
+## Features:
+* Fetching and displaying data from an API
 
 ---
 ## Future Additions
+For part II of this project, we plan to:
+* Add information to the Activity widget and Weekly Activity widget via methods to calculate different statistics. (E.g. miles walked, average stride, etc.)
+* Add icons for all of the widgets
+* Add a user icon or photo for the current user and friends
+* Update the API databases using POST to display the most up to date information
+* Continue to redesign to overall structure/layout via CSS. 
 
 
 ---
@@ -69,7 +78,6 @@ Two widets are used to represent sleep data:
 * Our project manager, Nik Seif. [@NikSeif](https://github.com/niksseif)
 * Our code reviewers:
   * Alyssa Bull [@alyssabull](https://github.com/alyssabull)
-  *
-  *
+
 
 Thank you so much!
