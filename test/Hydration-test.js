@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Hydration from '../src/Hydration';
 
-let userHydration, hydrationData, userWeekSet
+let userHydration, hydrationData, userWeekSet;
 
 describe('HydrationProfile', () => {
 
@@ -21,7 +21,7 @@ describe('HydrationProfile', () => {
     {userID: 2, date: '2020/01/21', numOunces: 85},
     {userID: 2, date: '2020/01/22', numOunces: 93}];
 
-  userHydration = new Hydration(hydrationData)
+  userHydration = new Hydration(hydrationData);
   
   });
 
@@ -30,23 +30,23 @@ describe('HydrationProfile', () => {
   });
 
   it('should instantiate a HydrationProfile', function () {
-    expect(userHydration).to.be.an.instanceof(Hydration)
+    expect(userHydration).to.be.an.instanceof(Hydration);
   });
 
   it('should be able to hold a user\'s hydration data', function () {
-    expect(userHydration.hydrationData).to.equal(hydrationData)
+    expect(userHydration.hydrationData).to.equal(hydrationData);
   });
 
   it('should be able to calculate ounces per day based on date', function() {
-    expect(userHydration.calcOuncesPerDay("2019/06/16")).to.equal(69)
+    expect(userHydration.calcOuncesPerDay("2019/06/16")).to.equal(69);
   });
 
   it('should be able to calculate a user\'s average overall water intake', function() {
-    expect(userHydration.calcAverageOunces()).to.equal(69)
+    expect(userHydration.calcAverageOunces()).to.equal(69);
   });
 
   it('should be able to calculate ounces of water per day in most recent week', function() {
-    userHydration.hydrationData = userWeekSet
+    userHydration.hydrationData = userWeekSet;
     expect(userHydration.calcOuncesPerWeek())
       .to.eql([
         {date: "2020/01/16", ounces: 44},
@@ -55,6 +55,6 @@ describe('HydrationProfile', () => {
         {date: "2020/01/19", ounces: 56},
         {date: "2020/01/20", ounces: 50},
         {date: "2020/01/21", ounces: 85},
-        {date: "2020/01/22", ounces: 93}])
+        {date: "2020/01/22", ounces: 93}]);
   });
 });

@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import UserRepository from '../src/UserRepository';
-import User from '../src/User'
+import User from '../src/User';
 
 describe('User Repository', () => {
 
-  let userRepository, allData
+  let userRepository, allData;
 
   beforeEach(function() {
 
@@ -57,7 +57,7 @@ describe('User Repository', () => {
           {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7}]
     };
 
-        userRepository = new UserRepository(allData)
+    userRepository = new UserRepository(allData);
 
   });
 
@@ -66,50 +66,50 @@ describe('User Repository', () => {
   });
 
   it('should instantiate a UserRepository', function () {
-    expect(userRepository).to.be.an.instanceof(UserRepository)
+    expect(userRepository).to.be.an.instanceof(UserRepository);
   });
 
   it('should keep track of a collection of user data', function () {
-    expect(userRepository.userData).to.eql(allData.userData)
+    expect(userRepository.userData).to.eql(allData.userData);
   });
 
   it('should be able to keep track of hydration data', function() {
-    expect(userRepository.hydrationData).to.eql(allData.hydrationData)
+    expect(userRepository.hydrationData).to.eql(allData.hydrationData);
   });
 
   it('should be able to keep track of sleep data', function() {
-    expect(userRepository.sleepData).to.eql(allData.sleepData)
+    expect(userRepository.sleepData).to.eql(allData.sleepData);
   });
 
   it('should keep track of the current user', function () {
-    userRepository.createNewUser(1)
-    expect(userRepository.currentUser.name).to.eql(allData.userData[0].name)
-    expect(userRepository.currentUser).to.eql(allData.userData[0])
+    userRepository.createNewUser(1);
+    expect(userRepository.currentUser.name).to.eql(allData.userData[0].name);
+    expect(userRepository.currentUser).to.eql(allData.userData[0]);
   });
 
   it('should find a user by id, and return the user', function() {
-    expect(userRepository.createNewUser(1)).to.eql(allData.userData[0])
+    expect(userRepository.createNewUser(1)).to.eql(allData.userData[0]);
   });
 
   it('should find a friend by id, and return the friend', function() {
-    expect(userRepository.findFriendsById(2)).to.equal(allData.userData[1])
+    expect(userRepository.findFriendsById(2)).to.equal(allData.userData[1]);
   });
 
   it('should calculate average steps & sleep stats for all users', function() {
-    expect(userRepository.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')).to.equal(6200)
-    expect(userRepository.calcAvgStatsForAllUsers('sleepQuality', 'sleepData')).to.equal(4)
-    expect(userRepository.calcAvgStatsForAllUsers('hoursSlept', 'sleepData')).to.equal(8)
+    expect(userRepository.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')).to.equal(6200);
+    expect(userRepository.calcAvgStatsForAllUsers('sleepQuality', 'sleepData')).to.equal(4);
+    expect(userRepository.calcAvgStatsForAllUsers('hoursSlept', 'sleepData')).to.equal(8);
   });
 
   it('should instantiate a new user based on the current user', function() {
-    expect(userRepository.createNewUser(1)).to.be.an.instanceof(User)
+    expect(userRepository.createNewUser(1)).to.be.an.instanceof(User);
   });
 
   it('should return the names of all of the Users friends', function() {
-    expect(userRepository.createNewUser(1)).to.eql(allData.userData[0])
-    expect(userRepository.currentUser.name).to.equal("Luisa Hane")
-    expect(userRepository.currentUser.friends).to.eql([16, 4, 8])
-    const friendNames = userRepository.createUserFriendList()
-    expect(friendNames).to.eql(['Garnett Cruickshank', 'Mae Connelly', 'Laney Abshire'])
+    expect(userRepository.createNewUser(1)).to.eql(allData.userData[0]);
+    expect(userRepository.currentUser.name).to.equal("Luisa Hane");
+    expect(userRepository.currentUser.friends).to.eql([16, 4, 8]);
+    const friendNames = userRepository.createUserFriendList();
+    expect(friendNames).to.eql(['Garnett Cruickshank', 'Mae Connelly', 'Laney Abshire']);
   });
 });
