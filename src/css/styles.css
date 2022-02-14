@@ -1,6 +1,5 @@
 
 * {
-  /* border: 2px solid blue; */
   padding: 0px;
   margin: 0px;
 font-family: sans-serif;
@@ -39,7 +38,6 @@ main {
   font-size: 45px;
 }
 
-
 .widget-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -76,13 +74,6 @@ main {
 
 .today-hydration {
   font-size: 55px;
-  /* background-color: #F66586; */
-}
-
-
-.sleep-widget,
-.weekly-widget {
-  /* justify-content: space-between; */
 }
 
 .today-sleep-grid {
@@ -104,11 +95,6 @@ main {
   padding: 10px;
   background:linear-gradient(#F8C494, #FAB26D);
 }
-
-/* .today-sleep-title,
-.today-sleep {
-  align-self: center;
-} */
 
 .today-sleep-title {
   font-size: 14px
@@ -160,18 +146,20 @@ table tr:last-child td:first-child {
   width: 20%;
   height: 100%;
   padding: 10px;
+  background: linear-gradient(#E5E5E5, #C6C6C6);
 }
 
 .user-profile {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 30%;
-  /* margin-bottom: 20px; */
+  padding: 10px;
+  padding-bottom: 20px;
+  height: 40%;
+  border-radius: 5px;
 }
 
 .user-friends {
-  /* display: flex; */
   text-align: center;
 }
 
@@ -182,25 +170,23 @@ table tr:last-child td:first-child {
 .user-name {
   font-size: 30px;
   align-self: center;
+  font-weight: 400;
 }
 
 .compare-step-goal-chart {
   display: flex;
   height: 30%;
+  border-radius: 5px;
 }
 
 .avg-step-goal {
   align-self: center;
 }
 
-
 .user-friends {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: center;
+  border-radius: 5px;
   height: 40%;
-}
-
-.friend-list {
-  /* align-self: center; */
 }
