@@ -37,6 +37,7 @@ function loadPage() {
     loadUserProfile(userRepository)
     loadHydrationData(userRepository)
     loadSleepData(userRepository)
+    getCurrentDate(userRepository, 'hydrationData')
   })
 }
 
@@ -89,6 +90,10 @@ function randomizeId() {
   return Math.floor(Math.random() * 50);
 }
 
+function getCurrentDate(data, array) {
+  const hydrationIndex = data[array].length - 1 //gives us last element index
+  console.log(data[array][hydrationIndex].date)
+}
 //Hydration -------------------------------------------------------------------------------------------------
 
 function createHydrationProfile(data) {
@@ -100,6 +105,7 @@ function displayTodaysHydration(data) {
   const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay("2020/01/22");
   todayHydration.innerText = `${todayHydrationAmt} fl.oz.`
 }
+
 
 function displayWeeklyHydration(data) {
   const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek();
