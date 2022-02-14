@@ -179,11 +179,21 @@ main {
   text-align: center;
 }
 
-.compare-step-goal-chart {
-  display: flex;
+.compare-step-goal {
+  /* display: flex;
   height: 30%;
   border-radius: 5px;
+  margin-bottom: 10px; */
   margin-bottom: 10px;
+  border: solid blue;
+}
+
+.chart-container {
+  display: flex;
+  height: 30%;
+  /* border-radius: 5px; */
+  margin-bottom: 10px;
+  border: solid blue;
 }
 
 .avg-step-goal {
