@@ -80,7 +80,7 @@ function updateUserProfile(user, data) {
   userEmail.innerText = `${user.email}`;
   userStride.innerText = `${user.strideLength}`;
   userStepGoal.innerText = `${user.dailyStepGoal}`;
-  avgStepGoal.innerText = `Compare your step goal to the FitLit community: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`;
+  avgStepGoal.innerText = `Compare your step goal to the FitLit community average: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`;
   updateFriends(data);
 };
 
