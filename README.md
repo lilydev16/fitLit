@@ -22,6 +22,7 @@ FitLit is an application that tracks and displays fitness data in an easy to rea
 * Git/GitHub
 * Webpack
 * Mocha/Chai
+* Chart.js
 
 ---
 ## Installation/Set-Up
@@ -35,7 +36,7 @@ To view code on the text editor of your choice (I used atom to construct this co
 
 Currently, the FitLit Dashboard displays all information for a random user in our API databases, initiated on page load. The user information is separated into the following sections: user profile, friends list, activity data, hydration data, and sleep data.
 
-![gif](https://media.giphy.com/media/NLfJeEUuBApMKijQK4/giphy.gif)
+![gif](https://media.giphy.com/media/GgbmM5H1YPq9CqFd8P/giphy.gif)
 
 ### User Profile:
 
@@ -44,7 +45,9 @@ The user profile is located in the top right hand corner, and contains the follo
 * Email address
 * Stride Length
 * Daily Step Goal
-* The Average step goal of all FitLit users in the database.
+* A comparison chart between the user's step goal and the average step goal of the FitLit community:
+
+![chart](https://media.giphy.com/media/nHfcutG4mLI72ZFkn0/giphy.gif)
 
 ### Friendlist
 
@@ -86,3 +89,4 @@ For part II of this project, we plan to:
 ## Credits
 * [*Turing School of Software and Design*](turing.edu)
 * Our project manager, Nik Seif [@NikSeif](https://github.com/niksseif)
+* Chart.js
