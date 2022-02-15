@@ -13,6 +13,7 @@ const userEmail = document.getElementById('userEmail');
 const userStride = document.getElementById('userStride');
 const userStepGoal = document.getElementById('userStepGoal');
 const avgStepGoal = document.getElementById('avgStepGoal');
+const compareStepGoalChart = document.getElementById('compareStepGoalChart').getContext('2d');
 const friendList = document.getElementById('friendList');
 const todayHydration = document.getElementById('todayHydration');
 const weeklyHydrationStats = document.getElementById('weeklyHydrationStats');
@@ -21,7 +22,6 @@ const todaySleepQuality = document.getElementById('todaySleepQuality');
 const avgSleepHours = document.getElementById('avgSleepHours');
 const avgSleepQuality = document.getElementById('avgSleepQuality');
 const weeklySleepStats = document.getElementById('weeklySleepStats');
-const compareStepGoalChart = document.getElementById('compareStepGoalChart').getContext('2d');
 
 //Event Listeners -------------------------------------------------------------------------------------
 
@@ -81,8 +81,23 @@ function updateUserProfile(user, data) {
   userEmail.innerText = `${user.email}`;
   userStride.innerText = `${user.strideLength}`;
   userStepGoal.innerText = `${user.dailyStepGoal}`;
-  avgStepGoal.innerText = `Compare your step goal to the FitLit community average: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`;
+  let stepAverage = `${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`
+  // avgStepGoal.innerText = `Compare your step goal to the FitLit community average: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`;
   updateFriends(data);
+  let avgStepsOfUsersChart = new Chart(compareStepGoalChart, {
+    type: 'bar',
+    data: {
+      labels: ['My Step Goal', 'Avg. Step Goal of all users'],
+      datasets: [{
+        label: 'Step Goal',
+        data: [
+          `${user.dailyStepGoal}`,
+          `${stepAverage}`
+        ]
+      }]
+    },
+    options: {}
+  });
 };
 
 function updateFriends(data) {
