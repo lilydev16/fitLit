@@ -12,7 +12,7 @@ const userAddress = document.getElementById('userAddress');
 const userEmail = document.getElementById('userEmail');
 const userStride = document.getElementById('userStride');
 const userStepGoal = document.getElementById('userStepGoal');
-const avgStepGoal = document.getElementById('avgStepGoal');
+const compareStepGoalChart = document.getElementById('compareStepGoalChart').getContext('2d');
 const friendList = document.getElementById('friendList');
 const todayHydration = document.getElementById('todayHydration');
 const weeklyHydrationStats = document.getElementById('weeklyHydrationStats');
@@ -80,8 +80,31 @@ function updateUserProfile(user, data) {
   userEmail.innerText = `${user.email}`;
   userStride.innerText = `${user.strideLength}`;
   userStepGoal.innerText = `${user.dailyStepGoal}`;
-  avgStepGoal.innerText = `Compare your step goal to the FitLit community average: ${data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')}`;
+  createStepGoalChart(compareStepGoalChart, user, data);
   updateFriends(data);
+};
+
+function createStepGoalChart(chartElement, user, data) {
+  let stepAverage = data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData');
+  new Chart(chartElement, {
+    type: 'bar',
+    data: {
+      labels: ['My Step Goal', 'Avg. Step Goal of all users'],
+      datasets: [{
+        label: 'Step Goal',
+        data: [
+          user.dailyStepGoal,
+          stepAverage
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(153, 102, 255, 0.6)'
+        ],
+        hoverBorderWidth: 2,
+        hoverBorderColor: '#777'
+      }]
+    }
+  });
 };
 
 function updateFriends(data) {
