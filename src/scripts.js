@@ -21,6 +21,7 @@ const todaySleepQuality = document.getElementById('todaySleepQuality');
 const avgSleepHours = document.getElementById('avgSleepHours');
 const avgSleepQuality = document.getElementById('avgSleepQuality');
 const weeklySleepStats = document.getElementById('weeklySleepStats');
+const compareStepGoalChart = document.getElementById('compareStepGoalChart').getContext('2d');
 
 //Event Listeners -------------------------------------------------------------------------------------
 
