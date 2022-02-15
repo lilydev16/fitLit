@@ -93,6 +93,10 @@ function updateUserProfile(user, data) {
         data: [
           `${user.dailyStepGoal}`,
           `${stepAverage}`
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(153, 102, 255, 0.6)'
         ]
       }]
     },
