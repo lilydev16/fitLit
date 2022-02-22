@@ -28,8 +28,10 @@ window.addEventListener('load', loadPage);
 
 //functions -------------------------------------------------------------------------------------------
 
+
+
 function loadPage() {
-  fetchData().then(allData => {
+  returnPromise().then(allData => {
     const userRepository = new UserRepository(allData);
     loadUserProfile(userRepository);
     loadHydrationData(userRepository);
@@ -56,7 +58,21 @@ function loadSleepData(data) {
   displayWeeklySleep(data);
 };
 
-//API Error Handling -------------------------------------------------------------------------------------------------
+//API Handling -------------------------------------------------------------------------------------------------
+
+function returnPromise () {
+  const allUserData = fetchData('users', 'userData')
+  const allHydrationData = fetchData('hydration', 'hydrationData')
+  const allSleepData = fetchData('sleep', 'sleepData')
+  return Promise.all([allUserData, allHydrationData, allSleepData])
+    .then(data => {
+    let allData = {}
+    allData.userData = data[0].userData;
+    allData.hydrationData = data[1].hydrationData;
+    allData.sleepData = data[2].sleepData;
+    return allData;
+  });
+}
 
 function handleApiErrors() {
   window.alert("We're sorry! The server is not available at the moment. Please try again later.");
