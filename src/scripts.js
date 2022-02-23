@@ -33,6 +33,7 @@ window.addEventListener('load', loadPage);
 function loadPage() {
   returnPromise().then(allData => {
     const userRepository = new UserRepository(allData);
+    console.log(userRepository.data)
     loadUserProfile(userRepository);
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
@@ -61,15 +62,16 @@ function loadSleepData(data) {
 //API Handling -------------------------------------------------------------------------------------------------
 
 function returnPromise () {
-  const allUserData = fetchData('users', 'userData')
-  const allHydrationData = fetchData('hydration', 'hydrationData')
-  const allSleepData = fetchData('sleep', 'sleepData')
+  const allUserData = fetchData('users')
+  const allHydrationData = fetchData('hydration')
+  const allSleepData = fetchData('sleep')
   return Promise.all([allUserData, allHydrationData, allSleepData])
     .then(data => {
     let allData = {}
     allData.userData = data[0].userData;
     allData.hydrationData = data[1].hydrationData;
     allData.sleepData = data[2].sleepData;
+    // console.log(allData)
     return allData;
   });
 }
