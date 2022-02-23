@@ -6,8 +6,12 @@ class Activity {
   calculateMilesPerDay(date, currentUser) {
     const todayData = this.activityData.find(activity => activity.date === date)
     const todayMiles = todayData.numSteps * currentUser.strideLength / 5280
-    console.log(todayMiles)
     return Math.round(10 * todayMiles) / 10
+  }
+
+  minutesActive(date) {
+    const todayMinutes = this.activityData.find(activity => activity.date === date)
+    return todayMinutes.minutesActive
   }
 }
 

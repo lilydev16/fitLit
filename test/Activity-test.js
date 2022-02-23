@@ -81,4 +81,8 @@ activity = new Activity(activityData);
   it ('should calculate the miles walked for a user on a specific day', function() {
     expect(activity.calculateMilesPerDay("2019/06/15", userData)).to.eql(2.9)
   })
+
+  it ('should return the minutes active for a user on a specific day', function() {
+    expect(activity.minutesActive("2019/06/15")).to.eql(140)
+  })
 })
