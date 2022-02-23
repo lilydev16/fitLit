@@ -71,7 +71,6 @@ function returnPromise () {
     allData.userData = data[0].userData;
     allData.hydrationData = data[1].hydrationData;
     allData.sleepData = data[2].sleepData;
-    // console.log(allData)
     return allData;
   });
 }
