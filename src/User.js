@@ -19,14 +19,21 @@ class User {
     return splitName[0];
   };
 
+  sortArray(array) {
+    const sortedArray = array.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date)
+    })
+    return sortedArray
+  }
+
   createNewHydrationData() {
-    const newHydration = new Hydration(this.userHydration);
+    const newHydration = new Hydration(this.sortArray(this.userHydration));
     this.userHydration = newHydration;
     return this.userHydration;
   };
 
   createNewSleepData() {
-    const newSleep = new Sleep(this.userSleep);
+    const newSleep = new Sleep(this.sortArray(this.userSleep));
     this.userSleep = newSleep;
     return this.userSleep;
   };
