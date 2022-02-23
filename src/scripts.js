@@ -88,7 +88,7 @@ function createUser (data) {
 
 function updateWelcomeMessage(user, data) {
   welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`;
-  date.innerText = `${getCurrentDate(data, "hydrationData")}`;
+  // date.innerText = `${getCurrentUserDate(data, "userHydration", "hydrationData")}`;
 };
 
 function updateUserProfile(user, data) {
@@ -134,10 +134,21 @@ function randomizeId() {
   return Math.floor(Math.random() * 50);
 };
 
-function getCurrentDate(data, array) {
-  const index = data[array].length - 1;
-  return data[array][index].date;
-};
+// function getCurrentDate(data, array) {
+//   const index = data[array].length - 1;
+//   return data[array][index].date;
+// };
+
+//go into current user object, go into current user either hydration
+// or sleep object, and then go into the specific array
+
+function getCurrentUserDate(data, dataType, array) {
+  console.log(data.currentUser[dataType][array], "test1")
+  // console.log(data.currentUser[dataType][array], "test")
+
+  const index = data.currentUser[dataType][array].length - 1;
+  return data.currentUser[dataType][array][index].date
+}
 
 //Hydration -------------------------------------------------------------------------------------------------
 
@@ -147,7 +158,7 @@ function createHydrationProfile(data) {
 };
 
 function displayTodaysHydration(data) {
-  const currentDate = getCurrentDate(data, "hydrationData");
+  const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
   const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay(currentDate);
   todayHydration.innerText = `${todayHydrationAmt} fl.oz.`;
 };
@@ -176,7 +187,7 @@ function createSleepProfile(data) {
 };
 
 function displayTodaysSleep(data) {
-  const currentDate = getCurrentDate(data, "sleepData");
+  const currentDate = getCurrentUserDate(data, "userSleep", "sleepData");
   const todaySleepAmt = data.currentUser.userSleep.calcSleepStatsPerDay(currentDate, 'hoursSlept');
   const sleepQualityToday = data.currentUser.userSleep.calcSleepStatsPerDay(currentDate, 'sleepQuality');
   todaySleepHours.innerText = `${todaySleepAmt}`;
