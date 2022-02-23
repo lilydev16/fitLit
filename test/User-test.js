@@ -42,6 +42,7 @@ describe('User', () => {
 
   it('should keep track of a user id', function() {
     expect(user.id).to.equal(userData.id);
+
   });
 
   it('should keep track of a user name', function() {
