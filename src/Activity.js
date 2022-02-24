@@ -37,6 +37,11 @@ class Activity {
       const exceedGoal = this.activityData.filter(activity => activity.numSteps > currentUser.dailyStepGoal)
       return exceedGoal.map(activity => activity.date)
     }
+
+    findClimbingRecord() {
+      const climbData = this.activityData.map(activity => activity.flightsOfStairs)
+      return Math.max(...climbData)
+    }
   }
 
 
