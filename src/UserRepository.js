@@ -6,6 +6,7 @@ class UserRepository {
     this.userData = data.userData;
     this.hydrationData = data.hydrationData;
     this.sleepData = data.sleepData;
+    this.activityData = data.activityData;
     this.currentUser = {};
   };
 

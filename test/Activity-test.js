@@ -107,4 +107,8 @@ activity = new Activity(activityData);
   it('should find all the days a user exceeds their step goal', function() {
     expect(activity.filterStepGoalWins(userData)).to.eql([ "2019/06/19","2019/06/20","2019/06/21"])
   })
+
+  it('should return the user\'s all time climbing record', function () {
+    expect (activity.findClimbingRecord()).to.eql(33)
+  })
 })
