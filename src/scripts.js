@@ -159,7 +159,7 @@ function createHydrationProfile(data) {
 function displayTodaysHydration(data) {
   const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
   const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay(currentDate);
-  todayHydration.innerText = `${todayHydrationAmt} fl.oz.`;
+  todayHydration.innerText = `${todayHydrationAmt}`;
 };
 
 function displayWeeklyHydration(data) {
