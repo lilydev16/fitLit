@@ -65,12 +65,14 @@ function returnPromise () {
   const allUserData = fetchData('users')
   const allHydrationData = fetchData('hydration')
   const allSleepData = fetchData('sleep')
-  return Promise.all([allUserData, allHydrationData, allSleepData])
+  const allActivityData = fetchData('activity')
+  return Promise.all([allUserData, allHydrationData, allSleepData, allActivityData])
     .then(data => {
     let allData = {}
     allData.userData = data[0].userData;
     allData.hydrationData = data[1].hydrationData;
     allData.sleepData = data[2].sleepData;
+    allData.activityData = data[3].activityData
     return allData;
   });
 }
@@ -143,9 +145,6 @@ function randomizeId() {
 // or sleep object, and then go into the specific array
 
 function getCurrentUserDate(data, dataType, array) {
-  console.log(data.currentUser[dataType][array], "test1")
-  // console.log(data.currentUser[dataType][array], "test")
-
   const index = data.currentUser[dataType][array].length - 1;
   return data.currentUser[dataType][array][index].date
 }

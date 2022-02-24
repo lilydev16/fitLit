@@ -2,7 +2,7 @@ import Hydration from "./Hydration";
 import Sleep from "./Sleep";
 
 class User {
-  constructor(userData, hydrationData, sleepData) {
+  constructor(userData, hydrationData, sleepData, activityData) {
     this.id = userData.id;
     this.name = userData.name;
     this.address = userData.address;
@@ -12,6 +12,7 @@ class User {
     this.friends = userData.friends;
     this.userHydration = hydrationData;
     this.userSleep = sleepData;
+    this.userActivity = activityData;
   };
 
   returnFirstName() {
@@ -37,6 +38,13 @@ class User {
     this.userSleep = newSleep;
     return this.userSleep;
   };
+
+  createNewActivityData() {
+    const newActivity = new Activity(this.sortArray(this.userActivity));
+    this.userActivity = newActivity;
+    console.log('user', this.userActivity)
+    return this.userActivity;
+  }
 };
 
 export default User;

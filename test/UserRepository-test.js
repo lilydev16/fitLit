@@ -18,7 +18,14 @@ describe('User Repository', () => {
           dailyStepGoal: 10000,
           friends: [16, 4, 8],
           userHydration: [{"userID": 1,"date": "2019/06/15","numOunces": 37}],
-          userSleep: [{userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2}]},
+          userSleep: [{userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2}],
+          userActivity: [{
+           "userID": 1,
+           "date": "2019/06/15",
+           "numSteps": 3577,
+           "minutesActive": 140,
+           "flightsOfStairs": 16
+         }]},
          { id: 2,
            name: "Jarvis Considine",
            address: "30086 Kathryn Port, Ciceroland NE 07273",
@@ -54,7 +61,30 @@ describe('User Repository', () => {
       sleepData: [
           {userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2},
           {userID: 2, date: '2019/06/15', hoursSlept: 7, sleepQuality: 4.7},
-          {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7}]
+          {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7}],
+      activityData: [
+        {
+        "userID": 1,
+        "date": "2019/06/15",
+        "numSteps": 3577,
+        "minutesActive": 140,
+        "flightsOfStairs": 16
+        },
+        {
+        "userID": 2,
+        "date": "2019/06/16",
+        "numSteps": 4294,
+        "minutesActive": 138,
+        "flightsOfStairs": 10
+        },
+        {
+        "userID": 3,
+        "date": "2019/06/17",
+        "numSteps": 7402,
+        "minutesActive": 116,
+        "flightsOfStairs": 33
+        },
+        ]
     };
 
     userRepository = new UserRepository(allData);
@@ -81,6 +111,10 @@ describe('User Repository', () => {
     expect(userRepository.sleepData).to.eql(allData.sleepData);
   });
 
+  it('should be able to keep track of activity data', function() {
+    expect(userRepository.activityData).to.eql(allData.activityData);
+  });
+
   it('should keep track of the current user', function () {
     userRepository.createNewUser(1);
     expect(userRepository.currentUser.name).to.eql(allData.userData[0].name);
@@ -95,10 +129,13 @@ describe('User Repository', () => {
     expect(userRepository.findFriendsById(2)).to.equal(allData.userData[1]);
   });
 
-  it('should calculate average steps & sleep stats for all users', function() {
+  it('should calculate average steps & sleep stats & activity stats for all users', function() {
     expect(userRepository.calcAvgStatsForAllUsers('dailyStepGoal', 'userData')).to.equal(6200);
     expect(userRepository.calcAvgStatsForAllUsers('sleepQuality', 'sleepData')).to.equal(4);
     expect(userRepository.calcAvgStatsForAllUsers('hoursSlept', 'sleepData')).to.equal(8);
+    expect(userRepository.calcAvgStatsForAllUsers('flightsOfStairs', 'activityData')).to.equal(20);
+    expect(userRepository.calcAvgStatsForAllUsers('numSteps', 'activityData')).to.equal(5091);
+    expect(userRepository.calcAvgStatsForAllUsers('minutesActive', 'activityData')).to.equal(131);
   });
 
   it('should instantiate a new user based on the current user', function() {
