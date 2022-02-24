@@ -23,7 +23,18 @@ class Activity {
     }, 0)
     return result / selectedWeek.length
     }
+
+  reachedStepGoal(date, currentUser) {
+      let todayEntry = this.activityData.find(entry => entry.date === date);
+      if (todayEntry.numSteps >= currentUser.dailyStepGoal){
+        return true
+      } else {
+        return false
+      }
+    }
   }
+
+
 
 
 

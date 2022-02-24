@@ -98,4 +98,9 @@ activity = new Activity(activityData);
   it ('should calculate the average minutes active over a week for a user', function() {
     expect(activity.minutesActiveAveragePerWeek("2019/06/15")).to.eql(185)
   })
+
+  it('should evaluate if a user reached their step goal for a given day', function() {
+    expect(activity.reachedStepGoal("2019/06/15", userData)).to.eql(false)
+    expect(activity.reachedStepGoal("2019/06/19", userData)).to.eql(true)
+  })
 })
