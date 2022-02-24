@@ -65,6 +65,21 @@ main {
   font-weight: 500;
 }
 
+.today-activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+  height: 70%;
+  width: 80%;
+  align-self: center;
+}
+
+.activity-grid {
+  /* border: solid black; */
+  align-self: center;
+}
+
 .today-hydration-flex {
   display:flex;
   justify-content: center;
