@@ -2,10 +2,11 @@ import { expect } from 'chai';
 import User from '../src/User';
 import Hydration from '../src/Hydration';
 import Sleep from '../src/Sleep';
+import Activity from '../src/Activity';
 
 describe('User', () => {
 
-  let user, userData, hydrationData, sleepData;
+  let user, userData, hydrationData, sleepData, activityData;
 
   beforeEach(function() {
 
@@ -28,7 +29,59 @@ describe('User', () => {
        {userID: 3, date: '2019/06/15', hoursSlept: 10.8, sleepQuality: 4.7},
        {userID: 5, date: '2019/06/17', hoursSlept: 10.5, sleepQuality: 3.7}];
 
-     user = new User(userData, hydrationData, sleepData);
+       activityData = [
+         {
+         "userID": 1,
+         "date": "2019/06/15",
+         "numSteps": 3577,
+         "minutesActive": 140,
+         "flightsOfStairs": 16
+         },
+         {
+         "userID": 1,
+         "date": "2019/06/16",
+         "numSteps": 4294,
+         "minutesActive": 138,
+         "flightsOfStairs": 10
+         },
+         {
+         "userID": 1,
+         "date": "2019/06/17",
+         "numSteps": 7402,
+         "minutesActive": 116,
+         "flightsOfStairs": 33
+         },
+         {
+         "userID": 1,
+         "date": "2019/06/18",
+         "numSteps": 3486,
+         "minutesActive": 114,
+         "flightsOfStairs": 32
+         },
+         {
+         "userID": 1,
+         "date": "2019/06/19",
+         "numSteps": 11374,
+         "minutesActive": 213,
+         "flightsOfStairs": 13
+         },
+         {
+         "userID": 1,
+         "date": "2019/06/20",
+         "numSteps": 14810,
+         "minutesActive": 287,
+         "flightsOfStairs": 18
+       },
+       {
+       "userID": 1,
+       "date": "2019/06/21",
+       "numSteps": 14810,
+       "minutesActive": 287,
+       "flightsOfStairs": 18
+     }
+     ]
+
+     user = new User(userData, hydrationData, sleepData, activityData);
 
   });
 
@@ -84,4 +137,10 @@ describe('User', () => {
     expect(user.createNewSleepData()).to.be.an.instanceof(Sleep);
     expect(user.userSleep).to.be.an.instanceof(Sleep);
   });
+
+  // it('should instantiate a new activity instance', function() {
+  //   expect(user.userActivity).to.eql(activityData);
+  //   expect(user.createNewActivityData()).to.be.an.instanceof(Activity);
+  //   expect(user.userActivity).to.be.an.instanceof(Activity);
+  // });
 });

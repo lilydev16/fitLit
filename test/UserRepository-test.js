@@ -18,7 +18,14 @@ describe('User Repository', () => {
           dailyStepGoal: 10000,
           friends: [16, 4, 8],
           userHydration: [{"userID": 1,"date": "2019/06/15","numOunces": 37}],
-          userSleep: [{userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2}]},
+          userSleep: [{userID: 1, date: '2019/06/15', hoursSlept: 6.1, sleepQuality: 2.2}],
+          userActivity: [{
+           "userID": 1,
+           "date": "2019/06/15",
+           "numSteps": 3577,
+           "minutesActive": 140,
+           "flightsOfStairs": 16
+         }]},
          { id: 2,
            name: "Jarvis Considine",
            address: "30086 Kathryn Port, Ciceroland NE 07273",
@@ -64,47 +71,19 @@ describe('User Repository', () => {
         "flightsOfStairs": 16
         },
         {
-        "userID": 1,
+        "userID": 2,
         "date": "2019/06/16",
         "numSteps": 4294,
         "minutesActive": 138,
         "flightsOfStairs": 10
         },
         {
-        "userID": 1,
+        "userID": 3,
         "date": "2019/06/17",
         "numSteps": 7402,
         "minutesActive": 116,
         "flightsOfStairs": 33
         },
-        {
-        "userID": 1,
-        "date": "2019/06/18",
-        "numSteps": 3486,
-        "minutesActive": 114,
-        "flightsOfStairs": 32
-        },
-        {
-        "userID": 1,
-        "date": "2019/06/19",
-        "numSteps": 11374,
-        "minutesActive": 213,
-        "flightsOfStairs": 13
-        },
-        {
-        "userID": 1,
-        "date": "2019/06/20",
-        "numSteps": 14810,
-        "minutesActive": 287,
-        "flightsOfStairs": 18
-      },
-      {
-      "userID": 1,
-      "date": "2019/06/21",
-      "numSteps": 14810,
-      "minutesActive": 287,
-      "flightsOfStairs": 18
-    },
         ]
     };
 
@@ -155,8 +134,8 @@ describe('User Repository', () => {
     expect(userRepository.calcAvgStatsForAllUsers('sleepQuality', 'sleepData')).to.equal(4);
     expect(userRepository.calcAvgStatsForAllUsers('hoursSlept', 'sleepData')).to.equal(8);
     expect(userRepository.calcAvgStatsForAllUsers('flightsOfStairs', 'activityData')).to.equal(20);
-    expect(userRepository.calcAvgStatsForAllUsers('numSteps', 'activityData')).to.equal(8536);
-    expect(userRepository.calcAvgStatsForAllUsers('minutesActive', 'activityData')).to.equal(185);
+    expect(userRepository.calcAvgStatsForAllUsers('numSteps', 'activityData')).to.equal(5091);
+    expect(userRepository.calcAvgStatsForAllUsers('minutesActive', 'activityData')).to.equal(131);
   });
 
   it('should instantiate a new user based on the current user', function() {
