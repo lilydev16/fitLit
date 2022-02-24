@@ -63,7 +63,7 @@ describe('Activity', () => {
   },
   {
   "userID": 1,
-  "date": "2019/06/20",
+  "date": "2019/06/21",
   "numSteps": 14810,
   "minutesActive": 287,
   "flightsOfStairs": 18
@@ -102,5 +102,9 @@ activity = new Activity(activityData);
   it('should evaluate if a user reached their step goal for a given day', function() {
     expect(activity.reachedStepGoal("2019/06/15", userData)).to.eql(false)
     expect(activity.reachedStepGoal("2019/06/19", userData)).to.eql(true)
+  })
+
+  it('should find all the days a user exceeds their step goal', function() {
+    expect(activity.filterStepGoalWins(userData)).to.eql([ "2019/06/19","2019/06/20","2019/06/21"])
   })
 })

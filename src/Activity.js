@@ -32,6 +32,11 @@ class Activity {
         return false
       }
     }
+
+    filterStepGoalWins(currentUser) {
+      const exceedGoal = this.activityData.filter(activity => activity.numSteps > currentUser.dailyStepGoal)
+      return exceedGoal.map(activity => activity.date)
+    }
   }
 
 
