@@ -14,7 +14,9 @@ const userStride = document.getElementById('userStride');
 const userStepGoal = document.getElementById('userStepGoal');
 const compareStepGoalChart = document.getElementById('compareStepGoalChart').getContext('2d');
 
-const compareActivityStatsChart = document.getElementById('compareActivityStatsChart').getContext('2d');
+const compareStepsChart = document.getElementById('compareStepsChart').getContext('2d');
+const compareActiveMinChart = document.getElementById('compareActiveMinChart').getContext('2d');
+const compareStairsChart = document.getElementById('compareStairsChart').getContext('2d');
 
 const friendList = document.getElementById('friendList');
 const todayHydration = document.getElementById('todayHydration');
@@ -69,8 +71,14 @@ function loadActivityData(data) {
   createActivityProfile(data)
   displayTodaysActivity(data, data.currentUser)
   displayWeeklyActivity(data)
-  createActivityStatsChart(compareActivityStatsChart, data)
+  createActivityCharts(data)
 };
+
+function createActivityCharts(data) {
+  createCompareDailyStepsChart(compareStepsChart, data)
+  createCompareActiveMinChart(compareActiveMinChart, data)
+  createCompareStairsChart(compareStairsChart, data)
+}
 
 //API Handling -------------------------------------------------------------------------------------------------
 
@@ -261,29 +269,20 @@ function displayWeeklyActivity(data) {
 };
 
 
-function createActivityStatsChart(chartElement, data) {
+function createCompareDailyStepsChart(chartElement, data) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
   const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps")
-  const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
-  const todayStairs = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "flightsOfStairs")
-
   const avgUserSteps = data.calcAvgStatsForAllUsers('numSteps', 'activityData');
-  const avgUserActiveMin = data.calcAvgStatsForAllUsers('minutesActive', 'activityData');
-  const avgUserStairs = data.calcAvgStatsForAllUsers('flightsOfStairs', 'activityData');
 
   new Chart(chartElement, {
     type: 'bar',
     data: {
-      labels: ['My Steps', 'Avg. Steps', 'My Active Minutes', 'Avg. Active Min', 'Flights Climbed', 'Avg. Flights Climbed'],
+      labels: ['My Steps', 'Avg. Steps'],
       datasets: [{
-        label: 'Today\'s Activity Stats',
+        label: 'Today\'s Steps',
         data: [
           todaySteps,
-          avgUserSteps,
-          todayMinActive,
-          avgUserActiveMin,
-          todayStairs,
-          avgUserStairs
+          avgUserSteps
         ],
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',
@@ -296,6 +295,59 @@ function createActivityStatsChart(chartElement, data) {
   });
 };
 
+
+function createCompareActiveMinChart(chartElement, data) {
+  const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
+  const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
+  const avgUserActiveMin = data.calcAvgStatsForAllUsers('minutesActive', 'activityData');
+
+new Chart(chartElement, {
+    type: 'bar',
+    data: {
+      labels: ['My Active Minutes', 'Avg. Active Min'],
+      datasets: [{
+        label: 'Today\'s Active Minutes',
+        data: [
+          todayMinActive,
+          avgUserActiveMin
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(153, 102, 255, 0.6)'
+        ],
+        hoverBorderWidth: 2,
+        hoverBorderColor: '#777'
+      }]
+    }
+  });
+}
+
+
+function createCompareStairsChart(chartElement, data) {
+  const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
+  const todayStairs = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "flightsOfStairs")
+  const avgUserStairs = data.calcAvgStatsForAllUsers('flightsOfStairs', 'activityData');
+
+new Chart(chartElement, {
+    type: 'bar',
+    data: {
+      labels: ['Flights Climbed', 'Avg. Flights Climbed'],
+      datasets: [{
+        label: 'Today\'s Stairs Climbed',
+        data: [
+          todayStairs,
+          avgUserStairs
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(153, 102, 255, 0.6)'
+        ],
+        hoverBorderWidth: 2,
+        hoverBorderColor: '#777'
+      }]
+    }
+  });
+}
 
 
 
