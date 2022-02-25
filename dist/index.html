@@ -38,6 +38,7 @@
             <p class="today-hydration-title">fluid ounces</p>
           </div>
         </section>
+
         <section class="sleep-widget widget" id="sleep">
           <p class="sleep-title title" id="sleepTitle">Sleep</p>
           <div class="today-sleep-grid" id="todaySleepGrid">
@@ -58,6 +59,15 @@
               <p class="today-sleep-title">avg. sleep quality</p>
             </div>
           </div>
+        </section>
+        <section class="activity-chart-steps widget activity-chart" id="activityChartSteps">
+          <canvas id="compareStepsChart"></canvas>
+        </section>
+        <section class="activity-chart-active-min widget activity-chart" id="activityChartActiveMin">
+          <canvas id="compareActiveMinChart"></canvas>
+        </section>
+        <section class="activity-chart-stairs widget activity-chart" id="activityChartStairs">
+          <canvas id="compareStairsChart"></canvas>
         </section>
         <section class="weekly-activity-widget widget weekly-widget" id="weeklyActivityWidget">
           <p class="weekly-activity-title title"id="weeklyActivityTitle">Weekly Activity</p>
@@ -100,9 +110,6 @@
         <section class="compare-data">
           <div class="chart-container">
             <canvas id="compareStepGoalChart"></canvas>
-          </div>
-          <div class="chart-container">
-            <canvas id="compareActivityStatsChart"></canvas>
           </div>
         </section>
         <section class="user-friends">
