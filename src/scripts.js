@@ -64,6 +64,7 @@ function loadSleepData(data) {
 function loadActivityData(data) {
   createActivityProfile(data)
   displayTodaysActivity(data, data.currentUser)
+  displayWeeklyActivity(data)
 };
 
 //API Handling -------------------------------------------------------------------------------------------------
@@ -224,18 +225,35 @@ function createActivityProfile(data) {
   return newActivityProfile;
 };
 
-
 function displayTodaysActivity(data, user) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
   const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps")
   const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
   const todayMiles = data.currentUser.userActivity.calculateMilesPerDay(currentDate, user);
-
   todayActivitySteps.innerText = todaySteps;
   todayActivityMinutes.innerText = todayMinActive;
   todayActivityMiles.innerText = todayMiles;
+};
 
-}
+function displayWeeklyActivity(data) {
+  const weeklyActivityData = data.currentUser.userActivity.calcActivityStatsPerWeek('2020/01/16');
+  console.log(weeklyActivityData)
+  // weeklySleepData.forEach((entry, i) => {
+  //   weeklySleepStats.innerHTML += `
+  //   <table class="sleep-table">
+  //     <tr>
+  //       <th>Date</th>
+  //       <th>Hours</th>
+  //       <th>Quality</th
+  //     </tr>
+  //     <tr>
+  //       <td>${weeklySleepData[i].date}</td>
+  //       <td>${weeklySleepData[i].hours}</td>
+  //       <td>${weeklySleepData[i].quality}</td>
+  //     </tr>`;
+  // });
+};
+
 
 
 
