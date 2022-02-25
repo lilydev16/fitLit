@@ -133,7 +133,8 @@ main {
 }
 
 .hydration-table,
-.sleep-table {
+.sleep-table,
+.activity-table {
   border: 1px solid rgb(213, 230, 247);
   text-align: center;
   width: 300px;
@@ -141,6 +142,7 @@ main {
 }
 
 .hydration-table th,
+.activity-table th,
 .sleep-table th {
   background-color: #a0bfd3;
   font-weight: bolder;
@@ -151,7 +153,12 @@ main {
   background-color: #f5cad4;
 }
 
+.activity-table th {
+  background-color: #B5F9DA;
+}
+
 .hydration-table tr:last-child td:first-child,
+.activity-table tr:last-child td:first-child,
 .sleep-table tr:last-child td:first-child {
   padding: 3px;
 }
