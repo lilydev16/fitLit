@@ -17,7 +17,6 @@ class UserRepository {
     const activityData = this.activityData.filter(entry => entry.userID === id);
     const newUser = new User(userData, hydrationData, sleepData, activityData);
     this.currentUser = newUser;
-    console.log(this.currentUser)
     return newUser;
   };
 

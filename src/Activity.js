@@ -9,9 +9,14 @@ class Activity {
     return Math.round(10 * todayMiles) / 10
   }
 
-  minutesActivePerDay(date) {
-    const todayMinutes = this.activityData.find(activity => activity.date === date)
-    return todayMinutes.minutesActive
+  // minutesActivePerDay(date) {
+  //   const todayMinutes = this.activityData.find(activity => activity.date === date)
+  //   return todayMinutes.minutesActive
+  // }
+
+  calcActivityDailyStats(date, type) {
+    const dailyData = this.activityData.find(activity => activity.date === date);
+    return dailyData[type]
   }
 
   minutesActiveAveragePerWeek(date) {
@@ -22,7 +27,23 @@ class Activity {
       return sum += entry.minutesActive
     }, 0)
     return result / selectedWeek.length
-    }
+  }
+
+  calcActivityStatsPerWeek(date) {
+    let findEntryDate = this.activityData.find(entry => entry.date === date);
+    let startingIndex = this.activityData.indexOf(findEntryDate)
+    let selectedWeek = this.activityData.slice(startingIndex, startingIndex + 7)
+    let result = selectedWeek.map(entry => {
+      let weeklyActivity = {
+        date: entry.date,
+        steps: entry.numSteps,
+        minActive: entry.minutesActive,
+        stairs: entry.flightsOfStairs
+      }
+      return weeklyActivity
+    })
+    return result
+  };
 
   reachedStepGoal(date, currentUser) {
       let todayEntry = this.activityData.find(entry => entry.date === date);

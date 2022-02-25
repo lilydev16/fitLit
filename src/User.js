@@ -1,5 +1,6 @@
 import Hydration from "./Hydration";
 import Sleep from "./Sleep";
+import Activity from "./Activity";
 
 class User {
   constructor(userData, hydrationData, sleepData, activityData) {
@@ -42,7 +43,6 @@ class User {
   createNewActivityData() {
     const newActivity = new Activity(this.sortArray(this.userActivity));
     this.userActivity = newActivity;
-    console.log('user', this.userActivity)
     return this.userActivity;
   }
 };
