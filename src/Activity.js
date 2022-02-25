@@ -9,9 +9,14 @@ class Activity {
     return Math.round(10 * todayMiles) / 10
   }
 
-  minutesActivePerDay(date) {
-    const todayMinutes = this.activityData.find(activity => activity.date === date)
-    return todayMinutes.minutesActive
+  // minutesActivePerDay(date) {
+  //   const todayMinutes = this.activityData.find(activity => activity.date === date)
+  //   return todayMinutes.minutesActive
+  // }
+
+  calcActivityDailyStats(date, type) {
+    const dailyData = this.activityData.find(activity => activity.date === date);
+    return dailyData[type]
   }
 
   minutesActiveAveragePerWeek(date) {
