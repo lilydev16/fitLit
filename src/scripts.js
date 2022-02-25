@@ -28,15 +28,14 @@ window.addEventListener('load', loadPage);
 
 //functions -------------------------------------------------------------------------------------------
 
-
-
 function loadPage() {
   returnPromise().then(allData => {
     const userRepository = new UserRepository(allData);
-    console.log(userRepository.data)
     loadUserProfile(userRepository);
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
+    loadActivityData(userRepository)
+    console.log(userRepository.currentUser)
   });
 };
 
@@ -57,6 +56,10 @@ function loadSleepData(data) {
   displayTodaysSleep(data);
   displayAvgSleep(data);
   displayWeeklySleep(data);
+};
+
+function loadActivityData(data) {
+  createActivityProfile(data)
 };
 
 //API Handling -------------------------------------------------------------------------------------------------
@@ -136,14 +139,6 @@ function randomizeId() {
   return Math.floor(Math.random() * 50);
 };
 
-// function getCurrentDate(data, array) {
-//   const index = data[array].length - 1;
-//   return data[array][index].date;
-// };
-
-//go into current user object, go into current user either hydration
-// or sleep object, and then go into the specific array
-
 function getCurrentUserDate(data, dataType, array) {
   const index = data.currentUser[dataType][array].length - 1;
   return data.currentUser[dataType][array][index].date
@@ -217,5 +212,22 @@ function displayWeeklySleep(data) {
       </tr>`;
   });
 };
+
+//Activity -------------------------------------------------------------------------------------------------
+
+function createActivityProfile(data) {
+  const newActivityProfile = data.currentUser.createNewActivityData();
+  return newActivityProfile;
+};
+
+
+
+
+
+
+
+
+
+
 
 export default handleApiErrors;
