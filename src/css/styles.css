@@ -120,6 +120,12 @@ main {
   font-size: 25px;
 }
 
+
+.activity-chart {
+  height: 95%;
+}
+
+
 .weekly-stats,
 .today-sleep {
   height: 100%;
