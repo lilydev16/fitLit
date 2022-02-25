@@ -22,6 +22,10 @@ const avgSleepHours = document.getElementById('avgSleepHours');
 const avgSleepQuality = document.getElementById('avgSleepQuality');
 const weeklySleepStats = document.getElementById('weeklySleepStats');
 
+const todayActivitySteps = document.getElementById('todayActivitySteps');
+const todayActivityMinutes = document.getElementById('todayActivityMinutes');
+const todayActivityMiles = document.getElementById('todayActivityMiles');
+
 //Event Listeners -------------------------------------------------------------------------------------
 
 window.addEventListener('load', loadPage);
@@ -35,7 +39,6 @@ function loadPage() {
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
     loadActivityData(userRepository)
-    console.log(userRepository.currentUser)
   });
 };
 
@@ -60,6 +63,7 @@ function loadSleepData(data) {
 
 function loadActivityData(data) {
   createActivityProfile(data)
+  displayTodaysActivity(data, data.currentUser)
 };
 
 //API Handling -------------------------------------------------------------------------------------------------
@@ -221,7 +225,17 @@ function createActivityProfile(data) {
 };
 
 
+function displayTodaysActivity(data, user) {
+  const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
+  const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps")
+  const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
+  const todayMiles = data.currentUser.userActivity.calculateMilesPerDay(currentDate, user);
 
+  todayActivitySteps.innerText = todaySteps;
+  todayActivityMinutes.innerText = todayMinActive;
+  todayActivityMiles.innerText = todayMiles;
+
+}
 
 
 
