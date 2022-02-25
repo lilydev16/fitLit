@@ -25,6 +25,7 @@ const weeklySleepStats = document.getElementById('weeklySleepStats');
 const todayActivitySteps = document.getElementById('todayActivitySteps');
 const todayActivityMinutes = document.getElementById('todayActivityMinutes');
 const todayActivityMiles = document.getElementById('todayActivityMiles');
+const weeklyActivityStats = document.getElementById('weeklyActivityStats')
 
 //Event Listeners -------------------------------------------------------------------------------------
 
@@ -98,7 +99,7 @@ function createUser (data) {
 
 function updateWelcomeMessage(user, data) {
   welcomeMessage.innerText = `Welcome ${user.returnFirstName()}`;
-  // date.innerText = `${getCurrentUserDate(data, "userHydration", "hydrationData")}`;
+  date.innerText = new Date().toLocaleDateString();
 };
 
 function updateUserProfile(user, data) {
@@ -237,21 +238,22 @@ function displayTodaysActivity(data, user) {
 
 function displayWeeklyActivity(data) {
   const weeklyActivityData = data.currentUser.userActivity.calcActivityStatsPerWeek('2020/01/16');
-  console.log(weeklyActivityData)
-  // weeklySleepData.forEach((entry, i) => {
-  //   weeklySleepStats.innerHTML += `
-  //   <table class="sleep-table">
-  //     <tr>
-  //       <th>Date</th>
-  //       <th>Hours</th>
-  //       <th>Quality</th
-  //     </tr>
-  //     <tr>
-  //       <td>${weeklySleepData[i].date}</td>
-  //       <td>${weeklySleepData[i].hours}</td>
-  //       <td>${weeklySleepData[i].quality}</td>
-  //     </tr>`;
-  // });
+  weeklyActivityData.forEach((entry, i) => {
+    weeklyActivityStats.innerHTML += `
+    <table class="activity-table">
+      <tr>
+        <th>Date</th>
+        <th>Steps</th>
+        <th>Min Active</th>
+        <th>Stairs</th>
+      </tr>
+      <tr>
+        <td>${weeklyActivityData[i].date}</td>
+        <td>${weeklyActivityData[i].steps}</td>
+        <td>${weeklyActivityData[i].minActive}</td>
+        <td>${weeklyActivityData[i].stairs}</td>
+      </tr>`;
+  });
 };
 
 
