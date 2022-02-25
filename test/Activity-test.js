@@ -92,7 +92,10 @@ activity = new Activity(activityData);
   })
 
   it ('should return the minutes active for a user on a specific day', function() {
-    expect(activity.minutesActivePerDay("2019/06/15")).to.eql(140)
+    expect(activity.calcActivityDailyStats("2019/06/15", "minutesActive")).to.eql(140)
+    expect(activity.calcActivityDailyStats("2019/06/15", "numSteps")).to.eql(3577)
+    expect(activity.calcActivityDailyStats("2019/06/15", "flightsOfStairs")).to.eql(16)
+
   })
 
   it ('should calculate the average minutes active over a week for a user', function() {
