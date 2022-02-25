@@ -13,6 +13,9 @@ const userEmail = document.getElementById('userEmail');
 const userStride = document.getElementById('userStride');
 const userStepGoal = document.getElementById('userStepGoal');
 const compareStepGoalChart = document.getElementById('compareStepGoalChart').getContext('2d');
+
+const compareActivityStatsChart = document.getElementById('compareActivityStatsChart').getContext('2d');
+
 const friendList = document.getElementById('friendList');
 const todayHydration = document.getElementById('todayHydration');
 const weeklyHydrationStats = document.getElementById('weeklyHydrationStats');
@@ -66,6 +69,7 @@ function loadActivityData(data) {
   createActivityProfile(data)
   displayTodaysActivity(data, data.currentUser)
   displayWeeklyActivity(data)
+  createActivityStatsChart(compareActivityStatsChart, data)
 };
 
 //API Handling -------------------------------------------------------------------------------------------------
@@ -253,6 +257,42 @@ function displayWeeklyActivity(data) {
         <td>${weeklyActivityData[i].minActive}</td>
         <td>${weeklyActivityData[i].stairs}</td>
       </tr>`;
+  });
+};
+
+
+function createActivityStatsChart(chartElement, data) {
+  const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
+  const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps")
+  const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
+  const todayStairs = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "flightsOfStairs")
+
+  const avgUserSteps = data.calcAvgStatsForAllUsers('numSteps', 'activityData');
+  const avgUserActiveMin = data.calcAvgStatsForAllUsers('minutesActive', 'activityData');
+  const avgUserStairs = data.calcAvgStatsForAllUsers('flightsOfStairs', 'activityData');
+
+  new Chart(chartElement, {
+    type: 'bar',
+    data: {
+      labels: ['My Steps', 'Avg. Steps', 'My Active Minutes', 'Avg. Active Min', 'Flights Climbed', 'Avg. Flights Climbed'],
+      datasets: [{
+        label: 'Today\'s Activity Stats',
+        data: [
+          todaySteps,
+          avgUserSteps,
+          todayMinActive,
+          avgUserActiveMin,
+          todayStairs,
+          avgUserStairs
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(153, 102, 255, 0.6)'
+        ],
+        hoverBorderWidth: 2,
+        hoverBorderColor: '#777'
+      }]
+    }
   });
 };
 

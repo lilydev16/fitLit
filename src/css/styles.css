@@ -179,7 +179,7 @@ main {
   padding: 10px;
   padding-bottom: 20px;
   margin-bottom: 10px;
-  height: 40%;
+  height: 30%;
   border-radius: 5px;
 }
 
@@ -202,21 +202,24 @@ main {
   text-align: center;
 }
 
-.compare-step-goal {
-  margin-bottom: 20px;
+.compare-data {
+  height: 40%;
+  margin-bottom: 35px;
 }
 
 .chart-container {
   display: flex;
-  height: 100%;
+  height: 53%;
   margin-bottom: 10px;
+  border: 1px solid aqua;
 }
 
 .user-friends {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border-radius: 5px;
-  height: 40%;
+  height: 30%;
 }
 
 .friend {
