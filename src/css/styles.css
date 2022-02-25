@@ -217,13 +217,11 @@ main {
   display: flex;
   height: 53%;
   margin-bottom: 10px;
-  border: 1px solid aqua;
 }
 
 .user-friends {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   border-radius: 5px;
   height: 30%;
 }
