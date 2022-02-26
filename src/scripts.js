@@ -44,16 +44,57 @@ const sleepDate = document.getElementById('sleepDate');
 const sleepHours = document.getElementById('hoursSlept');
 const sleepQuality = document.getElementById('sleepQuality');
 
-
+const activityError = document.getElementById('activityError')
+const hydrationError = document.getElementById('hydrationError')
+const sleepError = document.getElementById('sleepError')
 
 //Event Listeners -------------------------------------------------------------------------------------
 
 window.addEventListener('load', loadPage);
-// activityButton.addEventListener('click', function)
-// hydrationButton.addEventListener('click', function)
-// sleepButton.addEventListener('click', function)
+activityButton.addEventListener('click', packageNewActivityData)
+// hydrationButton.addEventListener('click', packageNewHydrationData)
+// sleepButton.addEventListener('click', packageNewSleepData)
 
 //functions -------------------------------------------------------------------------------------------
+
+function packageNewActivityData() {
+  const newActivityData = {
+    userID: 50,
+    date: activityDate.value,
+    numSteps: activityNumSteps.value,
+    minutesActive: activityMinActive.value,
+    flightsOfStairs: activityStairs.value,
+  }
+
+  fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
+}
+
+// function packageNewHydrationData() {
+//   const newHydrationData = {
+//     userID: 50,
+//     date: hydrationDate.value,
+//     numOunces: hydrationOunces.value,
+//   }
+//
+//   fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
+// }
+//
+//
+// function packageNewSleepData() {
+//   const newSleepData = {
+//     userID: 50,
+//     date: sleepDate.value,
+//     sleepHours: sleepHours.value,
+//     sleepQuality: sleepQuality.value,
+//   }
+//
+//   fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
+// }
+
+
+
+
+
 
 function loadPage() {
   returnPromise().then(allData => {
@@ -62,12 +103,12 @@ function loadPage() {
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
     loadActivityData(userRepository)
-    fetchCalls.postData('http://localhost:3001/api/v1/sleep', {
-    userID: 50,
-    date: "2022/02/26" ,
-    hoursSlept: 2,
-    sleepQuality:2.2
-  })
+  //   fetchCalls.postData('http://localhost:3001/api/v1/sleep', {
+  //   userID: 50,
+  //   date: "2022/02/26" ,
+  //   hoursSlept: 2,
+  //   sleepQuality:2.2
+  // })
   });
 };
 
@@ -121,9 +162,15 @@ function returnPromise () {
   });
 }
 
-function handleApiErrors() {
-  window.alert("We're sorry! The server is not available at the moment. Please try again later.");
+function handleApiErrors(error) {
+  if (error.message === 'Failed to fetch'){
+    window.alert("Ooops! Something went wrong. Please retry.");
+  }
 };
+
+// function handlePostError() {
+//   activityError.innerText = "Please fill all fields before submitting."
+// }
 
 //User Profile -------------------------------------------------------------------------------------------------
 
