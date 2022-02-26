@@ -38,7 +38,8 @@ main {
   font-size: 45px;
 }
 
-.widget-section {
+.widget-section,
+.form-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow: scroll;
@@ -229,4 +230,26 @@ main {
 .friend {
   padding: 3px;
   font-size: 11px;
+}
+
+.form-section {
+  height: 100%;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70%;
+  width: 90%;
+  padding-left: 10px;
+}
+
+.form input {
+  width: 50%;
+}
+
+.hidden {
+  display:none;
 }
