@@ -11,6 +11,35 @@
       <p class="welcome-message" id="welcomeMessage"></p>
       <p id="date"></p>
     </nav>
+
+    <section class="form-section">
+      <form class="activity-form" >
+        <label for="date">Date</label>
+        <input type="date" name="date" id="activityDate"></input>
+        <label for="numSteps">Number of Steps</label>
+        <input type="number" name="numSteps" id="numSteps" min="0"></input>
+        <label for="minutesActive">Minutes Active</label>
+        <input type="number" name="minutesActive" id="minutesActive" min="0"></input>
+        <label for="flightsOfStairs">Flights of Stairs</label>
+        <input type="number" name="flightsOfStairs" id="flightsOfStairs" min="0"></input>
+      </form>
+      <form class="hydration-form">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="hydrationDate"></input>
+        <label for="numOunces">Number of Ounces</label>
+        <input type="number" name="numOunces" id="numOunces" min="0"></input>
+      </form>
+      <form class="sleep-form">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="sleepDate"></input>
+        <label for="hoursSlept">Hours Slept</label>
+        <input type="number" name="hoursSlept" id="hoursSlept" min="0"></input>
+        <label for="sleepQuality">Sleep Quality</label>
+        <input type="number" name="sleepQuality" id="sleepQuality" min="0"></input>
+
+      </form>
+    </section>
+
     <main>
       <section class="widget-section">
         <section class="widget" id="activity">
