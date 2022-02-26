@@ -34,6 +34,7 @@ const activityButton = document.getElementById('submitActivity');
 const hydrationButton = document.getElementById('submitHydration');
 const sleepButton = document.getElementById('submitSleep');
 
+const activityForm = document.getElementById('activityForm');
 const activivtyDate = document.getElementById('activityDate');
 const activityNumSteps = document.getElementById('numSteps');
 const activityMinActive = document.getElementById('minutesActive');
@@ -51,13 +52,25 @@ const sleepError = document.getElementById('sleepError')
 //Event Listeners -------------------------------------------------------------------------------------
 
 window.addEventListener('load', loadPage);
-activityButton.addEventListener('click', packageNewActivityData)
+activityForm.addEventListener('submit', packageNewActivityData)
+// activityStairs.addEventListener('keyup', enableActivityButton)
+// activityMinActive.addEventListener('keyup', enableActivityButton)
+// activitySteps.addEventListener('keyup', enableActivityButton)
+// activityDate.addEventListener('keyup', enableActivityButton)
+
 // hydrationButton.addEventListener('click', packageNewHydrationData)
 // sleepButton.addEventListener('click', packageNewSleepData)
 
 //functions -------------------------------------------------------------------------------------------
 
-function packageNewActivityData() {
+// function enableActivityButton() {
+//   if (activityDate.value && activityNumSteps.value && activityMinActive.value && activityStairs.value) {
+//   activityButton.disabled = false;
+//   }
+// }
+
+function packageNewActivityData(e) {
+  e.preventDefault()
   const newActivityData = {
     userID: 50,
     date: activityDate.value,
@@ -67,6 +80,7 @@ function packageNewActivityData() {
   }
 
   fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
+  activityForm.reset()
 }
 
 // function packageNewHydrationData() {

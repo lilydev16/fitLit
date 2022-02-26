@@ -13,16 +13,16 @@
     </nav>
 
     <section class="form-section">
-      <form class="activity-form widget form" >
+      <form class="activity-form widget form" id="activityForm" >
         <h2 class="form-title">Log Today's Activity</h2>
         <label for="date">Date</label>
-        <input type="date" name="date" id="activityDate" required></input>
+        <input  class="activity-input" type="date" name="date" id="activityDate" required></input>
         <label for="numSteps">Number of Steps</label>
-        <input type="number" name="numSteps" id="numSteps" min="0" required></input>
+        <input class="activity-input" type="number" name="numSteps" id="numSteps" min="0" required></input>
         <label for="minutesActive">Minutes Active</label>
-        <input type="number" name="minutesActive" id="minutesActive" min="0" required></input>
+        <input class="activity-input" type="number" name="minutesActive" id="minutesActive" min="0" required></input>
         <label for="flightsOfStairs">Flights of Stairs</label>
-        <input type="number" name="flightsOfStairs" id="flightsOfStairs" min="0" required></input>
+        <input class="activity-input" type="number" name="flightsOfStairs" id="flightsOfStairs" min="0" required></input>
         <button class="button" type="submit" id="submitActivity">Submit</button>
         <p class="error" id="activityError"></p>
       </form>
