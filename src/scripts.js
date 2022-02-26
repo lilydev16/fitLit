@@ -1,7 +1,8 @@
 import './css/styles.css';
 import './images/turing-logo.png';
 import UserRepository from './UserRepository';
-import fetchData from './apiCalls';
+import fetchCalls from './apiCalls';
+
 
 //Query Selectors -----------------------------------------------------------------------------
 
@@ -45,6 +46,12 @@ function loadPage() {
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
     loadActivityData(userRepository)
+  //   postData('http://localhost:3001/api/v1/sleep', {
+  //   userID: 60,
+  //   date: "2022/02/26" ,
+  //   hoursSlept: 2,
+  //   sleepQuality:2.2
+  // })
   });
 };
 
@@ -83,10 +90,10 @@ function createActivityCharts(data) {
 //API Handling -------------------------------------------------------------------------------------------------
 
 function returnPromise () {
-  const allUserData = fetchData('users')
-  const allHydrationData = fetchData('hydration')
-  const allSleepData = fetchData('sleep')
-  const allActivityData = fetchData('activity')
+  const allUserData = fetchCalls.fetchData('users')
+  const allHydrationData = fetchCalls.fetchData('hydration')
+  const allSleepData = fetchCalls.fetchData('sleep')
+  const allActivityData = fetchCalls.fetchData('activity')
   return Promise.all([allUserData, allHydrationData, allSleepData, allActivityData])
     .then(data => {
     let allData = {}
