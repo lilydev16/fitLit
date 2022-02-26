@@ -30,13 +30,14 @@ const todayActivityMinutes = document.getElementById('todayActivityMinutes');
 const todayActivityMiles = document.getElementById('todayActivityMiles');
 const weeklyActivityStats = document.getElementById('weeklyActivityStats')
 
-const activityButton = document.getElementById('submitActivity');
-const hydrationButton = document.getElementById('submitHydration');
-const sleepButton = document.getElementById('submitSleep');
-
 const activityForm = document.getElementById('activityForm');
 const hydrationForm = document.getElementById('hydrationForm');
 const sleepForm = document.getElementById('sleepForm');
+
+const returnToMainButton = document.getElementById('returnToMain')
+const inputDataButton = document.getElementById('inputDataButton')
+const formSection = document.getElementById('formSection')
+const mainSection = document.getElementById('mainSection')
 
 const activivtyDate = document.getElementById('activityDate');
 const activityNumSteps = document.getElementById('numSteps');
@@ -48,68 +49,26 @@ const sleepDate = document.getElementById('sleepDate');
 const sleepHours = document.getElementById('hoursSlept');
 const sleepQuality = document.getElementById('sleepQuality');
 
-
-
-const activityError = document.getElementById('activityError')
-const hydrationError = document.getElementById('hydrationError')
-const sleepError = document.getElementById('sleepError')
-
 //Event Listeners -------------------------------------------------------------------------------------
 
 window.addEventListener('load', loadPage);
 activityForm.addEventListener('submit', packageNewActivityData)
 hydrationForm.addEventListener('submit', packageNewHydrationData)
 sleepForm.addEventListener('submit', packageNewSleepData)
+returnToMainButton.addEventListener('click', returnToMain)
+inputDataButton.addEventListener('click', goToForms)
 
 //functions -------------------------------------------------------------------------------------------
 
-// function enableActivityButton() {
-//   if (activityDate.value && activityNumSteps.value && activityMinActive.value && activityStairs.value) {
-//   activityButton.disabled = false;
-//   }
-// }
-
-function packageNewActivityData(e) {
-  e.preventDefault()
-  const newActivityData = {
-    userID: 50,
-    date: activityDate.value,
-    numSteps: activityNumSteps.value,
-    minutesActive: activityMinActive.value,
-    flightsOfStairs: activityStairs.value,
-  }
-
-  fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
-  activityForm.reset()
+function returnToMain() {
+  formSection.classList.add('hidden')
+  mainSection.classList.remove('hidden')
 }
 
-function packageNewHydrationData() {
-  const newHydrationData = {
-    userID: 50,
-    date: hydrationDate.value,
-    numOunces: hydrationOunces.value,
-  }
-
-  fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
+function goToForms() {
+  mainSection.classList.add('hidden')
+  formSection.classList.remove('hidden')
 }
-//
-//
-
-function packageNewSleepData() {
-  const newSleepData = {
-    userID: 50,
-    date: sleepDate.value,
-    sleepHours: sleepHours.value,
-    sleepQuality: sleepQuality.value,
-  }
-
-  fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
-}
-
-
-
-
-
 
 function loadPage() {
   returnPromise().then(allData => {
@@ -118,12 +77,6 @@ function loadPage() {
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
     loadActivityData(userRepository)
-  //   fetchCalls.postData('http://localhost:3001/api/v1/sleep', {
-  //   userID: 50,
-  //   date: "2022/02/26" ,
-  //   hoursSlept: 2,
-  //   sleepQuality:2.2
-  // })
   });
 };
 
@@ -183,10 +136,42 @@ function handleApiErrors(error) {
   }
 };
 
-// function handlePostError() {
-//   activityError.innerText = "Please fill all fields before submitting."
-// }
+function packageNewActivityData(e) {
+  e.preventDefault()
+  const newActivityData = {
+    userID: 50,
+    date: activityDate.value,
+    numSteps: activityNumSteps.value,
+    minutesActive: activityMinActive.value,
+    flightsOfStairs: activityStairs.value,
+  }
 
+  fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
+  activityForm.reset()
+}
+
+function packageNewHydrationData() {
+  const newHydrationData = {
+    userID: 50,
+    date: hydrationDate.value,
+    numOunces: hydrationOunces.value,
+  }
+
+  fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
+  hydrationForm.reset()
+};
+
+function packageNewSleepData() {
+  const newSleepData = {
+    userID: 50,
+    date: sleepDate.value,
+    sleepHours: sleepHours.value,
+    sleepQuality: sleepQuality.value,
+  }
+
+  fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
+  sleepForm.reset()
+};
 //User Profile -------------------------------------------------------------------------------------------------
 
 function createUser (data) {

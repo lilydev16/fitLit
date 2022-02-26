@@ -12,7 +12,7 @@
       <p id="date"></p>
     </nav>
 
-    <section class="form-section">
+    <section class="form-section" id="formSection">
       <form class="activity-form widget form" id="activityForm" >
         <h2 class="form-title">Log Today's Activity</h2>
         <label for="date">Date</label>
@@ -24,7 +24,6 @@
         <label for="flightsOfStairs">Flights of Stairs</label>
         <input class="activity-input" type="number" name="flightsOfStairs" id="flightsOfStairs" min="0" required></input>
         <button class="button" type="submit" id="submitActivity">Submit</button>
-        <p class="error" id="activityError"></p>
       </form>
       <form class="hydration-form widget form" id="hydrationForm">
         <h2 class="form-title">Log Today's Hydration</h2>
@@ -47,7 +46,7 @@
       <button class="button" type="button" id="returnToMain">Return to Main</button>
     </section>
 
-    <main class="hidden">
+    <main class="hidden" id="mainSection">
       <section class="widget-section">
         <section class="widget" id="activity">
           <p class="activity-title title" id="activityTitle">Activity</p>
@@ -142,6 +141,7 @@
             <p class="user-title">Step Goal</p>
             <p class="user-step-goal user-info user-stats" id="userStepGoal"></p>
           </div>
+          <button class=input-data-button id="inputDataButton">Enter your stats here</button>
         </section>
         <section class="compare-data">
           <div class="chart-container">

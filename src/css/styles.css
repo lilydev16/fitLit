@@ -205,6 +205,13 @@ main {
   font-size: 12px;
 }
 
+.input-data-button {
+  height: 80%;
+  width: 70%;
+  align-self: center;
+}
+
+
 .user-friends {
   text-align: center;
 }

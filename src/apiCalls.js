@@ -24,16 +24,8 @@ postData: function (url, someData) {
           })
           .then(response => response.json())
           .then(data => console.log(data))
-          // .catch(err => console.log(err))
+          .catch(err => handleApiErrors(err))
         },
 }
 
-
-
-// const fetchCalls = {
-//   get: fetchData(url),
-//   post: postData();
-// }
-
-//http://localhost:3001/api/v1/hydration
 export default fetchCalls;
