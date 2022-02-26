@@ -12,41 +12,41 @@
       <p id="date"></p>
     </nav>
 
-    <section class="form-section">
-      <form class="activity-form widget form" >
+    <section class="form-section" id="formSection">
+      <form class="activity-form widget form" id="activityForm" >
         <h2 class="form-title">Log Today's Activity</h2>
         <label for="date">Date</label>
-        <input type="date" name="date" id="activityDate"></input>
+        <input  class="activity-input" type="date" name="date" id="activityDate" required></input>
         <label for="numSteps">Number of Steps</label>
-        <input type="number" name="numSteps" id="numSteps" min="0" required></input>
+        <input class="activity-input" type="number" name="numSteps" id="numSteps" min="0" required></input>
         <label for="minutesActive">Minutes Active</label>
-        <input type="number" name="minutesActive" id="minutesActive" min="0" required></input>
+        <input class="activity-input" type="number" name="minutesActive" id="minutesActive" min="0" required></input>
         <label for="flightsOfStairs">Flights of Stairs</label>
-        <input type="number" name="flightsOfStairs" id="flightsOfStairs" min="0" required></input>
-        <button class="button" type="button" id="submitActivity">Submit</button>
+        <input class="activity-input" type="number" name="flightsOfStairs" id="flightsOfStairs" min="0" required></input>
+        <button class="button" type="submit" id="submitActivity">Submit</button>
       </form>
-      <form class="hydration-form widget form">
+      <form class="hydration-form widget form" id="hydrationForm">
         <h2 class="form-title">Log Today's Hydration</h2>
         <label for="date">Date</label>
-        <input type="date" name="date" id="hydrationDate"></input>
+        <input type="date" name="date" id="hydrationDate" required></input>
         <label for="numOunces">Number of Ounces</label>
         <input type="number" name="numOunces" id="numOunces" min="0" required></input>
-        <button class="button" type="button" id="submitHydration">Submit</button>
+        <button class="button" type="submit" id="submitHydration">Submit</button>
       </form>
-      <form class="sleep-form widget form">
+      <form class="sleep-form widget form" id="sleepForm">
         <h2 class="form-title">Log Today's Sleep</h2>
         <label for="date">Date</label>
-        <input type="date" name="date" id="sleepDate"></input>
+        <input type="date" name="date" id="sleepDate" required></input>
         <label for="hoursSlept">Hours Slept</label>
-        <input type="number" name="hoursSlept" id="hoursSlept" min="0" required></input>
+        <input type="number" name="hoursSlept" id="hoursSlept" min="0" max="24" required></input>
         <label for="sleepQuality">Sleep Quality</label>
-        <input type="number" name="sleepQuality" id="sleepQuality" min="0" required></input>
-        <button class="button" type="button" id="submitSleep">Submit</button>
+        <input type="number" name="sleepQuality" id="sleepQuality" min="0" max="5" required></input>
+        <button class="button" type="submit" id="submitSleep">Submit</button>
       </form>
       <button class="button" type="button" id="returnToMain">Return to Main</button>
     </section>
 
-    <main class="hidden">
+    <main class="hidden" id="mainSection">
       <section class="widget-section">
         <section class="widget" id="activity">
           <p class="activity-title title" id="activityTitle">Activity</p>
@@ -141,6 +141,7 @@
             <p class="user-title">Step Goal</p>
             <p class="user-step-goal user-info user-stats" id="userStepGoal"></p>
           </div>
+          <button class=input-data-button id="inputDataButton">Enter your stats here</button>
         </section>
         <section class="compare-data">
           <div class="chart-container">

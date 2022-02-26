@@ -1,7 +1,8 @@
 import './css/styles.css';
 import './images/turing-logo.png';
 import UserRepository from './UserRepository';
-import fetchData from './apiCalls';
+import fetchCalls from './apiCalls';
+
 
 //Query Selectors -----------------------------------------------------------------------------
 
@@ -13,11 +14,9 @@ const userEmail = document.getElementById('userEmail');
 const userStride = document.getElementById('userStride');
 const userStepGoal = document.getElementById('userStepGoal');
 const compareStepGoalChart = document.getElementById('compareStepGoalChart').getContext('2d');
-
 const compareStepsChart = document.getElementById('compareStepsChart').getContext('2d');
 const compareActiveMinChart = document.getElementById('compareActiveMinChart').getContext('2d');
 const compareStairsChart = document.getElementById('compareStairsChart').getContext('2d');
-
 const friendList = document.getElementById('friendList');
 const todayHydration = document.getElementById('todayHydration');
 const weeklyHydrationStats = document.getElementById('weeklyHydrationStats');
@@ -26,17 +25,50 @@ const todaySleepQuality = document.getElementById('todaySleepQuality');
 const avgSleepHours = document.getElementById('avgSleepHours');
 const avgSleepQuality = document.getElementById('avgSleepQuality');
 const weeklySleepStats = document.getElementById('weeklySleepStats');
-
 const todayActivitySteps = document.getElementById('todayActivitySteps');
 const todayActivityMinutes = document.getElementById('todayActivityMinutes');
 const todayActivityMiles = document.getElementById('todayActivityMiles');
 const weeklyActivityStats = document.getElementById('weeklyActivityStats')
 
+const activityForm = document.getElementById('activityForm');
+const hydrationForm = document.getElementById('hydrationForm');
+const sleepForm = document.getElementById('sleepForm');
+
+const returnToMainButton = document.getElementById('returnToMain')
+const inputDataButton = document.getElementById('inputDataButton')
+const formSection = document.getElementById('formSection')
+const mainSection = document.getElementById('mainSection')
+
+const activivtyDate = document.getElementById('activityDate');
+const activityNumSteps = document.getElementById('numSteps');
+const activityMinActive = document.getElementById('minutesActive');
+const activityStairs = document.getElementById('flightsOfStairs');
+const hydrationDate = document.getElementById('hydrationDate');
+const hydrationOunces = document.getElementById('numOunces');
+const sleepDate = document.getElementById('sleepDate');
+const sleepHours = document.getElementById('hoursSlept');
+const sleepQuality = document.getElementById('sleepQuality');
+
 //Event Listeners -------------------------------------------------------------------------------------
 
 window.addEventListener('load', loadPage);
+activityForm.addEventListener('submit', packageNewActivityData)
+hydrationForm.addEventListener('submit', packageNewHydrationData)
+sleepForm.addEventListener('submit', packageNewSleepData)
+returnToMainButton.addEventListener('click', returnToMain)
+inputDataButton.addEventListener('click', goToForms)
 
 //functions -------------------------------------------------------------------------------------------
+
+function returnToMain() {
+  formSection.classList.add('hidden')
+  mainSection.classList.remove('hidden')
+}
+
+function goToForms() {
+  mainSection.classList.add('hidden')
+  formSection.classList.remove('hidden')
+}
 
 function loadPage() {
   returnPromise().then(allData => {
@@ -83,10 +115,10 @@ function createActivityCharts(data) {
 //API Handling -------------------------------------------------------------------------------------------------
 
 function returnPromise () {
-  const allUserData = fetchData('users')
-  const allHydrationData = fetchData('hydration')
-  const allSleepData = fetchData('sleep')
-  const allActivityData = fetchData('activity')
+  const allUserData = fetchCalls.fetchData('users')
+  const allHydrationData = fetchCalls.fetchData('hydration')
+  const allSleepData = fetchCalls.fetchData('sleep')
+  const allActivityData = fetchCalls.fetchData('activity')
   return Promise.all([allUserData, allHydrationData, allSleepData, allActivityData])
     .then(data => {
     let allData = {}
@@ -98,10 +130,48 @@ function returnPromise () {
   });
 }
 
-function handleApiErrors() {
-  window.alert("We're sorry! The server is not available at the moment. Please try again later.");
+function handleApiErrors(error) {
+  if (error.message === 'Failed to fetch'){
+    window.alert("Ooops! Something went wrong. Please retry.");
+  }
 };
 
+function packageNewActivityData(e) {
+  e.preventDefault()
+  const newActivityData = {
+    userID: 50,
+    date: activityDate.value,
+    numSteps: activityNumSteps.value,
+    minutesActive: activityMinActive.value,
+    flightsOfStairs: activityStairs.value,
+  }
+
+  fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
+  activityForm.reset()
+}
+
+function packageNewHydrationData() {
+  const newHydrationData = {
+    userID: 50,
+    date: hydrationDate.value,
+    numOunces: hydrationOunces.value,
+  }
+
+  fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
+  hydrationForm.reset()
+};
+
+function packageNewSleepData() {
+  const newSleepData = {
+    userID: 50,
+    date: sleepDate.value,
+    sleepHours: sleepHours.value,
+    sleepQuality: sleepQuality.value,
+  }
+
+  fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
+  sleepForm.reset()
+};
 //User Profile -------------------------------------------------------------------------------------------------
 
 function createUser (data) {
