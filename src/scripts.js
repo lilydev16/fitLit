@@ -14,11 +14,9 @@ const userEmail = document.getElementById('userEmail');
 const userStride = document.getElementById('userStride');
 const userStepGoal = document.getElementById('userStepGoal');
 const compareStepGoalChart = document.getElementById('compareStepGoalChart').getContext('2d');
-
 const compareStepsChart = document.getElementById('compareStepsChart').getContext('2d');
 const compareActiveMinChart = document.getElementById('compareActiveMinChart').getContext('2d');
 const compareStairsChart = document.getElementById('compareStairsChart').getContext('2d');
-
 const friendList = document.getElementById('friendList');
 const todayHydration = document.getElementById('todayHydration');
 const weeklyHydrationStats = document.getElementById('weeklyHydrationStats');
@@ -27,15 +25,33 @@ const todaySleepQuality = document.getElementById('todaySleepQuality');
 const avgSleepHours = document.getElementById('avgSleepHours');
 const avgSleepQuality = document.getElementById('avgSleepQuality');
 const weeklySleepStats = document.getElementById('weeklySleepStats');
-
 const todayActivitySteps = document.getElementById('todayActivitySteps');
 const todayActivityMinutes = document.getElementById('todayActivityMinutes');
 const todayActivityMiles = document.getElementById('todayActivityMiles');
 const weeklyActivityStats = document.getElementById('weeklyActivityStats')
 
+const activityButton = document.getElementById('submitActivity');
+const hydrationButton = document.getElementById('submitHydration');
+const sleepButton = document.getElementById('submitSleep');
+
+const activivtyDate = document.getElementById('activityDate');
+const activityNumSteps = document.getElementById('numSteps');
+const activityMinActive = document.getElementById('minutesActive');
+const activityStairs = document.getElementById('flightsOfStairs');
+const hydrationDate = document.getElementById('hydrationDate');
+const hydrationOunces = document.getElementById('numOunces');
+const sleepDate = document.getElementById('sleepDate');
+const sleepHours = document.getElementById('hoursSlept');
+const sleepQuality = document.getElementById('sleepQuality');
+
+
+
 //Event Listeners -------------------------------------------------------------------------------------
 
 window.addEventListener('load', loadPage);
+// activityButton.addEventListener('click', function)
+// hydrationButton.addEventListener('click', function)
+// sleepButton.addEventListener('click', function)
 
 //functions -------------------------------------------------------------------------------------------
 
@@ -46,12 +62,12 @@ function loadPage() {
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
     loadActivityData(userRepository)
-  //   postData('http://localhost:3001/api/v1/sleep', {
-  //   userID: 60,
-  //   date: "2022/02/26" ,
-  //   hoursSlept: 2,
-  //   sleepQuality:2.2
-  // })
+    fetchCalls.postData('http://localhost:3001/api/v1/sleep', {
+    userID: 50,
+    date: "2022/02/26" ,
+    hoursSlept: 2,
+    sleepQuality:2.2
+  })
   });
 };
 
