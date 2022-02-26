@@ -35,6 +35,9 @@ const hydrationButton = document.getElementById('submitHydration');
 const sleepButton = document.getElementById('submitSleep');
 
 const activityForm = document.getElementById('activityForm');
+const hydrationForm = document.getElementById('hydrationForm');
+const sleepForm = document.getElementById('sleepForm');
+
 const activivtyDate = document.getElementById('activityDate');
 const activityNumSteps = document.getElementById('numSteps');
 const activityMinActive = document.getElementById('minutesActive');
@@ -45,6 +48,8 @@ const sleepDate = document.getElementById('sleepDate');
 const sleepHours = document.getElementById('hoursSlept');
 const sleepQuality = document.getElementById('sleepQuality');
 
+
+
 const activityError = document.getElementById('activityError')
 const hydrationError = document.getElementById('hydrationError')
 const sleepError = document.getElementById('sleepError')
@@ -53,13 +58,8 @@ const sleepError = document.getElementById('sleepError')
 
 window.addEventListener('load', loadPage);
 activityForm.addEventListener('submit', packageNewActivityData)
-// activityStairs.addEventListener('keyup', enableActivityButton)
-// activityMinActive.addEventListener('keyup', enableActivityButton)
-// activitySteps.addEventListener('keyup', enableActivityButton)
-// activityDate.addEventListener('keyup', enableActivityButton)
-
-// hydrationButton.addEventListener('click', packageNewHydrationData)
-// sleepButton.addEventListener('click', packageNewSleepData)
+hydrationForm.addEventListener('submit', packageNewHydrationData)
+sleepForm.addEventListener('submit', packageNewSleepData)
 
 //functions -------------------------------------------------------------------------------------------
 
@@ -83,27 +83,28 @@ function packageNewActivityData(e) {
   activityForm.reset()
 }
 
-// function packageNewHydrationData() {
-//   const newHydrationData = {
-//     userID: 50,
-//     date: hydrationDate.value,
-//     numOunces: hydrationOunces.value,
-//   }
+function packageNewHydrationData() {
+  const newHydrationData = {
+    userID: 50,
+    date: hydrationDate.value,
+    numOunces: hydrationOunces.value,
+  }
+
+  fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
+}
 //
-//   fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
-// }
 //
-//
-// function packageNewSleepData() {
-//   const newSleepData = {
-//     userID: 50,
-//     date: sleepDate.value,
-//     sleepHours: sleepHours.value,
-//     sleepQuality: sleepQuality.value,
-//   }
-//
-//   fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
-// }
+
+function packageNewSleepData() {
+  const newSleepData = {
+    userID: 50,
+    date: sleepDate.value,
+    sleepHours: sleepHours.value,
+    sleepQuality: sleepQuality.value,
+  }
+
+  fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
+}
 
 
 
