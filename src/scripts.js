@@ -33,6 +33,9 @@ const weeklyActivityStats = document.getElementById('weeklyActivityStats')
 const activityForm = document.getElementById('activityForm');
 const hydrationForm = document.getElementById('hydrationForm');
 const sleepForm = document.getElementById('sleepForm');
+const activityUserID = document.getElementById('activityUserID');
+const hydrationUserID = document.getElementById('hydrationUserID');
+const sleepUserID = document.getElementById('sleepUserID');
 
 const returnToMainButton = document.getElementById('returnToMain')
 const inputDataButton = document.getElementById('inputDataButton')
@@ -84,6 +87,7 @@ function loadUserProfile(data) {
   createUser(data);
   updateWelcomeMessage(data.currentUser, data);
   updateUserProfile(data.currentUser, data);
+  updateFormUserID(data)
 };
 
 function loadHydrationData(data) {
@@ -234,6 +238,11 @@ function getCurrentUserDate(data, dataType, array) {
   return data.currentUser[dataType][array][index].date
 }
 
+function updateFormUserID(data) {
+  activityUserID.innerText = data.currentUser.id;
+  hydrationUserID.innerText = data.currentUser.id;
+  sleepUserID.innerText = data.currentUser.id;
+}
 //Hydration -------------------------------------------------------------------------------------------------
 
 function createHydrationProfile(data) {
