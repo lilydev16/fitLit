@@ -115,7 +115,7 @@ function loadActivityData(data) {
   createActivityProfile(data)
   displayTodaysActivity(data, data.currentUser)
   displayWeeklyActivity(data)
-  createActivityCharts(data)
+  // createActivityCharts(data)
 };
 
 function createActivityCharts(data) {
@@ -151,7 +151,7 @@ function handleApiErrors(error) {
 function packageNewActivityData(e) {
   e.preventDefault()
   const newActivityData = {
-    userID: 50,
+    userID: parseInt(activityUserID.innerText),
     date: activityDate.value.split('-').join('/'),
     numSteps: parseInt(activityNumSteps.value),
     minutesActive: parseInt(activityMinActive.value),
@@ -165,7 +165,7 @@ function packageNewActivityData(e) {
 function packageNewHydrationData(e) {
   e.preventDefault()
   const newHydrationData = {
-    userID: 50,
+    userID: parseInt(hydrationUserID.innerText),
     date: hydrationDate.value.split('-').join('/'),
     numOunces: parseInt(hydrationOunces.value),
   }
@@ -177,7 +177,7 @@ function packageNewHydrationData(e) {
 function packageNewSleepData(e) {
   e.preventDefault()
   const newSleepData = {
-    userID: 50,
+    userID: parseInt(sleepUserID.innerText),
     date: sleepDate.value.split('-').join('/'),
     hoursSlept: parseInt(sleepHours.value),
     sleepQuality: parseInt(sleepQuality.value),
@@ -204,7 +204,7 @@ function updateUserProfile(user, data) {
   userEmail.innerText = `${user.email}`;
   userStride.innerText = `${user.strideLength}`;
   userStepGoal.innerText = `${user.dailyStepGoal}`;
-  createStepGoalChart(compareStepGoalChart, user, data);
+  // createStepGoalChart(compareStepGoalChart, user, data);
   updateFriends(data);
 };
 
