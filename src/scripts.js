@@ -232,6 +232,7 @@ function createStepGoalChart(chartElement, user, data) {
 };
 
 function updateFriends(data) {
+  friendList.innerHTML = '';
   return data.createUserFriendList().forEach((friend) => {
     friendList.innerHTML += `<p class="friend">${friend}</p>`
   });
@@ -267,6 +268,7 @@ function displayTodaysHydration(data) {
 function displayWeeklyHydration(data) {
   const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
   const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek(currentDate);
+  weeklyHydrationStats.innerHTML = '';
   weeklyHydrationAmt.forEach((entry, i) => {
     weeklyHydrationStats.innerHTML += `
     <table class="hydration-table">
@@ -306,6 +308,7 @@ function displayAvgSleep(data) {
 function displayWeeklySleep(data) {
   const currentDate = getCurrentUserDate(data, "userSleep", "sleepData");
   const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek(currentDate);
+  weeklySleepStats.innerHTML = '';
   weeklySleepData.forEach((entry, i) => {
     weeklySleepStats.innerHTML += `
     <table class="sleep-table">
@@ -342,6 +345,7 @@ function displayTodaysActivity(data, user) {
 function displayWeeklyActivity(data) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
   const weeklyActivityData = data.currentUser.userActivity.calcActivityStatsPerWeek(currentDate);
+  weeklyActivityStats.innerHTML = '';
   weeklyActivityData.forEach((entry, i) => {
     weeklyActivityStats.innerHTML += `
     <table class="activity-table">
