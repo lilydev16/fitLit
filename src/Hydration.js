@@ -9,7 +9,9 @@ class Hydration {
   };
 
   calcOuncesPerWeek() {
-    let slicedHydration = this.hydrationData.slice(this.hydrationData.length - 7, this.hydrationData.length);
+    let findEntryDate = this.hydrationData.find(entry => entry.date === date);
+    let startingIndex = this.hydrationData.indexOf(findEntryDate)
+    let slicedHydration = this.hydrationData.slice(startingIndex - 7, startingIndex);
     return slicedHydration.map(entry => {
       let weeklyHydration = {
         date: entry.date,

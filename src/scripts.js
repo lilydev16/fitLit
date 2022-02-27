@@ -248,7 +248,8 @@ function displayTodaysHydration(data) {
 };
 
 function displayWeeklyHydration(data) {
-  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek();
+  const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
+  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek(currentDate);
   weeklyHydrationAmt.forEach((entry, i) => {
     weeklyHydrationStats.innerHTML += `
     <table class="hydration-table">
