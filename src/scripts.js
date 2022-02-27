@@ -54,7 +54,7 @@ const sleepQuality = document.getElementById('sleepQuality');
 
 //Event Listeners -------------------------------------------------------------------------------------
 
-window.addEventListener('load', loadPage);
+window.addEventListener('load', loadRandomUser);
 activityForm.addEventListener('submit', packageNewActivityData)
 hydrationForm.addEventListener('submit', packageNewHydrationData)
 sleepForm.addEventListener('submit', packageNewSleepData)
@@ -62,10 +62,18 @@ returnToMainButton.addEventListener('click', returnToMain)
 inputDataButton.addEventListener('click', goToForms)
 
 //functions -------------------------------------------------------------------------------------------
+function loadRandomUser() {
+  loadPage(randomizeId());
+}
+
+function loadCurrentUser() {
+  loadPage(parseInt(activityUserID.innerText));
+}
 
 function returnToMain() {
   formSection.classList.add('hidden')
   mainSection.classList.remove('hidden')
+  loadCurrentUser();
 }
 
 function goToForms() {
@@ -73,18 +81,18 @@ function goToForms() {
   formSection.classList.remove('hidden')
 }
 
-function loadPage() {
+function loadPage(id) {
   returnPromise().then(allData => {
     const userRepository = new UserRepository(allData);
-    loadUserProfile(userRepository);
+    loadUserProfile(userRepository, id);
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
     loadActivityData(userRepository)
   });
 };
 
-function loadUserProfile(data) {
-  createUser(data);
+function loadUserProfile(data, id) {
+  createUser(data, id);
   updateWelcomeMessage(data.currentUser, data);
   updateUserProfile(data.currentUser, data);
   updateFormUserID(data)
@@ -180,8 +188,8 @@ function packageNewSleepData(e) {
 };
 //User Profile -------------------------------------------------------------------------------------------------
 
-function createUser (data) {
-  const newUser = data.createNewUser(randomizeId());
+function createUser(data, id) {
+  const newUser = data.createNewUser(id);
   return newUser
 };
 
