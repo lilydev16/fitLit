@@ -286,7 +286,8 @@ function displayAvgSleep(data) {
 };
 
 function displayWeeklySleep(data) {
-  const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16');
+  const currentDate = getCurrentUserDate(data, "userSleep", "sleepData");
+  const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek(currentDate);
   weeklySleepData.forEach((entry, i) => {
     weeklySleepStats.innerHTML += `
     <table class="sleep-table">
@@ -321,7 +322,8 @@ function displayTodaysActivity(data, user) {
 };
 
 function displayWeeklyActivity(data) {
-  const weeklyActivityData = data.currentUser.userActivity.calcActivityStatsPerWeek('2020/01/16');
+  const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
+  const weeklyActivityData = data.currentUser.userActivity.calcActivityStatsPerWeek(currentDate);
   weeklyActivityData.forEach((entry, i) => {
     weeklyActivityStats.innerHTML += `
     <table class="activity-table">
