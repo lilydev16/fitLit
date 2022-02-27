@@ -140,33 +140,35 @@ function packageNewActivityData(e) {
   e.preventDefault()
   const newActivityData = {
     userID: 50,
-    date: activityDate.value,
-    numSteps: activityNumSteps.value,
-    minutesActive: activityMinActive.value,
-    flightsOfStairs: activityStairs.value,
+    date: activityDate.value.split('-').join('/'),
+    numSteps: parseInt(activityNumSteps.value),
+    minutesActive: parseInt(activityMinActive.value),
+    flightsOfStairs: parseInt(activityStairs.value),
   }
 
   fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
   activityForm.reset()
 }
 
-function packageNewHydrationData() {
+function packageNewHydrationData(e) {
+  e.preventDefault()
   const newHydrationData = {
     userID: 50,
-    date: hydrationDate.value,
-    numOunces: hydrationOunces.value,
+    date: hydrationDate.value.split('-').join('/'),
+    numOunces: parseInt(hydrationOunces.value),
   }
 
   fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
   hydrationForm.reset()
 };
 
-function packageNewSleepData() {
+function packageNewSleepData(e) {
+  e.preventDefault()
   const newSleepData = {
     userID: 50,
-    date: sleepDate.value,
-    sleepHours: sleepHours.value,
-    sleepQuality: sleepQuality.value,
+    date: sleepDate.value.split('-').join('/'),
+    hoursSlept: parseInt(sleepHours.value),
+    sleepQuality: parseInt(sleepQuality.value),
   }
 
   fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
