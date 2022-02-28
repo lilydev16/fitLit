@@ -23,7 +23,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 10%;
-  background-color: rgb(20 184 166);
+  background-color: #329a8a;
   color: white;
   padding-left: 20px;
   padding-right: 20px;
@@ -36,6 +36,11 @@ main {
 
 .welcome-message {
   font-size: 45px;
+}
+
+.date,
+.logo {
+  font-size: 25px;
 }
 
 .widget-section,
@@ -209,11 +214,13 @@ main {
 
 .user-title {
   font-size: 11px;
-  color: #C6C6C6;
+  color: black;
+  font-weight: lighter;
 }
 
 .user-info {
   font-size: 12px;
+  font-weight: 400;
 }
 
 .input-data-button {
@@ -224,7 +231,7 @@ main {
   font-style: italic;
   border-radius: 5px;
   border: 1px solid #C6C6C6;
-  background-color: #FCC18A;
+  background-color: #c5ece6;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   cursor: pointer;
 }
@@ -319,7 +326,7 @@ main {
   font-size: 20px;
   border-radius: 5px;
   border: 1px solid #C6C6C6;
-  background-color: #FCC18A;
+  background-color: #c5ece6;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   cursor: pointer;
 }
