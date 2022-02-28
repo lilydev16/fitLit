@@ -114,7 +114,7 @@ describe('Activity', () => {
     activity.activityData = userWeekActivityData;
     console.log(activity.activityData)
 
-    expect(activity.calcActivityStatsPerWeek("2020/01/16")).to.eql([
+    expect(activity.calcActivityStatsPerWeek("2020/01/22")).to.eql([
       {date: '2020/01/16', steps: 5378, minActive: 32, stairs: 33},
       {date: '2020/01/17', steps: 4044, minActive: 89, stairs: 4},
       {date: '2020/01/18', steps: 9971, minActive: 271, stairs: 44},
