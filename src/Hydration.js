@@ -1,6 +1,6 @@
 class Hydration {
   constructor(userHydrationData) {
-    this.hydrationData = userHydrationData
+    this.hydrationData = userHydrationData;
   };
 
   calcOuncesPerDay(date) {
@@ -10,7 +10,7 @@ class Hydration {
 
   calcOuncesPerWeek(date) {
     let findEntryDate = this.hydrationData.find(entry => entry.date === date);
-    let startingIndex = this.hydrationData.indexOf(findEntryDate)
+    let startingIndex = this.hydrationData.indexOf(findEntryDate);
     let slicedHydration = this.hydrationData.slice(startingIndex - 6, startingIndex + 1);
     let result = slicedHydration.map(entry => {
       let weeklyHydration = {
@@ -19,7 +19,7 @@ class Hydration {
       };
       return weeklyHydration;
     });
-    return result
+    return result;
   };
 
   calcAverageOunces() {
