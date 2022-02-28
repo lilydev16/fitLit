@@ -47,14 +47,13 @@ The user profile is located in the top right hand corner, and contains the follo
 * Stride Length
 * Daily Step Goal
 * A comparison chart between the user's step goal and the average step goal of the FitLit community:
+* A button to navigate to the form submission page, upon which users can enter new stats for sleep, hydration, and activity data.
 
 ![chart](https://media.giphy.com/media/K9s7WJD3knjVFuv9HZ/giphy.gif)
 
-* A button to navigate to the form submission page, upon which users can enter new stats for sleep, hydration, and activity data.
-
 ## Data Submission Page
 
-Upon clicking the `Log today's stats` button in the user profile section, users will be directed to a page that contains forms for submitting Activity, Hydration, or Sleep data. As long as all fields in the corresponding form are filled, the user can submit their new data, which is then POSTed to the locally hosted API. The user can then navigate back to the main page, which will reflect their newly posted data for the current date.
+Upon clicking the `Log today's stats` button in the user profile section, users will be directed to a page that contains forms for submitting Activity, Hydration, or Sleep data. Once all inputs are filled for a specific, the user may submit their new data, which is then POSTed to the locally hosted API. The user can then navigate back to the main page, which will reflect their newly posted data for the current date.
 
 
 ![chart2](https://media.giphy.com/media/j6yWb7GNtQir5B21Pu/giphy.gif)
