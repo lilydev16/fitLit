@@ -221,7 +221,16 @@ main {
   width: 70%;
   margin-top: 30px;
   align-self: center;
+  font-style: italic;
+  border-radius: 5px;
+  border: 1px solid #C6C6C6;
+  background-color: #FCC18A;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+}
 
+.input-data-button:hover {
+  border: 1px solid #767676;
 }
 
 .user-friends {
@@ -255,8 +264,20 @@ main {
 }
 
 .form-section {
-  height: 100%;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0%;
+  height: 70%;
+  width: 97%;
+}
+
+.form-widget-container {
+  display: flex;
+  justify-content: space-between;
+  height: 70%;
+  width: 90%;
 }
 
 .form {
@@ -264,12 +285,35 @@ main {
   justify-content: space-around;
   align-items: center;
   height: 70%;
-  width: 90%;
-  padding-left: 10px;
+  width: 30%;
 }
 
 .form input {
   width: 50%;
+}
+
+.return-to-main-btn-container {
+  display: flex;
+  justify-content: center;
+  height: 20%;
+  width: 70%;
+}
+
+.return-to-main-button {
+  height: 40%;
+  width: 50%;
+  margin-top: 30px;
+  align-self: center;
+  font-style: italic;
+  border-radius: 5px;
+  border: 1px solid #C6C6C6;
+  background-color: #FCC18A;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+}
+
+.return-to-main-button:hover {
+  border: 1px solid #767676;
 }
 
 .hidden {
