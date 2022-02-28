@@ -233,7 +233,7 @@ function createStepGoalChart(chartElement, user, data) {
           stepAverage
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
+          'rgba(250, 99, 132, 0.6)',
           'rgba(153, 102, 255, 0.6)'
         ],
         hoverBorderWidth: 2,
@@ -394,8 +394,8 @@ function createCompareDailyStepsChart(chartElement, data) {
           avgUserSteps
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(153, 102, 255, 0.6)'
+          'rgba(6, 214, 160)',
+          'rgba(180, 242, 226)'
         ],
         hoverBorderWidth: 2,
         hoverBorderColor: '#777'
@@ -423,8 +423,8 @@ let newChart = new Chart(chartElement, {
           avgUserActiveMin
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(153, 102, 255, 0.6)'
+          'rgba(17, 138, 178)',
+          'rgba(183, 219, 231)'
         ],
         hoverBorderWidth: 2,
         hoverBorderColor: '#777'
@@ -452,8 +452,8 @@ let newChart = new Chart(chartElement, {
           avgUserStairs
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(153, 102, 255, 0.6)'
+          'rgba(239, 71, 111)',
+          'rgba(250, 199, 211)'
         ],
         hoverBorderWidth: 2,
         hoverBorderColor: '#777'

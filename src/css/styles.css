@@ -162,17 +162,17 @@ main {
 .hydration-table th,
 .activity-table th,
 .sleep-table th {
-  background-color: #a0bfd3;
+  background-color: rgba(88, 173, 201, 0.6);
   font-weight: bolder;
   border-radius: 5px;
 }
 
 .sleep-table th {
-  background-color: #f5cad4;
+  background-color: rgba(243, 126, 154, 0.6);
 }
 
 .activity-table th {
-  background-color: #B5F9DA;
+  background-color: rgba(80, 226, 188, 0.6);
 }
 
 .hydration-table tr:last-child td:first-child,
@@ -197,7 +197,7 @@ main {
   padding: 10px;
   padding-bottom: 20px;
   margin-bottom: 10px;
-  height: 30%;
+  height: 40%;
   border-radius: 5px;
 }
 
@@ -217,9 +217,11 @@ main {
 }
 
 .input-data-button {
-  height: 80%;
+  height: 15%;
   width: 70%;
+  margin-top: 30px;
   align-self: center;
+
 }
 
 .user-friends {
@@ -227,8 +229,10 @@ main {
 }
 
 .compare-data {
-  height: 40%;
-  margin-bottom: 35px;
+  height: 30%;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #C6C6C6;
 }
 
 .chart-container {
@@ -239,9 +243,10 @@ main {
 
 .user-friends {
   display: flex;
+  justify-content: center;
+  border-top: 1px solid #C6C6C6;
   flex-direction: column;
-  border-radius: 5px;
-  height: 30%;
+  height: 25%;
 }
 
 .friend {
