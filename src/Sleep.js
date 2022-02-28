@@ -18,7 +18,7 @@ class Sleep {
   calcSleepStatsPerWeek(date) {
     let findentryDate = this.sleepData.find(entry => entry.date === date);
     let startingIndex = this.sleepData.indexOf(findentryDate);
-    let selectedWeek = this.sleepData.slice(startingIndex - 7, startingIndex);
+    let selectedWeek = this.sleepData.slice(startingIndex - 6, startingIndex + 1);
     let result = selectedWeek.map(entry => {
       let weeklySleep = {
         date: entry.date,

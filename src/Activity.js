@@ -27,7 +27,7 @@ class Activity {
   calcActivityStatsPerWeek(date) {
     let findEntryDate = this.activityData.find(entry => entry.date === date);
     let startingIndex = this.activityData.indexOf(findEntryDate)
-    let selectedWeek = this.activityData.slice(startingIndex - 7, startingIndex)
+    let selectedWeek = this.activityData.slice(startingIndex - 6, startingIndex + 1)
     let result = selectedWeek.map(entry => {
       let weeklyActivity = {
         date: entry.date,

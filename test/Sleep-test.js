@@ -51,7 +51,7 @@ describe('Sleep', () => {
   it('should calculate the hours slept in any given week', function() {
     sleep.sleepData = userWeekSleepData;
 
-    expect(sleep.calcSleepStatsPerWeek('2019/06/15')).to.eql([
+    expect(sleep.calcSleepStatsPerWeek('2019/06/22')).to.eql([
       {date: "2019/06/15", hours: 6.1, quality: 2.2},
       {date: "2019/06/16", hours: 4.1, quality: 3.8},
       {date: "2019/06/18", hours: 10.4, quality: 3.1},
