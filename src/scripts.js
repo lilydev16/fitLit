@@ -240,7 +240,7 @@ function createStepGoalChart(chartElement, user, data) {
   let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
-      labels: ['My Step Goal', 'Avg. Step Goal of all users'],
+      labels: ['My Step Goal', 'Avg. Step Goal'],
       datasets: [{
         label: 'Step Goal',
         data: [
