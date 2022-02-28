@@ -293,6 +293,10 @@ main {
   width: 50%;
 }
 
+.button {
+  cursor: pointer;
+}
+
 .return-to-main-btn-container {
   display: flex;
   flex-direction: column;
