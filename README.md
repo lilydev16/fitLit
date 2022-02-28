@@ -23,6 +23,7 @@ FitLit is an application that tracks and displays fitness data in an easy to rea
 * Webpack
 * Mocha/Chai
 * Chart.js
+* Lighthouse Audit
 
 ---
 ## Installation/Set-Up
@@ -80,7 +81,7 @@ Two widgets are sued to represent activity data:
 * One widget contains the number of steps, minutes active, and miles walked for the current date.
 * One widget contains the data for all of the activity stats over a 7 day period.
 ---
-## Features:
+## Features
 
 * Fetching and displaying data from an API
 * POSTing new information to the corresponding APIs via form input
