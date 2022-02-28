@@ -23,10 +23,10 @@ class User {
 
   sortArray(array) {
     const sortedArray = array.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date)
-    })
-    return sortedArray
-  }
+      return new Date(a.date) - new Date(b.date);
+    });
+    return sortedArray;
+  };
 
   createNewHydrationData() {
     const newHydration = new Hydration(this.sortArray(this.userHydration));
@@ -44,7 +44,7 @@ class User {
     const newActivity = new Activity(this.sortArray(this.userActivity));
     this.userActivity = newActivity;
     return this.userActivity;
-  }
+  };
 };
 
 export default User;

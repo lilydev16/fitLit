@@ -1,33 +1,33 @@
 class Activity {
   constructor(userActivityData) {
     this.activityData = userActivityData
-  }
+  };
 
   calculateMilesPerDay(date, currentUser) {
-    const todayData = this.activityData.find(activity => activity.date === date)
-    const todayMiles = todayData.numSteps * currentUser.strideLength / 5280
-    return Math.round(10 * todayMiles) / 10
-  }
+    const todayData = this.activityData.find(activity => activity.date === date);
+    const todayMiles = todayData.numSteps * currentUser.strideLength / 5280;
+    return Math.round(10 * todayMiles) / 10;
+  };
 
   calcActivityDailyStats(date, type) {
     const dailyData = this.activityData.find(activity => activity.date === date);
-    return dailyData[type]
-  }
+    return dailyData[type];
+  };
 
   minutesActiveAveragePerWeek(date) {
     let findEntryDate = this.activityData.find(entry => entry.date === date);
-    let startingIndex = this.activityData.indexOf(findEntryDate)
-    let selectedWeek = this.activityData.slice(startingIndex, startingIndex + 7)
+    let startingIndex = this.activityData.indexOf(findEntryDate);
+    let selectedWeek = this.activityData.slice(startingIndex, startingIndex + 7);
     let result = selectedWeek.reduce((sum, entry) => {
-      return sum += entry.minutesActive
-    }, 0)
-    return result / selectedWeek.length
-  }
+      return sum += entry.minutesActive;
+    }, 0);
+    return result / selectedWeek.length;
+  };
 
   calcActivityStatsPerWeek(date) {
     let findEntryDate = this.activityData.find(entry => entry.date === date);
-    let startingIndex = this.activityData.indexOf(findEntryDate)
-    let selectedWeek = this.activityData.slice(startingIndex - 6, startingIndex + 1)
+    let startingIndex = this.activityData.indexOf(findEntryDate);
+    let selectedWeek = this.activityData.slice(startingIndex - 6, startingIndex + 1);
     let result = selectedWeek.map(entry => {
       let weeklyActivity = {
         date: entry.date,
@@ -35,9 +35,9 @@ class Activity {
         minActive: entry.minutesActive,
         stairs: entry.flightsOfStairs
       }
-      return weeklyActivity
-    })
-    return result
+      return weeklyActivity;
+    });
+    return result;
   };
 
   reachedStepGoal(date, currentUser) {
@@ -47,23 +47,17 @@ class Activity {
       } else {
         return false
       }
-    }
+    };
 
     filterStepGoalWins(currentUser) {
-      const exceedGoal = this.activityData.filter(activity => activity.numSteps > currentUser.dailyStepGoal)
-      return exceedGoal.map(activity => activity.date)
-    }
+      const exceedGoal = this.activityData.filter(activity => activity.numSteps > currentUser.dailyStepGoal);
+      return exceedGoal.map(activity => activity.date);
+    };
 
     findClimbingRecord() {
-      const climbData = this.activityData.map(activity => activity.flightsOfStairs)
-      return Math.max(...climbData)
-    }
-  }
-
-
-
-
-
-
+      const climbData = this.activityData.map(activity => activity.flightsOfStairs);
+      return Math.max(...climbData);
+    };
+  };
 
 export default Activity;

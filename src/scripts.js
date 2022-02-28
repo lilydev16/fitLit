@@ -2,7 +2,7 @@ import './css/styles.css';
 import './images/turing-logo.png';
 import UserRepository from './UserRepository';
 import fetchCalls from './apiCalls';
-
+import domUpdates from './domUpdates';
 
 //Query Selectors -----------------------------------------------------------------------------
 
@@ -29,7 +29,6 @@ const todayActivitySteps = document.getElementById('todayActivitySteps');
 const todayActivityMinutes = document.getElementById('todayActivityMinutes');
 const todayActivityMiles = document.getElementById('todayActivityMiles');
 const weeklyActivityStats = document.getElementById('weeklyActivityStats')
-
 const activityForm = document.getElementById('activityForm');
 const hydrationForm = document.getElementById('hydrationForm');
 const sleepForm = document.getElementById('sleepForm');
@@ -37,12 +36,10 @@ const activityUserID = document.getElementById('activityUserID');
 const hydrationUserID = document.getElementById('hydrationUserID');
 const sleepUserID = document.getElementById('sleepUserID');
 const submissionMessage = document.getElementById('submissionMessage')
-
 const returnToMainButton = document.getElementById('returnToMain')
 const inputDataButton = document.getElementById('inputDataButton')
 const formSection = document.getElementById('formSection')
 const mainSection = document.getElementById('mainSection')
-
 const activivtyDate = document.getElementById('activityDate');
 const activityNumSteps = document.getElementById('numSteps');
 const activityMinActive = document.getElementById('minutesActive');
@@ -56,27 +53,28 @@ const sleepQuality = document.getElementById('sleepQuality');
 //Event Listeners -------------------------------------------------------------------------------------
 
 window.addEventListener('load', loadRandomUser);
-activityForm.addEventListener('submit', packageNewActivityData)
-hydrationForm.addEventListener('submit', packageNewHydrationData)
-sleepForm.addEventListener('submit', packageNewSleepData)
-returnToMainButton.addEventListener('click', returnToMain)
-inputDataButton.addEventListener('click', goToForms)
+activityForm.addEventListener('submit', packageNewActivityData);
+hydrationForm.addEventListener('submit', packageNewHydrationData);
+sleepForm.addEventListener('submit', packageNewSleepData);
+returnToMainButton.addEventListener('click', returnToMain);
+inputDataButton.addEventListener('click', goToForms);
 
 //functions -------------------------------------------------------------------------------------------
+
 function loadRandomUser() {
   loadPage(randomizeId());
-}
+};
 
 function loadCurrentUser() {
   destroyCharts();
   loadPage(parseInt(activityUserID.innerText));
-}
+};
 
 function returnToMain() {
-  formSection.classList.add('hidden')
-  mainSection.classList.remove('hidden')
+  formSection.classList.add('hidden');
+  mainSection.classList.remove('hidden');
   loadCurrentUser();
-}
+};
 
 function destroyCharts() {
   const chart0 = Chart.getChart('compareStepGoalChart');
@@ -87,13 +85,13 @@ function destroyCharts() {
   chart1.destroy();
   chart2.destroy();
   chart3.destroy();
-}
+};
 
 function goToForms() {
-  mainSection.classList.add('hidden')
-  formSection.classList.remove('hidden')
-  resetSubmissionMessage()
-}
+  mainSection.classList.add('hidden');
+  formSection.classList.remove('hidden');
+  resetSubmissionMessage();
+};
 
 function loadPage(id) {
   returnPromise().then(allData => {
@@ -101,7 +99,7 @@ function loadPage(id) {
     loadUserProfile(userRepository, id);
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
-    loadActivityData(userRepository)
+    loadActivityData(userRepository);
   });
 };
 
@@ -109,7 +107,7 @@ function loadUserProfile(data, id) {
   createUser(data, id);
   updateWelcomeMessage(data.currentUser, data);
   updateUserProfile(data.currentUser, data);
-  updateFormUserID(data)
+  updateFormUserID(data);
 };
 
 function loadHydrationData(data) {
@@ -126,98 +124,96 @@ function loadSleepData(data) {
 };
 
 function loadActivityData(data) {
-  createActivityProfile(data)
-  displayTodaysActivity(data, data.currentUser)
-  displayWeeklyActivity(data)
-  createActivityCharts(data)
+  createActivityProfile(data);
+  displayTodaysActivity(data, data.currentUser);
+  displayWeeklyActivity(data);
+  createActivityCharts(data);
 };
 
 function createActivityCharts(data) {
-  createCompareDailyStepsChart(compareStepsChart, data)
-  createCompareActiveMinChart(compareActiveMinChart, data)
-  createCompareStairsChart(compareStairsChart, data)
-}
+  createCompareDailyStepsChart(compareStepsChart, data);
+  createCompareActiveMinChart(compareActiveMinChart, data);
+  createCompareStairsChart(compareStairsChart, data);
+};
 
 //API Handling -------------------------------------------------------------------------------------------------
 
 function returnPromise () {
-  const allUserData = fetchCalls.fetchData('users')
-  const allHydrationData = fetchCalls.fetchData('hydration')
-  const allSleepData = fetchCalls.fetchData('sleep')
-  const allActivityData = fetchCalls.fetchData('activity')
+  const allUserData = fetchCalls.fetchData('users');
+  const allHydrationData = fetchCalls.fetchData('hydration');
+  const allSleepData = fetchCalls.fetchData('sleep');
+  const allActivityData = fetchCalls.fetchData('activity');
   return Promise.all([allUserData, allHydrationData, allSleepData, allActivityData])
     .then(data => {
     let allData = {}
     allData.userData = data[0].userData;
     allData.hydrationData = data[1].hydrationData;
     allData.sleepData = data[2].sleepData;
-    allData.activityData = data[3].activityData
+    allData.activityData = data[3].activityData;
     return allData;
   });
-}
+};
 
 function handleApiErrors(error) {
   if (error.message === 'Failed to fetch'){
     window.alert("Ooops! Something went wrong. Please retry.");
-  }
+  };
 };
 
 function packageNewActivityData(e) {
-  e.preventDefault()
+  e.preventDefault();
   const newActivityData = {
     userID: parseInt(activityUserID.innerText),
     date: activityDate.value.split('-').join('/'),
     numSteps: parseInt(activityNumSteps.value),
     minutesActive: parseInt(activityMinActive.value),
     flightsOfStairs: parseInt(activityStairs.value),
-  }
-  fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
-  activityForm.reset()
-  displaySubmissionMessage()
-}
+  };
+  fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData);
+  activityForm.reset();
+  displaySubmissionMessage();
+};
 
 function packageNewHydrationData(e) {
-  e.preventDefault()
+  e.preventDefault();
   const newHydrationData = {
     userID: parseInt(hydrationUserID.innerText),
     date: hydrationDate.value.split('-').join('/'),
     numOunces: parseInt(hydrationOunces.value),
-  }
-  fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
-  hydrationForm.reset()
-  displaySubmissionMessage()
+  };
+  fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData);
+  hydrationForm.reset();
+  displaySubmissionMessage();
 };
 
 function packageNewSleepData(e) {
-  e.preventDefault()
+  e.preventDefault();
   const newSleepData = {
     userID: parseInt(sleepUserID.innerText),
     date: sleepDate.value.split('-').join('/'),
     hoursSlept: parseInt(sleepHours.value),
     sleepQuality: parseInt(sleepQuality.value),
-  }
-  fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
-  sleepForm.reset()
-  displaySubmissionMessage()
+  };
+  fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData);
+  sleepForm.reset();
+  displaySubmissionMessage();
 };
 
-
 function displaySubmissionMessage() {
-  submissionMessage.classList.remove('hidden')
-  returnToMainButton.innerText = "You're awesome! Back to main!"
-}
+  submissionMessage.classList.remove('hidden');
+  returnToMainButton.innerText = "You're awesome! Back to main!";
+};
 
 function resetSubmissionMessage() {
-  submissionMessage.classList.add('hidden')
-  returnToMainButton.innerText = "Return to Main"
-}
-
+  submissionMessage.classList.add('hidden');
+  returnToMainButton.innerText = "Return to Main";
+};
 
 //User Profile -------------------------------------------------------------------------------------------------
 
 function createUser(data, id) {
   const newUser = data.createNewUser(id);
-  return newUser
+  return newUser;
 };
 
 function updateWelcomeMessage(user, data) {
@@ -226,11 +222,7 @@ function updateWelcomeMessage(user, data) {
 };
 
 function updateUserProfile(user, data) {
-  userName.innerText = `${user.name}`;
-  userAddress.innerText = `${user.address}`;
-  userEmail.innerText = `${user.email}`;
-  userStride.innerText = `${user.strideLength}`;
-  userStepGoal.innerText = `${user.dailyStepGoal}`;
+  domUpdates.updateUserProfile(user, data);
   createStepGoalChart(compareStepGoalChart, user, data);
   updateFriends(data);
 };
@@ -256,14 +248,12 @@ function createStepGoalChart(chartElement, user, data) {
       }]
     }
   });
-  // newChart.update();
-  // newChart.destroy();
 };
 
 function updateFriends(data) {
-  friendList.innerHTML = '';
+  domUpdates.resetInnerHtml(friendList);
   return data.createUserFriendList().forEach((friend) => {
-    friendList.innerHTML += `<p class="friend">${friend}</p>`
+    domUpdates.updateFriends(friend);
   });
 };
 
@@ -273,14 +263,15 @@ function randomizeId() {
 
 function getCurrentUserDate(data, dataType, array) {
   const index = data.currentUser[dataType][array].length - 1;
-  return data.currentUser[dataType][array][index].date
-}
+  return data.currentUser[dataType][array][index].date;
+};
 
 function updateFormUserID(data) {
   activityUserID.innerText = data.currentUser.id;
   hydrationUserID.innerText = data.currentUser.id;
   sleepUserID.innerText = data.currentUser.id;
-}
+};
+
 //Hydration -------------------------------------------------------------------------------------------------
 
 function createHydrationProfile(data) {
@@ -291,24 +282,15 @@ function createHydrationProfile(data) {
 function displayTodaysHydration(data) {
   const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
   const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay(currentDate);
-  todayHydration.innerText = `${todayHydrationAmt}`;
+  domUpdates.displayTodaysHydration(todayHydrationAmt);
 };
 
 function displayWeeklyHydration(data) {
   const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
   const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek(currentDate);
-  weeklyHydrationStats.innerHTML = '';
+  domUpdates.resetInnerHtml(weeklyHydrationStats);
   weeklyHydrationAmt.forEach((entry, i) => {
-    weeklyHydrationStats.innerHTML += `
-    <table class="hydration-table">
-      <tr>
-        <th>Date</th>
-        <th>Fluid Ounces</th>
-      </tr>
-      <tr>
-        <td>${weeklyHydrationAmt[i].date}</td>
-        <td>${weeklyHydrationAmt[i].ounces}</td>
-      </tr>`;
+    domUpdates.displayWeeklyHydration(weeklyHydrationAmt, i);
   });
 };
 
@@ -363,8 +345,8 @@ function createActivityProfile(data) {
 
 function displayTodaysActivity(data, user) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
-  const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps")
-  const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
+  const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps");
+  const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive");
   const todayMiles = data.currentUser.userActivity.calculateMilesPerDay(currentDate, user);
   todayActivitySteps.innerText = todaySteps;
   todayActivityMinutes.innerText = todayMinActive;
@@ -395,7 +377,7 @@ function displayWeeklyActivity(data) {
 
 function createCompareDailyStepsChart(chartElement, data) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
-  const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps")
+  const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps");
   const avgUserSteps = data.calcAvgStatsForAllUsers('numSteps', 'activityData');
 
   let newChart = new Chart(chartElement, {
@@ -417,14 +399,11 @@ function createCompareDailyStepsChart(chartElement, data) {
       }]
     }
   });
-  // newChart.update();
-  // newChart.destroy();
 };
-
 
 function createCompareActiveMinChart(chartElement, data) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
-  const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
+  const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive");
   const avgUserActiveMin = data.calcAvgStatsForAllUsers('minutesActive', 'activityData');
 
 let newChart = new Chart(chartElement, {
@@ -446,14 +425,11 @@ let newChart = new Chart(chartElement, {
       }]
     }
   });
-  // newChart.update();
-  // newChart.destroy();
-}
-
+};
 
 function createCompareStairsChart(chartElement, data) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
-  const todayStairs = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "flightsOfStairs")
+  const todayStairs = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "flightsOfStairs");
   const avgUserStairs = data.calcAvgStatsForAllUsers('flightsOfStairs', 'activityData');
 
 let newChart = new Chart(chartElement, {
@@ -475,17 +451,6 @@ let newChart = new Chart(chartElement, {
       }]
     }
   });
-  // newChart.update();
-  // newChart.destroy();
-}
-
-
-
-
-
-
-
-
-
+};
 
 export default handleApiErrors;
