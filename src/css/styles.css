@@ -23,7 +23,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 10%;
-  background-color: rgb(20 184 166);
+  background-color: #329a8a;
   color: white;
   padding-left: 20px;
   padding-right: 20px;
@@ -36,6 +36,11 @@ main {
 
 .welcome-message {
   font-size: 45px;
+}
+
+.date,
+.logo {
+  font-size: 25px;
 }
 
 .widget-section,
@@ -77,8 +82,21 @@ main {
 }
 
 .activity-grid {
-  /* border: solid black; */
+  display: flex;
   align-self: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(213, 230, 247);
+  border-radius: 5px;
+  padding: 10px;
+  height: 35%;
+  width: 75%;
+  background:linear-gradient(#F8C494, #FAB26D);
+}
+
+.today-activity {
+  font-size: 25px;
 }
 
 .today-hydration-flex {
@@ -121,11 +139,9 @@ main {
   font-size: 25px;
 }
 
-
 .activity-chart {
   height: 95%;
 }
-
 
 .weekly-stats,
 .today-sleep {
@@ -151,17 +167,17 @@ main {
 .hydration-table th,
 .activity-table th,
 .sleep-table th {
-  background-color: #a0bfd3;
+  background-color: rgba(88, 173, 201, 0.6);
   font-weight: bolder;
   border-radius: 5px;
 }
 
 .sleep-table th {
-  background-color: #f5cad4;
+  background-color: rgba(243, 126, 154, 0.6);
 }
 
 .activity-table th {
-  background-color: #B5F9DA;
+  background-color: rgba(80, 226, 188, 0.6);
 }
 
 .hydration-table tr:last-child td:first-child,
@@ -186,7 +202,7 @@ main {
   padding: 10px;
   padding-bottom: 20px;
   margin-bottom: 10px;
-  height: 30%;
+  height: 40%;
   border-radius: 5px;
 }
 
@@ -198,27 +214,41 @@ main {
 
 .user-title {
   font-size: 11px;
-  color: #C6C6C6;
+  color: black;
+  font-weight: lighter;
 }
 
 .user-info {
   font-size: 12px;
+  font-weight: 400;
 }
 
 .input-data-button {
-  height: 80%;
+  height: 15%;
   width: 70%;
+  margin-top: 30px;
   align-self: center;
+  font-style: italic;
+  border-radius: 5px;
+  border: 1px solid #C6C6C6;
+  background-color: #c5ece6;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  cursor: pointer;
 }
 
+.input-data-button:hover {
+  border: 1px solid #767676;
+}
 
 .user-friends {
   text-align: center;
 }
 
 .compare-data {
-  height: 40%;
-  margin-bottom: 35px;
+  height: 30%;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #C6C6C6;
 }
 
 .chart-container {
@@ -229,9 +259,10 @@ main {
 
 .user-friends {
   display: flex;
+  justify-content: center;
+  border-top: 1px solid #C6C6C6;
   flex-direction: column;
-  border-radius: 5px;
-  height: 30%;
+  height: 25%;
 }
 
 .friend {
@@ -240,8 +271,20 @@ main {
 }
 
 .form-section {
-  height: 100%;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0%;
+  height: 70%;
+  width: 97%;
+}
+
+.form-widget-container {
+  display: flex;
+  justify-content: space-between;
+  height: 70%;
+  width: 90%;
 }
 
 .form {
@@ -249,12 +292,47 @@ main {
   justify-content: space-around;
   align-items: center;
   height: 70%;
-  width: 90%;
-  padding-left: 10px;
+  width: 30%;
+  margin-top: 20px;
 }
 
 .form input {
   width: 50%;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.return-to-main-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  width: 70%;
+}
+
+.submission-message {
+  font-size: 30px;
+}
+
+.return-to-main-button {
+  height: 40%;
+  width: 50%;
+  margin-top: 30px;
+  align-self: center;
+  font-style: italic;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid #C6C6C6;
+  background-color: #c5ece6;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+}
+
+.return-to-main-button:hover {
+  border: 1px solid #767676;
 }
 
 .hidden {

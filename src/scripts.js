@@ -36,6 +36,7 @@ const sleepForm = document.getElementById('sleepForm');
 const activityUserID = document.getElementById('activityUserID');
 const hydrationUserID = document.getElementById('hydrationUserID');
 const sleepUserID = document.getElementById('sleepUserID');
+const submissionMessage = document.getElementById('submissionMessage')
 
 const returnToMainButton = document.getElementById('returnToMain')
 const inputDataButton = document.getElementById('inputDataButton')
@@ -91,6 +92,7 @@ function destroyCharts() {
 function goToForms() {
   mainSection.classList.add('hidden')
   formSection.classList.remove('hidden')
+  resetSubmissionMessage()
 }
 
 function loadPage(id) {
@@ -169,9 +171,9 @@ function packageNewActivityData(e) {
     minutesActive: parseInt(activityMinActive.value),
     flightsOfStairs: parseInt(activityStairs.value),
   }
-
   fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
   activityForm.reset()
+  displaySubmissionMessage()
 }
 
 function packageNewHydrationData(e) {
@@ -181,9 +183,9 @@ function packageNewHydrationData(e) {
     date: hydrationDate.value.split('-').join('/'),
     numOunces: parseInt(hydrationOunces.value),
   }
-
   fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
   hydrationForm.reset()
+  displaySubmissionMessage()
 };
 
 function packageNewSleepData(e) {
@@ -194,10 +196,23 @@ function packageNewSleepData(e) {
     hoursSlept: parseInt(sleepHours.value),
     sleepQuality: parseInt(sleepQuality.value),
   }
-
   fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
   sleepForm.reset()
+  displaySubmissionMessage()
 };
+
+
+function displaySubmissionMessage() {
+  submissionMessage.classList.remove('hidden')
+  returnToMainButton.innerText = "You're awesome! Back to main!"
+}
+
+function resetSubmissionMessage() {
+  submissionMessage.classList.add('hidden')
+  returnToMainButton.innerText = "Return to Main"
+}
+
+
 //User Profile -------------------------------------------------------------------------------------------------
 
 function createUser(data, id) {
@@ -225,7 +240,7 @@ function createStepGoalChart(chartElement, user, data) {
   let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
-      labels: ['My Step Goal', 'Avg. Step Goal of all users'],
+      labels: ['My Step Goal', 'Avg. Step Goal'],
       datasets: [{
         label: 'Step Goal',
         data: [
@@ -233,7 +248,7 @@ function createStepGoalChart(chartElement, user, data) {
           stepAverage
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
+          'rgba(250, 99, 132, 0.6)',
           'rgba(153, 102, 255, 0.6)'
         ],
         hoverBorderWidth: 2,
@@ -394,8 +409,8 @@ function createCompareDailyStepsChart(chartElement, data) {
           avgUserSteps
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(153, 102, 255, 0.6)'
+          'rgba(6, 214, 160)',
+          'rgba(180, 242, 226)'
         ],
         hoverBorderWidth: 2,
         hoverBorderColor: '#777'
@@ -423,8 +438,8 @@ let newChart = new Chart(chartElement, {
           avgUserActiveMin
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(153, 102, 255, 0.6)'
+          'rgba(17, 138, 178)',
+          'rgba(183, 219, 231)'
         ],
         hoverBorderWidth: 2,
         hoverBorderColor: '#777'
@@ -452,8 +467,8 @@ let newChart = new Chart(chartElement, {
           avgUserStairs
         ],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(153, 102, 255, 0.6)'
+          'rgba(239, 71, 111)',
+          'rgba(250, 199, 211)'
         ],
         hoverBorderWidth: 2,
         hoverBorderColor: '#777'

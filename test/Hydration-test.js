@@ -19,7 +19,8 @@ describe('HydrationProfile', () => {
     {userID: 2, date: '2020/01/19', numOunces: 56},
     {userID: 2, date: '2020/01/20', numOunces: 50},
     {userID: 2, date: '2020/01/21', numOunces: 85},
-    {userID: 2, date: '2020/01/22', numOunces: 93}];
+    {userID: 2, date: '2020/01/22', numOunces: 93},
+    {userID: 2, date: '2020/01/23', numOunces: 99}];
 
   userHydration = new Hydration(hydrationData);
   
@@ -47,7 +48,8 @@ describe('HydrationProfile', () => {
 
   it('should be able to calculate ounces of water per day in most recent week', function() {
     userHydration.hydrationData = userWeekSet;
-    expect(userHydration.calcOuncesPerWeek())
+
+    expect(userHydration.calcOuncesPerWeek("2020/01/22"))
       .to.eql([
         {date: "2020/01/16", ounces: 44},
         {date: "2020/01/17", ounces: 86},

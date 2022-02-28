@@ -9,11 +9,6 @@ class Activity {
     return Math.round(10 * todayMiles) / 10
   }
 
-  // minutesActivePerDay(date) {
-  //   const todayMinutes = this.activityData.find(activity => activity.date === date)
-  //   return todayMinutes.minutesActive
-  // }
-
   calcActivityDailyStats(date, type) {
     const dailyData = this.activityData.find(activity => activity.date === date);
     return dailyData[type]
@@ -32,7 +27,7 @@ class Activity {
   calcActivityStatsPerWeek(date) {
     let findEntryDate = this.activityData.find(entry => entry.date === date);
     let startingIndex = this.activityData.indexOf(findEntryDate)
-    let selectedWeek = this.activityData.slice(startingIndex - 7, startingIndex)
+    let selectedWeek = this.activityData.slice(startingIndex - 6, startingIndex + 1)
     let result = selectedWeek.map(entry => {
       let weeklyActivity = {
         date: entry.date,

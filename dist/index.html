@@ -7,46 +7,52 @@
   </head>
   <body>
     <nav class="main-header">
-      <h1>FitLit</h1>
-      <p class="welcome-message" id="welcomeMessage"></p>
-      <p id="date"></p>
+      <p class="logo">FitLit</p>
+      <h1 class="welcome-message" id="welcomeMessage"></h1>
+      <p class="date" id="date"></p>
     </nav>
 
     <section class="form-section hidden" id="formSection">
-      <form class="activity-form widget form" id="activityForm" >
-        <h2 class="form-title">Log Today's Activity</h2>
-        <p class="hidden" id="activityUserID"></p>
-        <label for="date">Date</label>
-        <input  class="activity-input" type="date" name="date" id="activityDate" required></input>
-        <label for="numSteps">Number of Steps</label>
-        <input class="activity-input" type="number" name="numSteps" id="numSteps" min="0" required></input>
-        <label for="minutesActive">Minutes Active</label>
-        <input class="activity-input" type="number" name="minutesActive" id="minutesActive" min="0" required></input>
-        <label for="flightsOfStairs">Flights of Stairs</label>
-        <input class="activity-input" type="number" name="flightsOfStairs" id="flightsOfStairs" min="0" required></input>
-        <button class="button" type="submit" id="submitActivity">Submit</button>
-      </form>
-      <form class="hydration-form widget form" id="hydrationForm">
-        <h2 class="form-title">Log Today's Hydration</h2>
-        <p class="hidden" id="hydrationUserID"></p>
-        <label for="date">Date</label>
-        <input type="date" name="date" id="hydrationDate" required></input>
-        <label for="numOunces">Number of Ounces</label>
-        <input type="number" name="numOunces" id="numOunces" min="0" required></input>
-        <button class="button" type="submit" id="submitHydration">Submit</button>
-      </form>
-      <form class="sleep-form widget form" id="sleepForm">
-        <h2 class="form-title">Log Today's Sleep</h2>
-        <p class="hidden" id="sleepUserID"></p>
-        <label for="date">Date</label>
-        <input type="date" name="date" id="sleepDate" required></input>
-        <label for="hoursSlept">Hours Slept</label>
-        <input type="number" name="hoursSlept" id="hoursSlept" min="0" max="24" required></input>
-        <label for="sleepQuality">Sleep Quality</label>
-        <input type="number" name="sleepQuality" id="sleepQuality" min="0" max="5" required></input>
-        <button class="button" type="submit" id="submitSleep">Submit</button>
-      </form>
-      <button class="button" type="button" id="returnToMain">Return to Main</button>
+      <section class="form-widget-container">
+        <form class="activity-form widget form" id="activityForm" >
+          <h2 class="form-title">Log Today's Activity</h2>
+          <p class="hidden" id="activityUserID"></p>
+          <label for="date">Date</label>
+          <input  class="activity-input" type="date" name="date" id="activityDate" required></input>
+          <label for="numSteps">Number of Steps</label>
+          <input class="activity-input" type="number" name="numSteps" id="numSteps" min="0" required></input>
+          <label for="minutesActive">Minutes Active</label>
+          <input class="activity-input" type="number" name="minutesActive" id="minutesActive" min="0" required></input>
+          <label for="flightsOfStairs">Flights of Stairs</label>
+          <input class="activity-input" type="number" name="flightsOfStairs" id="flightsOfStairs" min="0" required></input>
+          <button class="button" type="submit" id="submitActivity">Submit</button>
+        </form>
+        <form class="hydration-form widget form" id="hydrationForm">
+          <h2 class="form-title">Log Today's Hydration</h2>
+          <p class="hidden" id="hydrationUserID"></p>
+          <label for="date">Date</label>
+          <input type="date" name="date" id="hydrationDate" required></input>
+          <label for="numOunces">Number of Ounces</label>
+          <input type="number" name="numOunces" id="numOunces" min="0" required></input>
+          <button class="button" type="submit" id="submitHydration">Submit</button>
+        </form>
+        <form class="sleep-form widget form" id="sleepForm">
+          <h2 class="form-title">Log Today's Sleep</h2>
+          <p class="hidden" id="sleepUserID"></p>
+          <label for="date">Date</label>
+          <input type="date" name="date" id="sleepDate" required></input>
+          <label for="hoursSlept">Hours Slept</label>
+          <input type="number" name="hoursSlept" id="hoursSlept" min="0" max="24" required></input>
+          <label for="sleepQuality">Sleep Quality</label>
+          <input type="number" name="sleepQuality" id="sleepQuality" min="0" max="5" required></input>
+          <button class="button" type="submit" id="submitSleep">Submit</button>
+          </div>
+        </form>
+      </section>
+      <div class="return-to-main-btn-container">
+        <p class="submission-message hidden" id="submissionMessage">New data logged</p>
+        <button class="return-to-main-button" type="button" id="returnToMain">Return to Main</button>
+      </div>
     </section>
 
     <main id="mainSection">
@@ -144,7 +150,7 @@
             <p class="user-title">Step Goal</p>
             <p class="user-step-goal user-info user-stats" id="userStepGoal"></p>
           </div>
-          <button class=input-data-button id="inputDataButton">Enter your stats here</button>
+          <button class=input-data-button id="inputDataButton">Log today's stats!</button>
         </section>
         <section class="compare-data">
           <div class="chart-container">
