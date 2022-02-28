@@ -67,6 +67,7 @@ function loadRandomUser() {
 }
 
 function loadCurrentUser() {
+  destroyCharts();
   loadPage(parseInt(activityUserID.innerText));
 }
 
@@ -74,6 +75,17 @@ function returnToMain() {
   formSection.classList.add('hidden')
   mainSection.classList.remove('hidden')
   loadCurrentUser();
+}
+
+function destroyCharts() {
+  const chart0 = Chart.getChart('compareStepGoalChart');
+  const chart1 = Chart.getChart('compareStepsChart');
+  const chart2 = Chart.getChart('compareActiveMinChart');
+  const chart3 = Chart.getChart('compareStairsChart');
+  chart0.destroy();
+  chart1.destroy();
+  chart2.destroy();
+  chart3.destroy();
 }
 
 function goToForms() {
@@ -115,7 +127,7 @@ function loadActivityData(data) {
   createActivityProfile(data)
   displayTodaysActivity(data, data.currentUser)
   displayWeeklyActivity(data)
-  // createActivityCharts(data)
+  createActivityCharts(data)
 };
 
 function createActivityCharts(data) {
@@ -204,13 +216,13 @@ function updateUserProfile(user, data) {
   userEmail.innerText = `${user.email}`;
   userStride.innerText = `${user.strideLength}`;
   userStepGoal.innerText = `${user.dailyStepGoal}`;
-  // createStepGoalChart(compareStepGoalChart, user, data);
+  createStepGoalChart(compareStepGoalChart, user, data);
   updateFriends(data);
 };
 
 function createStepGoalChart(chartElement, user, data) {
   let stepAverage = data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData');
-  new Chart(chartElement, {
+  let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
       labels: ['My Step Goal', 'Avg. Step Goal of all users'],
@@ -229,6 +241,8 @@ function createStepGoalChart(chartElement, user, data) {
       }]
     }
   });
+  // newChart.update();
+  // newChart.destroy();
 };
 
 function updateFriends(data) {
@@ -364,13 +378,12 @@ function displayWeeklyActivity(data) {
   });
 };
 
-
 function createCompareDailyStepsChart(chartElement, data) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
   const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps")
   const avgUserSteps = data.calcAvgStatsForAllUsers('numSteps', 'activityData');
 
-  new Chart(chartElement, {
+  let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
       labels: ['My Steps', 'Avg. Steps'],
@@ -389,6 +402,8 @@ function createCompareDailyStepsChart(chartElement, data) {
       }]
     }
   });
+  // newChart.update();
+  // newChart.destroy();
 };
 
 
@@ -397,7 +412,7 @@ function createCompareActiveMinChart(chartElement, data) {
   const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
   const avgUserActiveMin = data.calcAvgStatsForAllUsers('minutesActive', 'activityData');
 
-new Chart(chartElement, {
+let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
       labels: ['My Active Minutes', 'Avg. Active Min'],
@@ -416,6 +431,8 @@ new Chart(chartElement, {
       }]
     }
   });
+  // newChart.update();
+  // newChart.destroy();
 }
 
 
@@ -424,7 +441,7 @@ function createCompareStairsChart(chartElement, data) {
   const todayStairs = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "flightsOfStairs")
   const avgUserStairs = data.calcAvgStatsForAllUsers('flightsOfStairs', 'activityData');
 
-new Chart(chartElement, {
+let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
       labels: ['Flights Climbed', 'Avg. Flights Climbed'],
@@ -443,6 +460,8 @@ new Chart(chartElement, {
       }]
     }
   });
+  // newChart.update();
+  // newChart.destroy();
 }
 
 
