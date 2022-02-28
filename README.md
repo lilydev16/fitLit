@@ -23,21 +23,24 @@ FitLit is an application that tracks and displays fitness data in an easy to rea
 * Webpack
 * Mocha/Chai
 * Chart.js
-* Lighthouse Audit
+* Lighthouse
 
 ---
 ## Installation/Set-Up
-Click this [link](https://github.com/maddielaw/FitLit) to view the gitHub repository.
-To view code on the text editor of your choice (I used atom to construct this code):
+* Click this [link](https://github.com/maddielaw/FitLit) to view the gitHub repository.
 
-`Clone` [this repository](https://github.com/maddielaw/FitLit) in your terminal by entering using `git clone https://github.com/maddielaw/FitLit` and then `cd FitLit`. Run `npm install` to download all necessary packages and dependencies. Finally, run `npm start` and copy and paste the URL that is provided next to the "Your Project is Running at" statement.
+* To view code on the text editor of your choice (I used atom to construct this code):
+
+* First: `Clone` [this repository](https://github.com/turingschool-examples/fitlit-api)in your terminal by entering `git clone https://github.com/turingschool-examples/fitlit-api` and then `cd fitlit/api`. Run `npm install` to download all necessary packages and dependencies. Finally, run `npm start` to run the server.
+
+* Second: `Clone` [this repository](https://github.com/maddielaw/FitLit) in your terminal by entering `git clone https://github.com/maddielaw/FitLit` and then `cd FitLit`. Run `npm install` to download all necessary packages and dependencies. Finally, run `npm start` and copy and paste the URL that is provided next to the "Your Project is Running at" statement.
 
 ---
 ## How To Use FitLit
 
 Currently, the FitLit Dashboard displays all information for a random user in our API databases, initiated on page load. The user information is separated into the following sections: user profile, friends list, activity data, hydration data, and sleep data.
 
-![gif](https://media.giphy.com/media/GgbmM5H1YPq9CqFd8P/giphy.gif)
+![chart](https://media.giphy.com/media/K9s7WJD3knjVFuv9HZ/giphy.gif)
 
 ### User Profile:
 
@@ -49,9 +52,7 @@ The user profile is located in the top right hand corner, and contains the follo
 * A comparison chart between the user's step goal and the average step goal of the FitLit community:
 * A button to navigate to the form submission page, upon which users can enter new stats for sleep, hydration, and activity data.
 
-![chart](https://media.giphy.com/media/K9s7WJD3knjVFuv9HZ/giphy.gif)
-
-## Data Submission Page
+### Data Submission Page
 
 Upon clicking the `Log today's stats` button in the user profile section, users will be directed to a page that contains forms for submitting Activity, Hydration, or Sleep data. Once all inputs are filled for a specific, the user may submit their new data, which is then POSTed to the locally hosted API. The user can then navigate back to the main page, which will reflect their newly posted data for the current date.
 
@@ -71,15 +72,16 @@ Two widgets are used to represent hydration data:
 
 ### Sleep Data
 
-Two widets are used to represent sleep data:
+Two widgets are used to represent sleep data:
 * One widget contains the hours slept, sleep quality, average sleep hours, and average sleep quality for the current date.
 * One widget contains the data for sleep hours and quality over a 7 day period.
 
-##Activity Data
+### Activity Data
 Two widgets are sued to represent activity data:
 * One widget contains the number of steps, minutes active, and miles walked for the current date.
 * One widget contains the data for all of the activity stats over a 7 day period.
 ---
+
 ## Features
 
 * Fetching and displaying data from an API
@@ -94,7 +96,10 @@ In the future, we plan to:
 
 * Add icons for all of the widgets
 * Add a user icon or photo for the current user and friends
-* Continue to refactor our scripts.js file to separate DOM updates into the domUpdates object, located in the domUpdates.js file.
+* Continue to refactor the scripts.js file to separate DOM updates into the domUpdates object, located in the domUpdates.js file
+* Design a step challenge between friends
+* Implement day.js
+* Responsive design
 
 
 ---
