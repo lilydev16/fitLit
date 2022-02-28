@@ -2,6 +2,7 @@ import './css/styles.css';
 import './images/turing-logo.png';
 import UserRepository from './UserRepository';
 import fetchCalls from './apiCalls';
+import domUpdates from './domUpdates';
 
 
 //Query Selectors -----------------------------------------------------------------------------
@@ -226,11 +227,7 @@ function updateWelcomeMessage(user, data) {
 };
 
 function updateUserProfile(user, data) {
-  userName.innerText = `${user.name}`;
-  userAddress.innerText = `${user.address}`;
-  userEmail.innerText = `${user.email}`;
-  userStride.innerText = `${user.strideLength}`;
-  userStepGoal.innerText = `${user.dailyStepGoal}`;
+  domUpdates.updateUserProfile(user, data)
   createStepGoalChart(compareStepGoalChart, user, data);
   updateFriends(data);
 };
