@@ -12,9 +12,10 @@
       <p id="date"></p>
     </nav>
 
-    <section class="form-section" id="formSection">
+    <section class="form-section hidden" id="formSection">
       <form class="activity-form widget form" id="activityForm" >
         <h2 class="form-title">Log Today's Activity</h2>
+        <p class="hidden" id="activityUserID"></p>
         <label for="date">Date</label>
         <input  class="activity-input" type="date" name="date" id="activityDate" required></input>
         <label for="numSteps">Number of Steps</label>
@@ -27,6 +28,7 @@
       </form>
       <form class="hydration-form widget form" id="hydrationForm">
         <h2 class="form-title">Log Today's Hydration</h2>
+        <p class="hidden" id="hydrationUserID"></p>
         <label for="date">Date</label>
         <input type="date" name="date" id="hydrationDate" required></input>
         <label for="numOunces">Number of Ounces</label>
@@ -35,6 +37,7 @@
       </form>
       <form class="sleep-form widget form" id="sleepForm">
         <h2 class="form-title">Log Today's Sleep</h2>
+        <p class="hidden" id="sleepUserID"></p>
         <label for="date">Date</label>
         <input type="date" name="date" id="sleepDate" required></input>
         <label for="hoursSlept">Hours Slept</label>
@@ -46,7 +49,7 @@
       <button class="button" type="button" id="returnToMain">Return to Main</button>
     </section>
 
-    <main class="hidden" id="mainSection">
+    <main id="mainSection">
       <section class="widget-section">
         <section class="widget" id="activity">
           <p class="activity-title title" id="activityTitle">Activity</p>
@@ -56,7 +59,7 @@
               <p class="today-activity-title">steps</p>
             </div>
             <div class="today-activity-grid-steps activity-grid">
-              <p class="today-activity" id="todayActivityMinutes"></git commp>
+              <p class="today-activity" id="todayActivityMinutes"></p>
               <p class="today-activity-title">minutes</p>
             </div>
             <div class="today-activity-grid-steps activity-grid">

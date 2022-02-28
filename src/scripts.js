@@ -33,6 +33,9 @@ const weeklyActivityStats = document.getElementById('weeklyActivityStats')
 const activityForm = document.getElementById('activityForm');
 const hydrationForm = document.getElementById('hydrationForm');
 const sleepForm = document.getElementById('sleepForm');
+const activityUserID = document.getElementById('activityUserID');
+const hydrationUserID = document.getElementById('hydrationUserID');
+const sleepUserID = document.getElementById('sleepUserID');
 
 const returnToMainButton = document.getElementById('returnToMain')
 const inputDataButton = document.getElementById('inputDataButton')
@@ -51,7 +54,7 @@ const sleepQuality = document.getElementById('sleepQuality');
 
 //Event Listeners -------------------------------------------------------------------------------------
 
-window.addEventListener('load', loadPage);
+window.addEventListener('load', loadRandomUser);
 activityForm.addEventListener('submit', packageNewActivityData)
 hydrationForm.addEventListener('submit', packageNewHydrationData)
 sleepForm.addEventListener('submit', packageNewSleepData)
@@ -59,10 +62,30 @@ returnToMainButton.addEventListener('click', returnToMain)
 inputDataButton.addEventListener('click', goToForms)
 
 //functions -------------------------------------------------------------------------------------------
+function loadRandomUser() {
+  loadPage(randomizeId());
+}
+
+function loadCurrentUser() {
+  destroyCharts();
+  loadPage(parseInt(activityUserID.innerText));
+}
 
 function returnToMain() {
   formSection.classList.add('hidden')
   mainSection.classList.remove('hidden')
+  loadCurrentUser();
+}
+
+function destroyCharts() {
+  const chart0 = Chart.getChart('compareStepGoalChart');
+  const chart1 = Chart.getChart('compareStepsChart');
+  const chart2 = Chart.getChart('compareActiveMinChart');
+  const chart3 = Chart.getChart('compareStairsChart');
+  chart0.destroy();
+  chart1.destroy();
+  chart2.destroy();
+  chart3.destroy();
 }
 
 function goToForms() {
@@ -70,20 +93,21 @@ function goToForms() {
   formSection.classList.remove('hidden')
 }
 
-function loadPage() {
+function loadPage(id) {
   returnPromise().then(allData => {
     const userRepository = new UserRepository(allData);
-    loadUserProfile(userRepository);
+    loadUserProfile(userRepository, id);
     loadHydrationData(userRepository);
     loadSleepData(userRepository);
     loadActivityData(userRepository)
   });
 };
 
-function loadUserProfile(data) {
-  createUser(data);
+function loadUserProfile(data, id) {
+  createUser(data, id);
   updateWelcomeMessage(data.currentUser, data);
   updateUserProfile(data.currentUser, data);
+  updateFormUserID(data)
 };
 
 function loadHydrationData(data) {
@@ -139,34 +163,36 @@ function handleApiErrors(error) {
 function packageNewActivityData(e) {
   e.preventDefault()
   const newActivityData = {
-    userID: 50,
-    date: activityDate.value,
-    numSteps: activityNumSteps.value,
-    minutesActive: activityMinActive.value,
-    flightsOfStairs: activityStairs.value,
+    userID: parseInt(activityUserID.innerText),
+    date: activityDate.value.split('-').join('/'),
+    numSteps: parseInt(activityNumSteps.value),
+    minutesActive: parseInt(activityMinActive.value),
+    flightsOfStairs: parseInt(activityStairs.value),
   }
 
   fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
   activityForm.reset()
 }
 
-function packageNewHydrationData() {
+function packageNewHydrationData(e) {
+  e.preventDefault()
   const newHydrationData = {
-    userID: 50,
-    date: hydrationDate.value,
-    numOunces: hydrationOunces.value,
+    userID: parseInt(hydrationUserID.innerText),
+    date: hydrationDate.value.split('-').join('/'),
+    numOunces: parseInt(hydrationOunces.value),
   }
 
   fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
   hydrationForm.reset()
 };
 
-function packageNewSleepData() {
+function packageNewSleepData(e) {
+  e.preventDefault()
   const newSleepData = {
-    userID: 50,
-    date: sleepDate.value,
-    sleepHours: sleepHours.value,
-    sleepQuality: sleepQuality.value,
+    userID: parseInt(sleepUserID.innerText),
+    date: sleepDate.value.split('-').join('/'),
+    hoursSlept: parseInt(sleepHours.value),
+    sleepQuality: parseInt(sleepQuality.value),
   }
 
   fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
@@ -174,8 +200,8 @@ function packageNewSleepData() {
 };
 //User Profile -------------------------------------------------------------------------------------------------
 
-function createUser (data) {
-  const newUser = data.createNewUser(randomizeId());
+function createUser(data, id) {
+  const newUser = data.createNewUser(id);
   return newUser
 };
 
@@ -196,7 +222,7 @@ function updateUserProfile(user, data) {
 
 function createStepGoalChart(chartElement, user, data) {
   let stepAverage = data.calcAvgStatsForAllUsers('dailyStepGoal', 'userData');
-  new Chart(chartElement, {
+  let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
       labels: ['My Step Goal', 'Avg. Step Goal of all users'],
@@ -215,9 +241,12 @@ function createStepGoalChart(chartElement, user, data) {
       }]
     }
   });
+  // newChart.update();
+  // newChart.destroy();
 };
 
 function updateFriends(data) {
+  friendList.innerHTML = '';
   return data.createUserFriendList().forEach((friend) => {
     friendList.innerHTML += `<p class="friend">${friend}</p>`
   });
@@ -232,6 +261,11 @@ function getCurrentUserDate(data, dataType, array) {
   return data.currentUser[dataType][array][index].date
 }
 
+function updateFormUserID(data) {
+  activityUserID.innerText = data.currentUser.id;
+  hydrationUserID.innerText = data.currentUser.id;
+  sleepUserID.innerText = data.currentUser.id;
+}
 //Hydration -------------------------------------------------------------------------------------------------
 
 function createHydrationProfile(data) {
@@ -246,7 +280,9 @@ function displayTodaysHydration(data) {
 };
 
 function displayWeeklyHydration(data) {
-  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek();
+  const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
+  const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek(currentDate);
+  weeklyHydrationStats.innerHTML = '';
   weeklyHydrationAmt.forEach((entry, i) => {
     weeklyHydrationStats.innerHTML += `
     <table class="hydration-table">
@@ -284,7 +320,9 @@ function displayAvgSleep(data) {
 };
 
 function displayWeeklySleep(data) {
-  const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek('2020/01/16');
+  const currentDate = getCurrentUserDate(data, "userSleep", "sleepData");
+  const weeklySleepData = data.currentUser.userSleep.calcSleepStatsPerWeek(currentDate);
+  weeklySleepStats.innerHTML = '';
   weeklySleepData.forEach((entry, i) => {
     weeklySleepStats.innerHTML += `
     <table class="sleep-table">
@@ -319,7 +357,9 @@ function displayTodaysActivity(data, user) {
 };
 
 function displayWeeklyActivity(data) {
-  const weeklyActivityData = data.currentUser.userActivity.calcActivityStatsPerWeek('2020/01/16');
+  const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
+  const weeklyActivityData = data.currentUser.userActivity.calcActivityStatsPerWeek(currentDate);
+  weeklyActivityStats.innerHTML = '';
   weeklyActivityData.forEach((entry, i) => {
     weeklyActivityStats.innerHTML += `
     <table class="activity-table">
@@ -338,13 +378,12 @@ function displayWeeklyActivity(data) {
   });
 };
 
-
 function createCompareDailyStepsChart(chartElement, data) {
   const currentDate = getCurrentUserDate(data, "userActivity", "activityData");
   const todaySteps = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "numSteps")
   const avgUserSteps = data.calcAvgStatsForAllUsers('numSteps', 'activityData');
 
-  new Chart(chartElement, {
+  let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
       labels: ['My Steps', 'Avg. Steps'],
@@ -363,6 +402,8 @@ function createCompareDailyStepsChart(chartElement, data) {
       }]
     }
   });
+  // newChart.update();
+  // newChart.destroy();
 };
 
 
@@ -371,7 +412,7 @@ function createCompareActiveMinChart(chartElement, data) {
   const todayMinActive = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "minutesActive")
   const avgUserActiveMin = data.calcAvgStatsForAllUsers('minutesActive', 'activityData');
 
-new Chart(chartElement, {
+let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
       labels: ['My Active Minutes', 'Avg. Active Min'],
@@ -390,6 +431,8 @@ new Chart(chartElement, {
       }]
     }
   });
+  // newChart.update();
+  // newChart.destroy();
 }
 
 
@@ -398,7 +441,7 @@ function createCompareStairsChart(chartElement, data) {
   const todayStairs = data.currentUser.userActivity.calcActivityDailyStats(currentDate, "flightsOfStairs")
   const avgUserStairs = data.calcAvgStatsForAllUsers('flightsOfStairs', 'activityData');
 
-new Chart(chartElement, {
+let newChart = new Chart(chartElement, {
     type: 'bar',
     data: {
       labels: ['Flights Climbed', 'Avg. Flights Climbed'],
@@ -417,6 +460,8 @@ new Chart(chartElement, {
       }]
     }
   });
+  // newChart.update();
+  // newChart.destroy();
 }
 
 
