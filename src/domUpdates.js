@@ -8,6 +8,10 @@ let domUpdates = {
     userStepGoal.innerText = `${user.dailyStepGoal}`;
   },
 
+  resetInnerHtml: function (selector) {
+    selector.innerHTML = '';
+  },
+
   updateFriends: function (friend) {
     friendList.innerHTML += `<p class="friend">${friend}</p>`
   },
@@ -16,7 +20,7 @@ let domUpdates = {
     todayHydration.innerText = `${todayAmt}`;
   },
 
-  displayWeeklyHydration: function (hydrationAmt, index) {
+  displayWeeklyHydration: function (weeklyHydrationAmt, i) {
     weeklyHydrationStats.innerHTML += `
     <table class="hydration-table">
       <tr>
@@ -24,8 +28,8 @@ let domUpdates = {
         <th>Fluid Ounces</th>
       </tr>
       <tr>
-        <td>${hydrationAmt[index].date}</td>
-        <td>${hydrationAmt[index].ounces}</td>
+        <td>${weeklyHydrationAmt[i].date}</td>
+        <td>${weeklyHydrationAmt[i].ounces}</td>
       </tr>`;
   }
 }

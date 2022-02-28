@@ -256,9 +256,9 @@ function createStepGoalChart(chartElement, user, data) {
 };
 
 function updateFriends(data) {
-  friendList.innerHTML = '';
+  domUpdates.resetInnerHtml(friendList)
   return data.createUserFriendList().forEach((friend) => {
-    friendList.innerHTML += `<p class="friend">${friend}</p>`
+    domUpdates.updateFriends(friend);
   });
 };
 
@@ -286,25 +286,15 @@ function createHydrationProfile(data) {
 function displayTodaysHydration(data) {
   const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
   const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay(currentDate);
-  domUpdates.displayTodaysHydration(todayHydrationAmt)
-  // todayHydration.innerText = `${todayHydrationAmt}`;
+  domUpdates.displayTodaysHydration(todayHydrationAmt);
 };
 
 function displayWeeklyHydration(data) {
   const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
   const weeklyHydrationAmt = data.currentUser.userHydration.calcOuncesPerWeek(currentDate);
-  weeklyHydrationStats.innerHTML = '';
+  domUpdates.resetInnerHtml(weeklyHydrationStats);
   weeklyHydrationAmt.forEach((entry, i) => {
-    weeklyHydrationStats.innerHTML += `
-    <table class="hydration-table">
-      <tr>
-        <th>Date</th>
-        <th>Fluid Ounces</th>
-      </tr>
-      <tr>
-        <td>${weeklyHydrationAmt[i].date}</td>
-        <td>${weeklyHydrationAmt[i].ounces}</td>
-      </tr>`;
+    domUpdates.displayWeeklyHydration(weeklyHydrationAmt, i)
   });
 };
 
