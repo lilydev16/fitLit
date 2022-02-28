@@ -173,7 +173,7 @@ function packageNewActivityData(e) {
   }
   fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
   activityForm.reset()
-  setTimeout(displaySubmissionMessage(), 3000)
+  displaySubmissionMessage()
 }
 
 function packageNewHydrationData(e) {
@@ -185,7 +185,7 @@ function packageNewHydrationData(e) {
   }
   fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
   hydrationForm.reset()
-  setTimeout(displaySubmissionMessage(), 3000)
+  displaySubmissionMessage()
 };
 
 function packageNewSleepData(e) {
@@ -198,7 +198,7 @@ function packageNewSleepData(e) {
   }
   fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
   sleepForm.reset()
-  setTimeout(displaySubmissionMessage(), 3000)
+  displaySubmissionMessage()
 };
 
 
