@@ -19,7 +19,6 @@ class Hydration {
       };
       return weeklyHydration;
     });
-    console.log(result)
     return result
   };
 
