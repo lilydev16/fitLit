@@ -253,8 +253,6 @@ function createStepGoalChart(chartElement, user, data) {
       }]
     }
   });
-  // newChart.update();
-  // newChart.destroy();
 };
 
 function updateFriends(data) {
@@ -288,7 +286,8 @@ function createHydrationProfile(data) {
 function displayTodaysHydration(data) {
   const currentDate = getCurrentUserDate(data, "userHydration", "hydrationData");
   const todayHydrationAmt = data.currentUser.userHydration.calcOuncesPerDay(currentDate);
-  todayHydration.innerText = `${todayHydrationAmt}`;
+  domUpdates.displayTodaysHydration(todayHydrationAmt)
+  // todayHydration.innerText = `${todayHydrationAmt}`;
 };
 
 function displayWeeklyHydration(data) {
