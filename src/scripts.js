@@ -36,6 +36,7 @@ const sleepForm = document.getElementById('sleepForm');
 const activityUserID = document.getElementById('activityUserID');
 const hydrationUserID = document.getElementById('hydrationUserID');
 const sleepUserID = document.getElementById('sleepUserID');
+const submissionMessage = document.getElementById('submissionMessage')
 
 const returnToMainButton = document.getElementById('returnToMain')
 const inputDataButton = document.getElementById('inputDataButton')
@@ -91,6 +92,7 @@ function destroyCharts() {
 function goToForms() {
   mainSection.classList.add('hidden')
   formSection.classList.remove('hidden')
+  resetSubmissionMessage()
 }
 
 function loadPage(id) {
@@ -169,9 +171,9 @@ function packageNewActivityData(e) {
     minutesActive: parseInt(activityMinActive.value),
     flightsOfStairs: parseInt(activityStairs.value),
   }
-
   fetchCalls.postData('http://localhost:3001/api/v1/activity', newActivityData)
   activityForm.reset()
+  setTimeout(displaySubmissionMessage(), 3000)
 }
 
 function packageNewHydrationData(e) {
@@ -181,9 +183,9 @@ function packageNewHydrationData(e) {
     date: hydrationDate.value.split('-').join('/'),
     numOunces: parseInt(hydrationOunces.value),
   }
-
   fetchCalls.postData('http://localhost:3001/api/v1/hydration', newHydrationData)
   hydrationForm.reset()
+  setTimeout(displaySubmissionMessage(), 3000)
 };
 
 function packageNewSleepData(e) {
@@ -194,10 +196,23 @@ function packageNewSleepData(e) {
     hoursSlept: parseInt(sleepHours.value),
     sleepQuality: parseInt(sleepQuality.value),
   }
-
   fetchCalls.postData('http://localhost:3001/api/v1/sleep', newSleepData)
   sleepForm.reset()
+  setTimeout(displaySubmissionMessage(), 3000)
 };
+
+
+function displaySubmissionMessage() {
+  submissionMessage.classList.remove('hidden')
+  returnToMainButton.innerText = "You're awesome! Back to main!"
+}
+
+function resetSubmissionMessage() {
+  submissionMessage.classList.add('hidden')
+  returnToMainButton.innerText = "Return to Main"
+}
+
+
 //User Profile -------------------------------------------------------------------------------------------------
 
 function createUser(data, id) {
