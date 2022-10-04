@@ -119,5 +119,5 @@ In the future, we plan to:
 ## Credits
 
 - [_Turing School of Software and Design_](turing.edu)
-- Our project manager, [NikSeif](https://github.com/niksseif)
+- Our project manager, [Nik Seif](https://github.com/niksseif)
 - Chart.js
